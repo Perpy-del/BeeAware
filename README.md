@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# BeeAware
 
-## Getting Started
+Welcome to the BeeAware Frontend codebase!
 
-First, run the development server:
+This is an application designed for individuals with little or no knowledge of Sexually Transmitted Infection/Diseases, individuals diagnosed with STIs, family members and caregivers of individuals with STIs, healthcare professionals working with STIs patients.
+
+This repository contains the source code for the BeeAware Frontend Application. It is implemented in Next with TypeScript and styled with Tailwind CSS.
+
+## Dependencies
+
+The following dependencies were used to build the application:
+
+- **NextJS** - This is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.
+
+You install using
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx create-next-app@latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **shadCN** - This is a collection of re-usable components that you can copy and paste into your apps. It uses Tailwind CSS to style the components. Also comes with lucid-react, clsx and class-variance-authority (CVA).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You install using
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npx shadcn-ui@latest init
+```
 
-## Learn More
+You will be asked a few questions to configure components.json:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+Which style would you like to use? › Default
+Which color would you like to use as base color? › Slate
+Do you want to use CSS variables for colors? › no / yes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## DevDependencies
 
-## Deploy on Vercel
+The following development dependencies were used to build the application:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **** -
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Loan Prediction Application
+
+- This is the link to the deployed application. 
+
+[BeeAware App]()
+
+## Screenshot
+
+![Screenshot of BeeAware App]()
+
+## Project Status
+
+This app is currently developed and maintained by the Tech4Dev Group 90 Frontend Team. At this time, we do not accept external contributions or pull requests. The project is primarily for personal use or demonstration purposes.
+
+## Credits
+
+The Loan Prediction App codebase is being developed by the following individuals:
+
+- [Perpetual Meninwa](https://github.com/Perpy-del)
+- [Perpetual Obu-Amu](https://github.com/Perpetual25)
