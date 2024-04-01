@@ -45,7 +45,7 @@ const config = {
       headerOne: '3rem',
       headerTwo: '2.5rem',
       headerThree: '2rem',
-      headerFour: '1/75rem',
+      headerFour: '1.75rem',
       headerFive: '1.375rem',
       headerSix: '1.25rem',
       bodySize: '1rem',
