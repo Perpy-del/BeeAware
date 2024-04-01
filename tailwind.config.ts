@@ -13,9 +13,20 @@ const config = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+    },
+    screens: {
+      sm: '280px',
+      sml: '320px',
+      smd: '425px',
+      mdm: '370px',
+      mdl: '600px',
+      md: '768px',
+      mdg: '900px',
+      lg: '1024px',
+      xl: '1280px',
+      xxl: '1440px',
+      '2xl': '1550px',
+      '3xl': '2560px',
     },
     extend: {
       keyframes: {
