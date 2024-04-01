@@ -52,7 +52,7 @@ const Navbar = (props: Props) => {
       <div className='flex items-center gap-8'>
         <Button
           variant="primary"
-          className="transition transform duration-700 hover:scale-110 gap-1 ease-in-out hover:gap-4"
+          className="transition transform duration-700 hover:scale-110 gap-1 ease-in-out hover:gap-4 w-[170px]"
         >
           Sign up
           <span className="">
