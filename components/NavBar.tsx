@@ -24,16 +24,16 @@ const Navbar = (props: Props) => {
     <nav className="flex justify-between h-[100px] items-center px-20">
       {/* Logo */}
       <Link href="/">
-        <h1 className="text-headerThree font-ba_medium cursor-pointer">LOGO</h1>
+        <h1 className="text-headerThree cursor-pointer text-baSecondary font-[800]">LOGO</h1>
       </Link>
 
       {/* Menu */}
-      <ul className="flex gap-10">
+      <ul className="flex gap-10 items-center">
         {navData.map(data => (
           <>
             {pathname === data?.link ? (
               <Link href={data?.link} key={data?.name}>
-                <li className="text-baPrimary dark:text-baSecondary font-ba_normal text-headerSix">
+                <li className="text-baPrimary dark:text-baSecondary font-[600] text-headerFive">
                   {data?.name}
                 </li>
               </Link>
@@ -49,36 +49,38 @@ const Navbar = (props: Props) => {
       </ul>
 
       {/* Sign up */}
-      <Button
-        variant="primary"
-        className="transition transform duration-700 hover:scale-110 gap-1 ease-in-out hover:gap-4"
-      >
-        Sign up
-        <span className="">
-          <ArrowRightToLine size={16} />
-        </span>
-      </Button>
+      <div className='flex items-center gap-8'>
+        <Button
+          variant="primary"
+          className="transition transform duration-700 hover:scale-110 gap-1 ease-in-out hover:gap-4"
+        >
+          Sign up
+          <span className="">
+            <ArrowRightToLine size={16} />
+          </span>
+        </Button>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme('light')}>
-            Light
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme('dark')}>
-            Dark
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme('system')}>
-            System
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon">
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setTheme('light')}>
+              Light
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme('dark')}>
+              Dark
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme('system')}>
+              System
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </nav>
   );
 };
