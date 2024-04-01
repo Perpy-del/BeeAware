@@ -11,6 +11,7 @@ const Footer = (props: Props) => {
   return (
     <footer className="px-20 py-12 bg-baPrimary">
       <div className="flex justify-between items-center">
+        {/* Left side */}
         <div className="flex flex-col gap-3">
           <Link href="/">
             <h1 className="text-headerThree cursor-pointer pb-8 text-baLight font-[800]">
@@ -43,6 +44,8 @@ const Footer = (props: Props) => {
             </a>
           </div>
         </div>
+
+        {/* Info */}
         <div className="flex flex-col gap-3">
           <h1 className="text-headerFive pb-2 text-baLight font-ba_medium">
             INFO
@@ -68,6 +71,8 @@ const Footer = (props: Props) => {
             </span>
           </Link>
         </div>
+
+        {/* Resources */}
         <div className="flex flex-col gap-3">
           <h1 className="text-headerFive pb-2 text-baLight font-ba_medium">
             RESOURCES
@@ -93,6 +98,8 @@ const Footer = (props: Props) => {
             </span>
           </Link>
         </div>
+
+        {/* subscribe to newsletter */}
         <div className="flex flex-col gap-5">
           <h3 className="text-headerFive text-baLight">
             Subscribe to our Newsletter
