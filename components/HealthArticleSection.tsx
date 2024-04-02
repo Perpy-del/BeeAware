@@ -46,8 +46,12 @@ const HealthArticleSection = (props: Props) => {
 
   return (
     <div className="px-20 pb-28">
-      <h1>Health Article</h1>
-      <p>Insights and infromation about STIs and Sexual Health</p>
+      <h1 className="text-headerTwo font-ba_large dark:text-baSubtle">
+        Health Article
+      </h1>
+      <p className="text-headerFive pb-7">
+        Insights and infromation about STIs and Sexual Health
+      </p>
       <div className="flex justify-between">
         <div className="grid w-1/3 grid-cols-2 gap-4">
           <h3
@@ -55,7 +59,8 @@ const HealthArticleSection = (props: Props) => {
               popularArticles
                 ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
                 : 'bg-none text-baDark dark:text-baLight'
-            }`} onClick={handlePopularArticlesClick}
+            }`}
+            onClick={handlePopularArticlesClick}
           >
             Popular Articles
           </h3>
@@ -64,7 +69,8 @@ const HealthArticleSection = (props: Props) => {
               latestArticles
                 ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
                 : 'bg-none text-baDark dark:text-baLight'
-            }`} onClick={handleLatestArticlesClick}
+            }`}
+            onClick={handleLatestArticlesClick}
           >
             Latest Articles
           </h3>
@@ -93,23 +99,66 @@ const HealthArticleSection = (props: Props) => {
         {popularArticles && (
           <div className="flex justify-between gap-10 pt-8">
             {slicedArticles.map((article: ArticleInterface, index: number) => {
-              return <div key={index}>
-                <div>
-                  <Image width={400} height={300} src='/article_image.jpg' alt='Article Image' className='object-center object-cover' />
+              return (
+                <div key={index}>
+                  <div>
+                    <Image
+                      width={400}
+                      height={300}
+                      src="/article_image.jpg"
+                      alt="Article Image"
+                      className="object-center object-cover"
+                    />
+                  </div>
+                  <div className="flex gap-1 pb-3 pt-2">
+                    <h4 className="font-ba_normal text-baPrimary">
+                      {article.focus}
+                    </h4>
+                    <span className="font-ba_normal text-baSubtle">
+                      | {article.date}
+                    </span>
+                  </div>
+                  <h1 className="text-headerFour font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline">
+                    {article.topic}
+                  </h1>
+                  <p className="text-smallSize font-ba_normal leading-4 text-baBody dark:text-baLight">
+                    {article.sub}
+                  </p>
                 </div>
-                <div className='flex gap-1 pb-3'>
-                  <h4 className='font-ba_normal text-baPrimary'>{article.focus}</h4><span className='font-ba_normal text-baSubtle'>| {article.date}</span>
-                </div>
-                <h1 className='text-headerFour font-ba_normal leading-9 pb-2 text-baDark'>{article.topic}</h1>
-                <p className='text-smallSize font-ba_normal leading-4 text-baBody'>{article.sub}</p>
-              </div>;
+              );
             })}
           </div>
         )}
         {latestArticles && (
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-10 pt-8">
             {slicedArticles.map((article: ArticleInterface, index: number) => {
-              return <div key={index}>One</div>;
+              return (
+                <div key={index}>
+                  <div>
+                    <Image
+                      width={400}
+                      height={300}
+                      src="/article_image.jpg"
+                      alt="Article Image"
+                      className="object-center object-cover"
+                    />
+                  </div>
+                  <div className="flex gap-1 pb-3 pt-2">
+                    <h4 className="font-ba_normal text-baPrimary">
+                      {article.focus}
+                    </h4>
+                    <span className="font-ba_normal text-baSubtle">
+                      | {article.date}
+                    </span>
+                  </div>
+                  <h1 className="text-headerFour font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline">
+                    {article.topic}
+                  </h1>
+                  <p className="text-smallSize font-ba_normal leading-4 text-baBody dark:text-baLight">
+                    {article.sub}
+                  </p>
+                </div>
+              );
             })}
           </div>
         )}
