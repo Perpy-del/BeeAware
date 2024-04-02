@@ -22,7 +22,7 @@ const MoreAboutSection = (props: Props) => {
   };
 
   return (
-    <div className="text-baBody pb-24">
+    <div className="text-baBody pb-24 px-20">
       <h1 className="text-baDark text-headerTwo font-ba_large pb-5">
         What does BeeAware do?
       </h1>

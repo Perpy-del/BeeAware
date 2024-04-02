@@ -52,7 +52,7 @@ const Navbar = (props: Props) => {
 
       {/* Sign up */}
       <div className='flex items-center gap-8'>
-        <ButtonComponent btnText='Sign up' width='w-[170px]' />
+        <ButtonComponent btnText='Sign up' width='w-[170px]' variant='primary' />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">

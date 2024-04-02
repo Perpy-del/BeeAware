@@ -9,6 +9,7 @@ type Props = {};
 
 const HeroSection = (props: Props) => {
   return (
+    <div className='px-20'>
     <div className="bg-baAccent px-28 py-20 rounded-[40px] mt-7 mb-24 flex items-center gap-10 text-baBody">
       {/* Left Side */}
       <div className='w-[80%] space-y-4'>
@@ -20,13 +21,14 @@ const HeroSection = (props: Props) => {
           Discover BeeAware, your go-to destination for expert guidance and
           community support on sexual wellness.
         </h3>
-        <ButtonComponent btnText='Explore Community' width='w-[220px]' />
+        <ButtonComponent btnText='Explore Community' width='w-[220px]' variant='primary' />
       </div>
 
       {/* Right Side */}
       <div>
         <Image width='450' height={550} src='/Picture.jpg' alt='hero section picture' loading='lazy' />
       </div>
+    </div>
     </div>
   );
 };

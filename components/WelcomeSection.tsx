@@ -6,7 +6,7 @@ type Props = {};
 
 const WelcomeSection = (props: Props) => {
   return (
-    <div className='flex items-center gap-20 pb-24 text-baBody'>
+    <div className='flex items-center gap-20 pb-24 px-20 text-baBody'>
       <div className='w-[35%]'>
         <Image
           width={480}
@@ -30,7 +30,7 @@ const WelcomeSection = (props: Props) => {
           <div className='flex flex-col'><h1 className='text-headerTwo text-baSecondary font-ba_large leading-10'>15K+</h1><span className='text-baDark text-smallSize'>INFORMATIVE ARTICLES</span></div>
           
         </div>
-        <ButtonComponent btnText='Learn More' width='w-[200px]' />
+        <ButtonComponent btnText='Learn More' width='w-[200px]' variant='primary' />
       </div>
     </div>
   );
