@@ -2,12 +2,14 @@ import React from 'react';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import { Button } from './ui/button';
 import Image from 'next/image';
+import { ArrowRightToLine } from 'lucide-react';
+import ButtonComponent from './ButtonComponent';
 
 type Props = {};
 
 const HeroSection = (props: Props) => {
   return (
-    <div className="bg-baAccent px-28 py-20 rounded-[40px] mt-7 mb-24 flex items-center gap-10">
+    <div className="bg-baAccent px-28 py-20 rounded-[40px] mt-7 mb-24 flex items-center gap-10 text-baBody">
       {/* Left Side */}
       <div className='w-[80%] space-y-4'>
         <h1 className="text-headerOne text-baDark font-ba_large leading-[60px]">
@@ -18,18 +20,12 @@ const HeroSection = (props: Props) => {
           Discover BeeAware, your go-to destination for expert guidance and
           community support on sexual wellness.
         </h3>
-        <Button variant="primary" className="flex items-center gap-2 px-5 transition transform duration-700 hover:scale-110 ease-in-out hover:gap-4 w-[250px]">
-          <span className="text-smallSize text-baLight">Explore Community</span>{' '}
-          <span className="text-baLight">
-            {' '}
-            <IoIosArrowRoundForward />{' '}
-          </span>
-        </Button>
+        <ButtonComponent btnText='Explore Community' width='w-[220px]' />
       </div>
 
       {/* Right Side */}
       <div>
-        <Image width='450' height={550} src='/Picture.jpg' alt='hero section picture' />
+        <Image width='450' height={550} src='/Picture.jpg' alt='hero section picture' loading='lazy' />
       </div>
     </div>
   );

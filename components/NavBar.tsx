@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import ButtonComponent from './ButtonComponent';
 
 type Props = {};
 
@@ -50,16 +51,7 @@ const Navbar = (props: Props) => {
 
       {/* Sign up */}
       <div className='flex items-center gap-8'>
-        <Button
-          variant="primary"
-          className="transition transform duration-700 hover:scale-110 gap-1 ease-in-out hover:gap-4 w-[170px]"
-        >
-          Sign up
-          <span className="">
-            <ArrowRightToLine size={16} />
-          </span>
-        </Button>
-
+        <ButtonComponent btnText='Sign up' width='w-[170px]' />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
