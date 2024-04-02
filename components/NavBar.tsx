@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import ButtonComponent from './ButtonComponent';
+import NavDataInterface from '@/interfaces/NavDataInterface';
 
 type Props = {};
 
@@ -30,7 +31,7 @@ const Navbar = (props: Props) => {
 
       {/* Menu */}
       <ul className="flex gap-10 items-center">
-        {navData.map(data => (
+        {navData.map((data: NavDataInterface) => (
           <>
             {pathname === data?.link ? (
               <Link href={data?.link} key={data?.name}>
