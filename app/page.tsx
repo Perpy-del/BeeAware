@@ -1,6 +1,7 @@
 'use client';
 
 import ConsultationSection from "@/components/ConsultationSection";
+import FaqSection from "@/components/FaqSection";
 import HealthArticleSection from "@/components/HealthArticleSection";
 import HeroSection from "@/components/HeroSection";
 import MoreAboutSection from "@/components/MoreAboutSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <ConsultationSection />
       <HealthArticleSection />
       <TestimonialSection />
+      <FaqSection />
     </main>
   );
 }
