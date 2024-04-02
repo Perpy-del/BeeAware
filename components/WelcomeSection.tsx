@@ -6,7 +6,7 @@ type Props = {};
 
 const WelcomeSection = (props: Props) => {
   return (
-    <div className='flex items-center gap-20 pb-24 px-20 text-baBody'>
+    <div className='flex items-center gap-20 pb-24 px-20 text-baBody dark:text-baLight'>
       <div className='w-[35%]'>
         <Image
           width={480}
@@ -14,10 +14,11 @@ const WelcomeSection = (props: Props) => {
           src="/second_section_pic.jpg"
           alt="welcome message picture"
           className='object-cover object-center'
+          loading='lazy'
         />
       </div>
       <div className='w-[60%] space-y-6'>
-        <h1 className='text-headerTwo font-ba_large leading-6 text-baDark'>Welcome to BeeAware</h1>
+        <h1 className='text-headerTwo font-ba_large leading-6 text-baDark dark:text-baSubtle'>Welcome to BeeAware</h1>
         <p className='text-headerFive'>
           Through BeeAware, users can access consultations with healthcare
           professionals, informative articles on a wide range of sexual health

@@ -16,10 +16,11 @@ const buttonVariants = cva(
           "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         secondary:
           "bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
-        ghost: "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
+        ghost: "border-[0.5px] border-baSubtle hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50 rounded-full",
         link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
         primary: "inline-flex h-[48px] justify-center items-center text-baLight bg-baPrimary rounded-[20px]",
-        baSecondary: "inline-flex h-[48px] justify-center items-center text-baLight bg-baSecondary rounded-[20px]"
+        baSecondary: "inline-flex h-[48px] justify-center items-center text-baLight bg-baSecondary rounded-[20px]",
+        baLink: "border-[0.5px] border-baSubtle inline-flex h-fit justify-center items-center text-baBody bg-baAccent rounded-full p-2"
       },
       size: {
         default: "h-10 px-4 py-2",

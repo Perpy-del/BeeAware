@@ -1,8 +1,8 @@
 import ConsultationSection from "@/components/ConsultationSection";
+import HealthArticleSection from "@/components/HealthArticleSection";
 import HeroSection from "@/components/HeroSection";
 import MoreAboutSection from "@/components/MoreAboutSection";
 import WelcomeSection from "@/components/WelcomeSection";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -11,6 +11,7 @@ export default function Home() {
       <WelcomeSection />
       <MoreAboutSection />
       <ConsultationSection />
+      <HealthArticleSection />
     </main>
   );
 }
