@@ -38,6 +38,20 @@ const TestimonialSection: React.FC<PropType> = props => {
     autoplay.play;
   }, [emblaApi]);
 
+  const onButtonAutoplayClick = useCallback(
+    (callback: () => void) => {
+      const autoplay = emblaApi?.plugins()?.autoplay
+      if (!autoplay) return
+
+      autoplay.options.active === false
+          ? autoplay.reset
+          : autoplay.stop
+
+      callback()
+    },
+    [emblaApi]
+  )
+
   return (
     <div className="bg-baAccent py-12 mb-28">
       <h1 className="text-headerTwo text-baPrimary text-center font-ba_large pb-5">
@@ -67,11 +81,11 @@ const TestimonialSection: React.FC<PropType> = props => {
         </div>
         <div className="justify-center pt-10 flex gap-10">
           <PrevButton
-            onClick={() => onPrevButtonClick}
+            onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
             disabled={prevBtnDisabled}
           />
           <NextButton
-            onClick={() => onNextButtonClick}
+            onClick={() => onButtonAutoplayClick(onNextButtonClick)}
             disabled={nextBtnDisabled}
           />
         </div>
