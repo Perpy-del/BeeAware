@@ -1,5 +1,6 @@
 'use client';
 
+import CommunitySection from "@/components/CommunitySection";
 import ConsultationSection from "@/components/ConsultationSection";
 import FaqSection from "@/components/FaqSection";
 import HealthArticleSection from "@/components/HealthArticleSection";
@@ -18,6 +19,7 @@ export default function Home() {
       <HealthArticleSection />
       <TestimonialSection />
       <FaqSection />
+      <CommunitySection />
     </main>
   );
 }
