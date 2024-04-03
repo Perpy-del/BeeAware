@@ -152,7 +152,7 @@ export const testimonialData = [
 
 export const countOneVariants: Variants = {
   offscreen: {
-    y: 300,
+    y: 500,
   },
   onscreen: {
     y: 0,
@@ -166,7 +166,7 @@ export const countOneVariants: Variants = {
 
 export const countTwoVariants: Variants = {
   offscreen: {
-    y: 300,
+    y: 500,
   },
   onscreen: {
     y: 0,
@@ -180,7 +180,7 @@ export const countTwoVariants: Variants = {
 
 export const countThreeVariants: Variants = {
   offscreen: {
-    y: 300,
+    y: 500,
   },
   onscreen: {
     y: 0,
