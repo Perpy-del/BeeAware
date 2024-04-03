@@ -1,13 +1,13 @@
 import React from 'react';
-import { FormControl, FormField, FormItem, FormMessage } from './ui/form';
-import { Input } from './ui/input';
+import { FormControl, FormField, FormItem, FormMessage } from '../ui/form';
+import { Input } from '../ui/input';
 import FormInterface from '@/interfaces/FormInterface';
 import { Control } from 'react-hook-form';
 
 type Props = {
-    control: Control<FormInterface> | any;
-    formName: "name" | "type" | "location" | "date" | "email" | "complaint"
-    placeholder: string | undefined;
+  control: Control<FormInterface> | any;
+  formName: 'name' | 'type' | 'location' | 'date' | 'email' | 'complaint';
+  placeholder: string | undefined;
 };
 
 const FormInputComponent = (props: Props) => {

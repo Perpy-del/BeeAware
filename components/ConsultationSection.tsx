@@ -6,9 +6,9 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Form } from '@/components/ui/form';
 import ButtonComponent from './ButtonComponent';
-import FormInputComponent from './FormInputComponent';
-import FormSelectComponent from './FormSelectComponent';
-import FormDateComponent from './FormDateComponent';
+import FormInputComponent from './FormComponents/FormInputComponent';
+import FormSelectComponent from './FormComponents/FormSelectComponent';
+import FormDateComponent from './FormComponents/FormDateComponent';
 import { formSchema } from '@/schema/formSchema';
 
 type Props = {};

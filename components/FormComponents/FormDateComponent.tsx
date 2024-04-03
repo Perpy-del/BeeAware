@@ -1,11 +1,11 @@
 import React from 'react';
-import { FormControl, FormField, FormItem, FormMessage } from './ui/form';
+import { FormControl, FormField, FormItem, FormMessage } from '../ui/form';
 import { FormProps } from './FormSelectComponent';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Button } from './ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Button } from '../ui/button';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
-import { Calendar } from './ui/calendar';
+import { Calendar } from '../ui/calendar';
 import { cn } from '@/lib/utils';
 
 const FormDateComponent = (props: FormProps) => {
