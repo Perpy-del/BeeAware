@@ -4,12 +4,14 @@ import { Button } from './ui/button';
 import Image from 'next/image';
 import { ArrowRightToLine } from 'lucide-react';
 import ButtonComponent from './ButtonComponent';
+import ScrollButton from './ScrollButton';
 
 type Props = {};
 
 const HeroSection = (props: Props) => {
   return (
-    <div className='px-20'>
+    <>
+    <div id='hero' className='px-20'>
     <div className="bg-baAccent px-28 py-20 rounded-[40px] mt-7 mb-24 flex items-center gap-10 text-baBody">
       {/* Left Side */}
       <div className='w-[80%] space-y-4'>
@@ -30,6 +32,8 @@ const HeroSection = (props: Props) => {
       </div>
     </div>
     </div>
+    <ScrollButton />
+    </>
   );
 };
 
