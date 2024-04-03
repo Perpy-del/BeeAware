@@ -108,7 +108,7 @@ const Footer = (props: Props) => {
             <input
               type="email"
               placeholder="Enter your email address"
-              className="h-10 w-72 text-baLight px-4 outline-none border-none rounded-tl-[5px] rounded-bl-[5px] bg-baLight/15"
+              className="h-10 w-72 text-baLight px-4 outline-none bg-baLight/15 border-none rounded-tl-[5px] rounded-bl-[5px] "
             />
             <Button className="flex items-center gap-2 bg-baSecondary rounded-tr-[5px] rounded-br-[5px] rounded-tl-none rounded-bl-none border-none outline-none">
               <span className="text-smallSize text-baLight">Subscribe</span>{' '}

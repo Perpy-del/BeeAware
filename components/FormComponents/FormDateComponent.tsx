@@ -22,7 +22,7 @@ const FormDateComponent = (props: FormProps) => {
                   <Button
                     variant={'outline'}
                     className={cn(
-                      'w-[235px] pl-3 text-left font-normal',
+                      'w-[235px] pl-3 text-left font-normal bg-baLight/15 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2',
                       !field.value && 'text-muted-foreground'
                     )}
                   >
