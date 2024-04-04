@@ -11,7 +11,7 @@ import WelcomeSection from "@/components/WelcomeSection";
 
 export default function Home() {
   return (
-    <main>
+    <main className="-z-10">
       <HeroSection />
       <WelcomeSection />
       <MoreAboutSection />

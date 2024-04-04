@@ -51,7 +51,7 @@ const ScrollButton = (props: Props) => {
             onClick={scrollToTop}
             className={`${
               showScrollButton
-                ? 'rounded-full w-10 h-10 p-0 fixed bottom-5 right-5 z-[99]'
+                ? 'rounded-full w-12 h-10 px-0 fixed bottom-5 right-5 z-[99]'
                 : 'hidden'
             } `}
           >

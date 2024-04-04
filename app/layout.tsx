@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Work_Sans } from 'next/font/google';
+import { Work_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
