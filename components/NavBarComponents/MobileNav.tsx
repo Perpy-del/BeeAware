@@ -24,7 +24,7 @@ const MobileNav = (props: Props) => {
   const [showNav, setShowNav] = useState(false);
 
   return (
-    <nav className={`pt-5 lg:hidden ${showNav ? "overflow-hidden" : "overflow-auto"} items-center px-5`}>
+    <nav className={`pt-5 lg:hidden ${showNav ? "fixed h-screen w-screen z-50" : "relative"} px-5`}>
       <div className="flex justify-between">
         {/* Logo */}
         <Link href="/">
@@ -58,10 +58,9 @@ const MobileNav = (props: Props) => {
           </DropdownMenu>
         </div>
       </div>
-
       {/* Menu */}
       {showNav && (
-        <div className="bg-baPrimary flex flex-col h-screen absolute top-0 right-0 left-0 w-full">
+        <div className="bg-baPrimary flex flex-col h-screen absolute top-0 right-0 left-0 w-screen overflow-hidden">
             <span className='absolute right-4 top-4 text-baLight' onClick={() => setShowNav(false)}><XCircle /></span>
           <ul className="flex flex-col gap-10 items-center pt-14 pb-10">
             {navData.map((data: NavDataInterface) => (
