@@ -31,8 +31,8 @@ const ConsultationSection = (props: Props) => {
   }
 
   return (
-    <div className="mb-28 text-baLight bg-[url('/book-consult.jpg')] bg-no-repeat bg-cover h-[544px] px-20 flex justify-center items-center">
-      <div className="w-1/2 bg-baPrimary text-center rounded-xl pt-5 pb-10 px-10">
+    <div className="mb-28 text-baLight lg:bg-[url('/book-consult.jpg')] lg:bg-no-repeat lg:bg-cover lg:h-[544px] sm:pb-0 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 flex justify-center items-center">
+      <div className="sm:w-[99.5%] lg:w-1/2 bg-baPrimary text-center rounded-xl pt-5 3xl:mt-20 pb-10 sm:px-5 lg:px-10">
         <h2 className="text-headerFour pb-2 font-ba_medium">
           Get A Consultation
         </h2>
@@ -67,7 +67,7 @@ const ConsultationSection = (props: Props) => {
               <ButtonComponent
                 variant="baSecondary"
                 btnText={'Book Consultation'}
-                width={'w-[250px]'}
+                width={'w-[250px] 3xl:w-[300px]'}
                 type="submit"
               />
             </div>

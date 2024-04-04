@@ -13,7 +13,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
   
     return (
       <button
-        className="text-baDark w-8 h-8 border border-baSubtle flex justify-center items-center rounded-full hover:bg-baPrimary hover:text-baLight"
+        className="text-baDark w-8 h-8 border border-baSubtle flex justify-center items-center rounded-full hover:bg-baPrimary hover:text-baLight disabled:pointer-events-none disabled:opacity-50"
         type="button"
         {...restProps}
       >
@@ -27,7 +27,7 @@ export const PrevButton: React.FC<PropType> = (props) => {
   
     return (
       <button
-        className="text-baDark w-8 h-8 border border-baSubtle flex justify-center items-center rounded-full hover:bg-baPrimary hover:text-baLight"
+        className="text-baDark w-8 h-8 border border-baSubtle flex justify-center items-center rounded-full hover:bg-baPrimary hover:text-baLight disabled:pointer-events-none disabled:opacity-50"
         type="button"
         {...restProps}
       >
