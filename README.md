@@ -45,11 +45,11 @@ The following development dependencies were used to build the application:
 
 - This is the link to the deployed application. 
 
-[BeeAware App]()
+[BeeAware App](https://bee-aware.vercel.app/)
 
 ## Screenshot
 
-![Screenshot of BeeAware App]()
+![Screenshot of BeeAware App](./public/beeaware_ss.png)
 
 ## Project Status
 

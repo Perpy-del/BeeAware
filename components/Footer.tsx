@@ -108,7 +108,7 @@ const Footer = (props: Props) => {
             <input
               type="email"
               placeholder="Enter your email address"
-              className="h-10 sm:w-full smd:max-w-72 text-baLight px-4 outline-none bg-baLight/15 border-none rounded-tl-[5px] rounded-bl-[5px] "
+              className="h-10 sm:w-full smd:w-72 text-baLight px-4 outline-none bg-baLight/15 border-none rounded-tl-[5px] rounded-bl-[5px] "
             />
             <Button className="flex items-center gap-2 bg-baSecondary sm:w-full smd:w-fit lg:w-40 rounded-tr-[5px] rounded-br-[5px] rounded-tl-none rounded-bl-none border-none outline-none">
               <span className="text-smallSize 3xl:text-headerSix text-baLight">Subscribe</span>{' '}

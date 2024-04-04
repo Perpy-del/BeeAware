@@ -5,7 +5,7 @@ import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
 
-const inter = Work_Sans({ subsets: ['latin'] });
+const inter = Work_Sans({ subsets: ['latin'], display: 'swap', adjustFontFallback: false });
 
 export const metadata: Metadata = {
   title: 'BeeAware | Sexual Health Education',
