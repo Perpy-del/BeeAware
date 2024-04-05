@@ -71,7 +71,7 @@ const Footer = (props: Props) => {
           </form>
         </div>
       </div>
-      <div className="pt-12 flex flex-wrap sm:gap-2 lg:gap-7 text-smallSize">
+      <div className="pt-12 flex flex-wrap sm:gap-2 lg:gap-7 text-smallSize text-baLight">
         <h6>&copy; 2023 Positivus. All Rights Reserved.</h6>
         <h6>Privacy Policy</h6>
       </div>
