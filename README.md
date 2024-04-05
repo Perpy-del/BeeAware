@@ -39,7 +39,25 @@ Do you want to use CSS variables for colors? › no / yes
 
 The following development dependencies were used to build the application:
 
-- **** -
+- **Typescript** - This is JavaScript with syntax for types. TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
+
+You install using
+
+```bash
+npm install typescript --save-dev
+npx tsc
+```
+
+- **TailwindCSS** - This is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.
+
+You install using
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+
 
 ## Loan Prediction Application
 
