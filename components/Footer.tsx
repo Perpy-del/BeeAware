@@ -28,7 +28,7 @@ const Footer = (props: Props) => {
           <span className="text-baLight 3xl:text-headerSix">
             Address: 1234 Main St. <br /> Moonstone City, Stardust State 12345
           </span>
-          <SocialsComponent bgVariant={'bg-baLight'} color="black" />
+          <SocialsComponent bgVariant={'bg-baLight'} color="black" className='flex items-center gap-5' />
         </div>
 
         {footerData.map((data: FooterInterface) => {
