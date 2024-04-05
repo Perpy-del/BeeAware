@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.contact-input::placeholder {
+    color: #808080
+}
+
+@media (min-width: 2560px) {
+    .contact-input::placeholder {
+        font-size: 28px;
+    }
+}

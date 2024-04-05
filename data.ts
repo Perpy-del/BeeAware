@@ -150,6 +150,27 @@ export const testimonialData = [
   },
 ];
 
+export const footerData = [
+  {
+    header: 'INFO',
+    links: [
+      { href: '/about', text: 'About' },
+      { href: '/#faq', text: 'FAQ' },
+      { href: '/contact', text: 'Contact' },
+      { href: '/cookies', text: 'Cookies' },
+    ],
+  },
+  {
+    header: 'RESOURCES',
+    links: [
+      { href: '/services', text: 'Services' },
+      { href: '/contact', text: 'Contact' },
+      { href: '/blog', text: 'Blog' },
+      { href: '/tos', text: 'Terms of Service' },
+    ],
+  },
+];
+
 export const countOneVariants: Variants = {
   offscreen: {
     y: 500,

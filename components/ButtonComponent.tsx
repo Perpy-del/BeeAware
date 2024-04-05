@@ -13,7 +13,7 @@ type Props = {
 
 const ButtonComponent = (props: Props) => {
   return (
-    <div className='flex sm:justify-center lg:justify-start' onClick={props.onClick}>
+    <div className={`flex sm:justify-center lg:justify-start ${props.className}`} onClick={props.onClick}>
     <Button
       variant={props.variant}
       className={`flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 ${props.width}`}
