@@ -58,8 +58,7 @@ npx tailwindcss init -p
 ```
 
 
-
-## Loan Prediction Application
+## BeeAware Application
 
 - This is the link to the deployed application. 
 
