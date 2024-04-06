@@ -67,13 +67,13 @@ const MobileNav = (props: Props) => {
               <>
                 {pathname === data?.link ? (
                   <Link href={data?.link} key={data?.name}>
-                    <li className="text-baSubtle font-ba_large text-headerFive">
+                    <li className="text-baSubtle font-ba_large text-headerFive" onClick={() => setShowNav(false)}>
                       {data?.name}
                     </li>
                   </Link>
                 ) : (
                   <Link href={data?.link} key={data?.name}>
-                    <li className="text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105">
+                    <li className="text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105" onClick={() => setShowNav(false)}>
                       {data?.name}
                     </li>
                   </Link>
