@@ -32,11 +32,11 @@ const ConsultationSection = (props: Props) => {
 
   return (
     <div className="mb-28 text-baLight lg:bg-[url('/book-consult.jpg')] lg:bg-no-repeat lg:bg-cover lg:h-[544px] sm:pb-0 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 flex justify-center items-center">
-      <div className="sm:w-[99.5%] lg:w-1/2 bg-baPrimary text-center lg:mt-20 rounded-xl pt-5 3xl:mt-20 pb-10 sm:px-5 lg:px-10">
+      <div className="sm:w-[99.5%] lg:w-1/2 bg-baPrimary text-center lg:mt-[95px] rounded-xl pt-5 3xl:mt-20 pb-10 lg:pb-7 sm:px-5 lg:px-10">
         <h2 className="text-headerFour pb-2 font-ba_medium">
           Get A Consultation
         </h2>
-        <p className="pb-10">Fill in the form to book a consultation</p>
+        <p className="pb-5">Fill in the form to book a consultation</p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-5 pb-10">
