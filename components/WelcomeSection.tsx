@@ -3,7 +3,6 @@ import React from 'react';
 import ButtonComponent from './ButtonComponent';
 import { motion } from 'framer-motion';
 import { countOneVariants, countTwoVariants, countThreeVariants } from '@/data';
-import ScrollButton from './ScrollButton';
 
 type Props = {};
 

@@ -52,7 +52,7 @@ const HeroSection = (props: Props) => {
           </div>
         </div>
       </div>
-      <ScrollButton />
+      <ScrollButton sectionId='hero' />
     </>
   );
 };

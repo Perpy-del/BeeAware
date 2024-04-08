@@ -171,6 +171,56 @@ export const footerData = [
   },
 ];
 
+export const aboutData = [
+  {
+    front: 'Personal Consultation with medical experts.',
+    back: 'Our innovative technology is designed to provide Accessible and Reliable Information about STIs, Contraception and Sexual Health.',
+  },
+  {
+    front: 'Anonymous Community of like minded people.',
+    back: 'Our innovative technology is designed to provide Accessible and Reliable Information about STIs, Contraception and Sexual Health.',
+  },
+  {
+    front: 'Access Thousands of informative article.',
+    back: 'Our innovative technology is designed to provide Accessible and Reliable Information about STIs, Contraception and Sexual Health.',
+  },
+  {
+    front: 'Locate STI Test Location nearest to you.',
+    back: 'Our innovative technology is designed to provide Accessible and Reliable Information about STIs, Contraception and Sexual Health.',
+  }
+];
+
+export const teamMemberData = [
+  {
+    memberName: 'Perpetual Meninwa',
+    position: 'Frontend Developer',
+    memberImage: '/board_team_one.jpg',
+    avatarFallback: 'PM',
+    content: 'Perpetual Meninwa is a seasoned professional in People Management. She has worked in a number of Fortune 500 companies such as Svelte and WellingtonCo. She majored in Human Resources Management in the West Hampton University, United Kington.'
+  },
+  {
+    memberName: 'Asheson Enneh',
+    position: 'Product Manager',
+    memberImage: '/board_team_two.jpg',
+    avatarFallback: 'AE',
+    content: 'Asheson Enneh is a seasoned professional in People Management. She has worked in a number of Fortune 500 companies such as Svelte and WellingtonCo. She majored in Human Resources Management in the West Hampton University, United Kington.'
+  },
+  {
+    memberName: 'Perpetual Obu-Amu',
+    position: 'Lead Frontend Developer',
+    memberImage: '/board_team_three.jpg',
+    avatarFallback: 'PO',
+    content: 'Perpetual Obu-Amu is a seasoned professional in People Management. She has worked in a number of Fortune 500 companies such as Svelte and WellingtonCo. She majored in Human Resources Management in the West Hampton University, United Kington.'
+  },
+  {
+    memberName: 'Nwakaego Onyah',
+    position: 'Product Designer',
+    memberImage: '/board_team_four.jpg',
+    avatarFallback: 'NO',
+    content: 'Nwakaego Onyah is a seasoned professional in People Management. She has worked in a number of Fortune 500 companies such as Svelte and WellingtonCo. She majored in Human Resources Management in the West Hampton University, United Kington.'
+  },
+]
+
 export const countOneVariants: Variants = {
   offscreen: {
     y: 500,

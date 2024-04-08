@@ -8,7 +8,9 @@ import {
 } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 
-type Props = {};
+type Props = {
+  sectionId: string;
+};
 
 const ScrollButton = (props: Props) => {
   const [showScrollButton, setShowScrollButton] = useState<boolean>(false);
@@ -16,7 +18,7 @@ const ScrollButton = (props: Props) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const section = document.getElementById('hero');
+      const section = document.getElementById(props.sectionId);
       if (section?.offsetTop && scrollPosition > section?.offsetTop) {
         setShowScrollButton(true);
       } else {
@@ -29,7 +31,7 @@ const ScrollButton = (props: Props) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [props.sectionId]);
 
   function scrollToTop() {
     const scrollStep = -window.scrollY / (400 / 15); // Change 500 for desired duration
