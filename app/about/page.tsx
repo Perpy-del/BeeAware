@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonComponent from '../../components/ButtonComponent';
 import {
   countOneVariants,
@@ -16,10 +16,27 @@ import AboutInterface from '@/interfaces/AboutInterface';
 import ScrollButton from '@/components/ScrollButton';
 import TeamCardComponent from '@/components/TeamCardComponent';
 import { TeamHoverProps } from '@/components/TeamCardComponent';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 type Props = {};
 
-const about = (props: Props) => {
+const AboutPage = (props: Props) => {
+  const [progress, setProgress] = useState<number>(17);
+
+  function handleProgressNext() {
+    setProgress((progress: number) => progress + 17);
+  }
+
+  function handleProgressPrev() {
+    setProgress((progress: number) => progress - 17);
+  }
+
   return (
     <div>
       <div
@@ -166,21 +183,41 @@ const about = (props: Props) => {
           technology, and business leadership, guiding BeeAware&apos;s strategic
           vision.
         </p>
-        <div className='flex justify-between flex-wrap'>
-          {teamMemberData.map((data: TeamHoverProps) => {
-            return (
-              <React.Fragment key={data?.memberName}>
-                <TeamCardComponent
-                  memberName={data?.memberName}
-                  position={data?.position}
-                  content={data?.content}
-                  avatarFallback={data?.avatarFallback}
-                  memberImage={data?.memberImage}
-                />
-              </React.Fragment>
-            );
-          })}
-        </div>
+        <Carousel className="w-full pl-20">
+          <CarouselContent className="-ml-1 gap-4">
+            {teamMemberData.map((data: TeamHoverProps, index: number) => {
+              return (
+                <CarouselItem
+                  key={index}
+                  className="pl-1 md:basis-1/2 lg:basis-1/4"
+                >
+                  <TeamCardComponent
+                    memberName={data?.memberName}
+                    position={data?.position}
+                    content={data?.content}
+                    avatarFallback={data?.avatarFallback}
+                    memberImage={data?.memberImage}
+                  />
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          <div className="flex gap-5 items-center pt-5 pr-20">
+            <div className="w-full h-1 rounded-md bg-baSubtle">
+              <div
+                className={`w-[${progress}%] h-1 rounded-md bg-baLight`}
+              ></div>
+            </div>
+            <div className="flex gap-5">
+              <div onClick={handleProgressPrev}>
+                <CarouselPrevious />
+              </div>
+              <div onClick={handleProgressNext}>
+                <CarouselNext />
+              </div>
+            </div>
+          </div>
+        </Carousel>
       </div>
 
       <div className="py-24">
@@ -204,4 +241,4 @@ const about = (props: Props) => {
   );
 };
 
-export default about;
+export default AboutPage;
