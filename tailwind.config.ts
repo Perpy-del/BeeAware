@@ -28,6 +28,22 @@ const config = {
         '3xl': '2560px',
       },
     },
+    fontSize: {
+      textLarge: '4rem',
+      headerOne: '3rem',
+      headerTwo: '2.5rem',
+      headerThree: '2rem',
+      headerFour: '1.75rem',
+      headerFive: '1.375rem',
+      headerSix: '1.25rem',
+      bodySize: '1rem',
+      smallSize: '0.875rem'
+    },
+    fontWeight: {
+      ba_large: '700',
+      ba_medium: '600',
+      ba_normal: '500'
+    },
     screens: {
       sm: '280px',
       sml: '320px',
@@ -53,22 +69,6 @@ const config = {
       baSuccess: '#31D0AA',
       baError: '#E81010',
       baWarning: '#EED202',
-    },
-    fontSize: {
-      textLarge: '4rem',
-      headerOne: '3rem',
-      headerTwo: '2.5rem',
-      headerThree: '2rem',
-      headerFour: '1.75rem',
-      headerFive: '1.375rem',
-      headerSix: '1.25rem',
-      bodySize: '1rem',
-      smallSize: '0.875rem',
-    },
-    fontWeight: {
-      ba_large: '700',
-      ba_medium: '600',
-      ba_normal: '500',
     },
     extend: {
       keyframes: {

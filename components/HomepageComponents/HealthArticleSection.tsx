@@ -11,7 +11,7 @@ import {
 import { articlesData } from '@/data';
 import ArticleInterface from '@/interfaces/ArticleInterface';
 import Image from 'next/image';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../ButtonComponent';
 
 type Props = {};
 

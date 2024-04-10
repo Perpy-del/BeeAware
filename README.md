@@ -2,7 +2,7 @@
 
 Welcome to the BeeAware Frontend codebase!
 
-This is an application designed for individuals with little or no knowledge of Sexually Transmitted Infection/Diseases, individuals diagnosed with STIs, family members and caregivers of individuals with STIs, healthcare professionals working with STIs patients.
+This is an application designed for individuals with little or no knowledge of Sexually Transmitted Infections/Diseases, individuals diagnosed with STIs, family members and caregivers of individuals with STIs, and healthcare professionals working with STIs patients.
 
 This repository contains the source code for the BeeAware Frontend Application. It is implemented in Next with TypeScript and styled with Tailwind CSS.
 
@@ -18,7 +18,7 @@ You install using
 npx create-next-app@latest
 ```
 
-- **shadCN** - This is a collection of re-usable components that you can copy and paste into your apps. It uses Tailwind CSS to style the components. Also comes with lucid-react, clsx and class-variance-authority (CVA).
+- **shadCN** - This is a collection of reusable components that you can copy and paste into your apps. It uses Tailwind CSS to style the components. Also comes with lucid-react, clsx and class-variance-authority (CVA).
 
 You install using
 
