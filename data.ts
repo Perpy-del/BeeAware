@@ -14,8 +14,8 @@ export const navData = [
     link: '/services',
   },
   {
-    name: 'Blogs',
-    link: '/blogs',
+    name: 'Articles',
+    link: '/articles',
   },
   {
     name: 'Contact',
@@ -165,7 +165,7 @@ export const footerData = [
     links: [
       { href: '/services', text: 'Services' },
       { href: '/contact', text: 'Contact' },
-      { href: '/blog', text: 'Blog' },
+      { href: '/articles', text: 'Articles' },
       { href: '/tos', text: 'Terms of Service' },
     ],
   },

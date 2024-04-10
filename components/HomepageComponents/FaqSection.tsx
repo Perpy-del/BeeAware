@@ -10,7 +10,7 @@ type Props = {};
 
 const FaqSection = (props: Props) => {
   return (
-    <div className="sm:mb-14 lg:mb-28 sm:pb-14 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40">
+    <div id='faq' className="sm:mb-14 lg:mb-28 sm:pb-14 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40">
       <h1 className="text-baDark dark:text-baSubtle sm:text-headerFour lg:text-headerThree xl:text-headerTwo 3xl:text-textLarge sm:font-ba_medium lg:font-ba_large text-center font-ba_large pb-5">
         Frequently Asked Questions
       </h1>
