@@ -6,7 +6,7 @@ type Props = {};
 const AboutHeroComponent = (props: Props) => {
   return (
     <div
-      className="bg-no-repeat bg-[url('/aboutimg.jpg')] rounded-[30px] bg-center bg-cover sm:px-3 lg:pl-16 sm:py-20 lg:py-24 sm:mx-5 sm:mt-5 lg:mt-0 lg:mx-20 3xl:mx-40 3xl:mt-20"
+      className="bg-no-repeat bg-[url('/aboutimg.jpg')] rounded-[30px] bg-center bg-cover sm:px-3 lg:pl-16 sm:py-20 lg:py-24 sm:mx-5 lg:mx-20 3xl:mx-40 3xl:mt-20"
       id="about"
     >
       <h1 className="lg:text-textLarge sm:text-headerThree text-baLight sm:font-ba_medium lg:font-ba_large sm:text-center lg:text-left sm:pb-5 lg:pb-14">

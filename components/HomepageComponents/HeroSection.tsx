@@ -12,7 +12,7 @@ const HeroSection = (props: Props) => {
   return (
     <>
       <div id="hero" className="sm:p-5 lg:px-14 xl:px-20 3xl:px-40">
-        <div className="bg-baAccent sm:p-5 lg:px-16 xl:px-28 3xl:px-72 lg:py-12 xl:py-20 sm:rounded-2xl lg:rounded-[40px] sm:mt-5 lg:mt-7 sm:mb-14 lg:mb-24 flex sm:flex-col lg:flex-row items-center gap-10 text-baBody">
+        <div className="bg-baAccent sm:p-5 lg:px-16 xl:px-28 3xl:px-72 lg:py-12 xl:py-20 sm:rounded-2xl lg:rounded-[40px] sm:mt-0 lg:mt-7 sm:mb-14 lg:mb-24 flex sm:flex-col lg:flex-row items-center gap-10 text-baBody">
           {/* Left Side */}
           <div className="lg:w-[80%] 3xl:w-[70%] space-y-4 3xl:space-y-8">
             <h1 className="sm:text-headerThree lg:hidden 3xl:hidden text-baDark font-ba_medium leading-10 text-center">

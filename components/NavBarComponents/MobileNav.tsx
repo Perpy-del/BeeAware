@@ -24,7 +24,7 @@ const MobileNav = (props: Props) => {
   const [showNav, setShowNav] = useState(false);
 
   return (
-    <nav className={`pt-5 lg:hidden ${showNav ? "fixed h-screen w-screen z-50" : "relative"} px-5`}>
+    <nav className={`py-5 lg:hidden ${showNav ? "fixed h-screen w-screen z-50" : "relative"} px-5`}>
       <div className="flex justify-between">
         {/* Logo */}
         <Link href="/">

@@ -15,7 +15,7 @@ const ContactPage = (props: Props) => {
       <h1 className="sm:text-headerFour lg:text-headerThree xl:text-headerTwo 3xl:text-textLarge sm:font-ba_medium lg:font-ba_large sm:leading-normal sm:text-center lg:text-left dark:text-baSubtle text-baDark 3xl:pt-60">
         Get in Touch
       </h1>
-      <p className="lg:text-headerFive font-ba_normal sm:pb-14 lg:pb-16 text-baBody dark:text-baLight 3xl:text-headerTwo">
+      <p className="lg:text-headerFive font-ba_normal sm:pb-14 lg:pb-16 sm:text-center lg:text-left text-baBody dark:text-baLight 3xl:text-headerTwo">
         Send us a message! We would love to hear from you.
       </p>
       <div className="flex justify-between items-center sm:gap-5 lg:gap-0 sm:flex-col-reverse lg:flex-row">
