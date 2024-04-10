@@ -1,10 +1,10 @@
 import React from 'react';
 import { IoIosArrowRoundForward } from 'react-icons/io';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import Image from 'next/image';
 import { ArrowRightToLine } from 'lucide-react';
-import ButtonComponent from './ButtonComponent';
-import ScrollButton from './ScrollButton';
+import ButtonComponent from '../ButtonComponent';
+import ScrollButton from '../ScrollButton';
 
 type Props = {};
 

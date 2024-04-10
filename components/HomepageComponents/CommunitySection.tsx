@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../ButtonComponent';
 
 type Props = {};
 
@@ -11,7 +11,7 @@ const CommunitySection = (props: Props) => {
           Join Our Community
         </h1>
         <div>
-          <h3 className='sm:text-smallSize lg:text-headerFour font-ba_normal text-baPrimary lg:leading-9 sm:text-center lg:text-left pb-7'>
+          <h3 className="sm:text-smallSize lg:text-headerFour font-ba_normal text-baPrimary lg:leading-9 sm:text-center lg:text-left pb-7">
             Join our anonymous community and embark on a journey of empowerment
             through knowledge, support, and proactive sexual health education.
           </h3>

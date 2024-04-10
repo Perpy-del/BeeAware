@@ -1,13 +1,13 @@
 'use client';
 
-import CommunitySection from "@/components/CommunitySection";
-import ConsultationSection from "@/components/ConsultationSection";
-import FaqSection from "@/components/FaqSection";
-import HealthArticleSection from "@/components/HealthArticleSection";
-import HeroSection from "@/components/HeroSection";
-import MoreAboutSection from "@/components/MoreAboutSection";
-import TestimonialSection from "@/components/TestimonialSection";
-import WelcomeSection from "@/components/WelcomeSection";
+import CommunitySection from '@/components/HomepageComponents/CommunitySection';
+import ConsultationSection from '@/components/HomepageComponents/ConsultationSection';
+import FaqSection from '@/components/HomepageComponents/FaqSection';
+import HealthArticleSection from '@/components/HomepageComponents/HealthArticleSection';
+import HeroSection from '@/components/HeroSection';
+import MoreAboutSection from '@/components/HomepageComponents/MoreAboutSection';
+import TestimonialSection from '@/components/HomepageComponents/TestimonialSection';
+import WelcomeSection from '@/components/HomepageComponents/WelcomeSection';
 
 export default function Home() {
   return (
