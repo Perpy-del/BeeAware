@@ -48,7 +48,7 @@ const TeamCardComponent = (props: TeamHoverProps) => {
             <p className="text-headerSix">{props.position}</p>
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:w-[90%] lg:w-1/2 bg-baPrimary border border-baSubtle">
+        <DialogContent className="sm:w-[90%] lg:w-1/2 bg-baPrimary border border-baSubtle text-baLight">
           <div className="flex justify-between space-x-4 py-5">
             <Avatar>
               <AvatarImage src={props.memberImage} />
