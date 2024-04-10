@@ -16,7 +16,7 @@ export interface TeamHoverProps {
 
 const TeamCardComponent = (props: TeamHoverProps) => {
   return (
-    <div className="w-[300px] h-[420px] bg-no-repeat bg-center bg-cover rounded-[20px] relative" style={{backgroundImage: `url(${props?.memberImage})`}}>
+    <div className="max-w-[300px] h-[420px] bg-no-repeat bg-center bg-cover rounded-[20px] relative" style={{backgroundImage: `url(${props?.memberImage})`}}>
       <HoverCard>
         <HoverCardTrigger asChild>
           <div className="w-fit px-5 py-3 mx-auto bg-baAccent rounded-[30px] text-baPrimary text-center font-ba_normal cursor-pointer absolute bottom-3 right-3 left-3">

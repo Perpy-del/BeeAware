@@ -31,8 +31,8 @@ const DesktopNav = (props: Props) => {
 
       {/* Menu */}
       <ul className="flex lg:gap-8 xl:gap-10 items-center">
-        {navData.map((data: NavDataInterface) => (
-          <>
+        {navData.map((data: NavDataInterface, index: number) => (
+          <React.Fragment key={index}>
             {pathname === data?.link ? (
               <Link href={data?.link} key={data?.name}>
                 <li className="text-baPrimary dark:text-baSecondary font-[600] text-headerFive 3xl:text-headerThree">
@@ -46,7 +46,7 @@ const DesktopNav = (props: Props) => {
                 </li>
               </Link>
             )}
-          </>
+          </React.Fragment>
         ))}
       </ul>
 
