@@ -86,10 +86,10 @@ const TeamCarouselComponent = (props: Props) => {
           </div>
           <div className="flex gap-5">
             <div onClick={progressPrevSmall}>
-              <CarouselPrevious />
+              <CarouselPrevious className="text-baLight" />
             </div>
             <div onClick={progressNextSmall}>
-              <CarouselNext />
+              <CarouselNext className="text-baLight" />
             </div>
           </div>
         </div>
