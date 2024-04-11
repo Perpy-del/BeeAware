@@ -5,18 +5,20 @@ type Props = {
   date: string;
   topic: string;
   sub: string;
+  image: string;
 };
 
 const ArticleCardComponent = (props: Props) => {
   return (
     <div>
-      <div className='rounded-xl'>
+      <div className="rounded-xl">
         <Image
           width={400}
           height={300}
-          src="/article_image.jpg"
+          src={props.image}
           alt="Article Image"
           className="object-center object-cover rounded-xl"
+          loading='lazy'
         />
       </div>
       <div className="flex gap-1 pb-3 pt-2">

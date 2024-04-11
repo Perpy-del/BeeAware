@@ -45,7 +45,7 @@ const HealthArticleSection = (props: Props) => {
         Health Article
       </h1>
       <p className="sm:text-bodySize sm:text-center lg:text-left lg:text-headerSix xl:text-headerFive 3xl:text-headerThree pb-7">
-        Insights and infromation about STIs and Sexual Health
+        Insights and information about STIs and Sexual Health
       </p>
       <ArticleCountComponent
         popularArticles={popularArticles}
