@@ -249,6 +249,8 @@ export const teamMemberData = [
   },
 ]
 
+export const articleTopicsData = ['STIs', 'Contraception', 'Communication', 'Puberty', 'Intimacy', 'Consent']
+
 export const countOneVariants: Variants = {
   offscreen: {
     y: 500,

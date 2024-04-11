@@ -5,8 +5,8 @@ type Props = {};
 
 const ArticleReadMoreComponent = (props: Props) => {
   return (
-    <div className="lg:flex sm:hidden lg:flex-row sm:gap-3 lg:gap-5 sm:mx-5 lg:mx-20 pb-10 3xl:pb-20 lg:items-center">
-      <div className='h-full w-[25%]'>
+    <div className="lg:flex sm:hidden lg:flex-row sm:gap-3 lg:gap-5 sm:mx-5 lg:mx-20 3xl:mx-40 pb-10 3xl:pb-20 lg:items-center">
+      <div className='h-full lg:w-[60%] 3xl:w-[25%]'>
         <Image
           src={lastArticle?.image}
           width={400}
