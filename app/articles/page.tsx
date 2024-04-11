@@ -1,17 +1,15 @@
 'use client';
 
 import PopularArticleComponent from '@/components/ArticlesComponents/PopularArticleComponent';
-import PopularMainArticles from '@/components/ArticlesComponents/PopularMainArticles';
 import PopularTopics from '@/components/ArticlesComponents/PopularTopics';
+import RecommendedArticles from '@/components/ArticlesComponents/RecommendedArticles';
 import SearchArticleComponent from '@/components/ArticlesComponents/SearchArticleComponent';
-import { articleTopicsData } from '@/data';
-import { useState } from 'react';
 
 type Props = {};
 
 const ArticlesPage = (props: Props) => {
   return (
-    <div>
+    <div id='articles'>
       <SearchArticleComponent />
       <PopularArticleComponent />
 
@@ -22,6 +20,9 @@ const ArticlesPage = (props: Props) => {
         </h1>
         <PopularTopics />
       </div>
+      <RecommendedArticles />
+
+      {/* TODO: add scroll button */}
     </div>
   );
 };
