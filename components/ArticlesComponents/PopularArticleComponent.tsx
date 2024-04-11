@@ -1,7 +1,5 @@
-import ArticleCardComponent from './ArticleCardComponent';
 import { articlesData } from '@/data';
 import ArticleInterface from '@/interfaces/ArticleInterface';
-import Image from 'next/image';
 import ArticleReadMoreComponent from './ArticleReadMoreComponent';
 import PopularMainArticles from './PopularMainArticles';
 

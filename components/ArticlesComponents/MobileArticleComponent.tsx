@@ -27,6 +27,7 @@ const MobileArticleComponent = (props: Props) => {
                     date={article?.date}
                     topic={article?.topic}
                     sub={article?.sub}
+                    image={article?.image}
                   />
                 );
               })}
@@ -43,6 +44,7 @@ const MobileArticleComponent = (props: Props) => {
                       date={article?.date}
                       topic={article?.topic}
                       sub={article?.sub}
+                      image={article?.image}
                     />
                   );
                 })}
@@ -78,6 +80,7 @@ const MobileArticleComponent = (props: Props) => {
                     date={article?.date}
                     topic={article?.topic}
                     sub={article?.sub}
+                    image={article?.image}
                   />
                 );
               })}
@@ -94,6 +97,7 @@ const MobileArticleComponent = (props: Props) => {
                       date={article?.date}
                       topic={article?.topic}
                       sub={article?.sub}
+                      image={article?.image}
                     />
                   );
                 })}
