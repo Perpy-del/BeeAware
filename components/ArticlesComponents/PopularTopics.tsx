@@ -65,7 +65,7 @@ const PopularTopics = (props: Props) => {
     <>
       <div className="flex flex-wrap gap-4 sm:mx-5 lg:mx-20 3xl:mx-40 pb-6">
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             STIs
               ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
@@ -75,7 +75,7 @@ const PopularTopics = (props: Props) => {
           STIs
         </h3>
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             contraception
               ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
@@ -85,7 +85,7 @@ const PopularTopics = (props: Props) => {
           Contraception
         </h3>
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             communication
               ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
@@ -95,7 +95,7 @@ const PopularTopics = (props: Props) => {
           Communication
         </h3>
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             puberty
               ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
@@ -105,7 +105,7 @@ const PopularTopics = (props: Props) => {
           Puberty
         </h3>
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             intimacy
               ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
@@ -115,7 +115,7 @@ const PopularTopics = (props: Props) => {
           Intimacy
         </h3>
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-1.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             consent
               ? 'bg-baAccent text-slate-950 shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
