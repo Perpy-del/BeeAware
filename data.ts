@@ -14,8 +14,8 @@ export const navData = [
     link: '/services',
   },
   {
-    name: 'Blogs',
-    link: '/blogs',
+    name: 'Articles',
+    link: '/articles',
   },
   {
     name: 'Contact',
@@ -165,7 +165,7 @@ export const footerData = [
     links: [
       { href: '/services', text: 'Services' },
       { href: '/contact', text: 'Contact' },
-      { href: '/blog', text: 'Blog' },
+      { href: '/articles', text: 'Articles' },
       { href: '/tos', text: 'Terms of Service' },
     ],
   },
@@ -248,6 +248,8 @@ export const teamMemberData = [
     content: 'Nwakaego Onyah is a seasoned professional in People Management. She has worked in a number of Fortune 500 companies such as Svelte and WellingtonCo. She majored in Human Resources Management in the West Hampton University, United Kington.'
   },
 ]
+
+export const articleTopicsData = ['STIs', 'Contraception', 'Communication', 'Puberty', 'Intimacy', 'Consent']
 
 export const countOneVariants: Variants = {
   offscreen: {
