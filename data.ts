@@ -251,6 +251,29 @@ export const teamMemberData = [
 
 export const articleTopicsData = ['STIs', 'Contraception', 'Communication', 'Puberty', 'Intimacy', 'Consent']
 
+export const servicesCardData = [
+  {
+    image: '/bi_book.svg',
+    cardHeader: 'Education',
+    cardBody: "Educate yourself comprehensively with our expansive Education service, where a vast array of informative articles, guides, and resources await your exploration. From contraception methods to insights on maintaining healthy relationships, our curated content ensures you're well-informed to make confident decisions about your sexual health.",
+  },
+  {
+    image: '/Calendar.svg',
+    cardHeader: 'Consultation',
+    cardBody: " Look no further than our Consultation service, where our experienced healthcare professionals provide confidential sessions tailored to your needs. Whether you have questions about contraception, STIs, or general sexual wellness, our experts are here to offer support and advice.",
+  },
+  {
+    image: '/Stethoscope.svg',
+    cardHeader: 'Testing',
+    cardBody: "Stay proactive with our Testing service, which empowers you to locate nearby STI testing facilities conveniently. Access information on available tests, locations, and prepare for your visit with ease.",
+  },
+  {
+    image: '/community.svg',
+    cardHeader: 'Community',
+    cardBody: " Join our vibrant Community, a supportive space where you can connect with peers, share experiences, and find solace in knowing you're not alone on your sexual health journey. Together, let's navigate the path to sexual wellness with confidence and empowerment.",
+  },
+]
+
 export const countOneVariants: Variants = {
   offscreen: {
     y: 500,
