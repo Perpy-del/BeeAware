@@ -9,10 +9,9 @@ export const navData = [
     name: 'About',
     link: '/about',
   },
-  {
-    name: 'Services',
-    link: '/services',
-  },
+];
+
+export const navDataTwo = [
   {
     name: 'Articles',
     link: '/articles',
@@ -21,7 +20,7 @@ export const navData = [
     name: 'Contact',
     link: '/contact',
   },
-];
+]
 
 export const moreAboutData = [
   {

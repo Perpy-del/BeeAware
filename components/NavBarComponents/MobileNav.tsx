@@ -1,30 +1,26 @@
-import { navData } from '@/data';
-import React, { useEffect, useState } from 'react';
+import { navData, navDataTwo } from '@/data';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '../ui/button';
-import { Moon, Sun, AlignJustify, XCircle } from 'lucide-react';
-import { RxHamburgerMenu } from 'react-icons/rx';
-import { useTheme } from 'next-themes';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import ButtonComponent from '../ButtonComponent';
+import { AlignJustify, XCircle } from 'lucide-react';
 import NavDataInterface from '@/interfaces/NavDataInterface';
+import { MobileModeDropdown } from './ModeDropdownComponent';
+import { MobileServicesDropdown } from './ServicesDropdown';
 
 type Props = {};
 
 const MobileNav = (props: Props) => {
   const pathname = usePathname();
-  const { setTheme } = useTheme();
 
   const [showNav, setShowNav] = useState(false);
 
   return (
-    <nav className={`py-5 lg:hidden ${showNav ? "fixed h-screen w-screen z-50" : "relative"} px-5`}>
+    <nav
+      className={`py-5 lg:hidden ${
+        showNav ? 'fixed h-screen w-screen z-50' : 'relative'
+      } px-5`}
+    >
       <div className="flex justify-between">
         {/* Logo */}
         <Link href="/">
@@ -33,47 +29,87 @@ const MobileNav = (props: Props) => {
           </h1>
         </Link>
         <div className="flex items-center gap-3">
-            <span onClick={() => setShowNav(true)}>
-              <AlignJustify />
-            </span>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme('light')}>
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme('dark')}>
-                Dark
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme('system')}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <span onClick={() => setShowNav(true)}>
+            <AlignJustify />
+          </span>
+          <MobileModeDropdown />
         </div>
       </div>
       {/* Menu */}
       {showNav && (
         <div className="bg-baPrimary flex flex-col h-screen absolute top-0 right-0 left-0 w-screen overflow-hidden">
-            <span className='absolute right-4 top-4 text-baLight' onClick={() => setShowNav(false)}><XCircle /></span>
+          <span
+            className="absolute right-4 top-4 text-baLight"
+            onClick={() => setShowNav(false)}
+          >
+            <XCircle />
+          </span>
           <ul className="flex flex-col gap-10 items-center pt-14 pb-10">
             {navData.map((data: NavDataInterface) => (
               <>
                 {pathname === data?.link ? (
                   <Link href={data?.link} key={data?.name}>
-                    <li className="text-baSubtle font-ba_large text-headerFive" onClick={() => setShowNav(false)}>
+                    <li
+                      className="text-baSubtle font-ba_large text-headerFive"
+                      onClick={() => setShowNav(false)}
+                    >
                       {data?.name}
                     </li>
                   </Link>
                 ) : (
                   <Link href={data?.link} key={data?.name}>
-                    <li className="text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105" onClick={() => setShowNav(false)}>
+                    <li
+                      className="text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105"
+                      onClick={() => setShowNav(false)}
+                    >
+                      {data?.name}
+                    </li>
+                  </Link>
+                )}
+              </>
+            ))}
+            {pathname === '/services' ? (
+              <div className="flex items-center gap-2 text-baLight">
+                <Link href="/services">
+                  <li
+                    className="text-baSubtle font-ba_large text-headerFive"
+                    onClick={() => setShowNav(false)}
+                  >
+                    Services
+                  </li>
+                </Link>
+                <MobileServicesDropdown />
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 text-baLight">
+                <Link href="services">
+                  <li
+                    className="text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105"
+                    onClick={() => setShowNav(false)}
+                  >
+                    Services
+                  </li>
+                </Link>
+                <MobileServicesDropdown />
+              </div>
+            )}
+            {navDataTwo.map((data: NavDataInterface) => (
+              <>
+                {pathname === data?.link ? (
+                  <Link href={data?.link} key={data?.name}>
+                    <li
+                      className="text-baSubtle font-ba_large text-headerFive"
+                      onClick={() => setShowNav(false)}
+                    >
+                      {data?.name}
+                    </li>
+                  </Link>
+                ) : (
+                  <Link href={data?.link} key={data?.name}>
+                    <li
+                      className="text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105"
+                      onClick={() => setShowNav(false)}
+                    >
                       {data?.name}
                     </li>
                   </Link>
@@ -83,8 +119,10 @@ const MobileNav = (props: Props) => {
           </ul>
 
           {/* Sign up */}
-          <div className='flex justify-center'>
-          <Button className='bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12'>Sign up</Button>
+          <div className="flex justify-center">
+            <Button className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12">
+              Sign up
+            </Button>
           </div>
         </div>
       )}
