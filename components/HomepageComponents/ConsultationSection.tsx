@@ -42,7 +42,7 @@ const ConsultationSection = (props: Props) => {
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
         description:
-          'Please input only letters in the name field (e.g. John Nolan), no numbers (e.g. John1234) allowed',
+          'Please input only letters in the name field (e.g. John Nolan), no numbers allowed (e.g. John1234)',
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       return;
@@ -59,7 +59,7 @@ const ConsultationSection = (props: Props) => {
         <p className="pb-5">Fill in the form to book a consultation</p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
               <FormInputComponent
                 control={form.control}
                 formName="name"
