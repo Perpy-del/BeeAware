@@ -10,10 +10,14 @@ import FormInputComponent from '../FormComponents/FormInputComponent';
 import FormSelectComponent from '../FormComponents/FormSelectComponent';
 import FormDateComponent from '../FormComponents/FormDateComponent';
 import { formSchema } from '@/schema/formSchema';
+import { ToastAction } from '@/components/ui/toast';
+import { useToast } from '@/components/ui/use-toast';
 
 type Props = {};
 
 const ConsultationSection = (props: Props) => {
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,6 +31,22 @@ const ConsultationSection = (props: Props) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const validateName = (value: string) => {
+      const valueValidate = /^[A-Za-z\s]*$/;
+      console.log(valueValidate.test(value));
+      return valueValidate.test(value);
+    };
+
+    if (!validateName(values.name)) {
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description:
+          'Please input only letters in the name field (e.g. John Nolan), no numbers (e.g. John1234) allowed',
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+      return;
+    }
     console.log(values);
   }
 
@@ -39,7 +59,7 @@ const ConsultationSection = (props: Props) => {
         <p className="pb-5">Fill in the form to book a consultation</p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-5 pb-10">
+            <div className="grid grid-cols-2 gap-5">
               <FormInputComponent
                 control={form.control}
                 formName="name"
@@ -50,18 +70,20 @@ const ConsultationSection = (props: Props) => {
                 formName="email"
                 placeholder="Enter your email address"
               />
-              <FormSelectComponent control={form.control} formName={'type'} />
+              {/* <FormSelectComponent control={form.control} formName={'type'} /> */}
               <FormDateComponent control={form.control} formName="date" />
               <FormInputComponent
                 control={form.control}
                 formName="location"
                 placeholder="Location/Address"
               />
-              <FormInputComponent
-                control={form.control}
-                formName="complaint"
-                placeholder="Complaint"
-              />
+            </div>
+            <div className='pb-10 pt-5'>
+            <FormInputComponent
+              control={form.control}
+              formName="complaint"
+              placeholder="Complaint"
+            />
             </div>
             <div className="flex justify-center">
               <ButtonComponent

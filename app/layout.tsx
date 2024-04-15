@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Work_Sans({ subsets: ['latin'], display: 'swap', adjustFontFallback: false });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
