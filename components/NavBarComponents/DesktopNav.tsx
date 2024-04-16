@@ -8,6 +8,7 @@ import ButtonComponent from '../ButtonComponent';
 import NavDataInterface from '@/interfaces/NavDataInterface';
 import { ModeDropdownComponent } from './ModeDropdownComponent';
 import ServicesDropdown from './ServicesDropdown';
+import Image from 'next/image';
 
 type Props = {};
 
@@ -18,13 +19,11 @@ const DesktopNav = (props: Props) => {
     <nav className="sm:hidden lg:flex justify-between h-[100px] items-center lg:px-14 xl:px-20 3xl:px-40">
       {/* Logo */}
       <Link href="/">
-        <h1 className="text-headerThree cursor-pointer text-baSecondary font-[800]">
-          LOGO
-        </h1>
+        <Image src="/bee_aware.svg" width={150} height={33} alt='beeaware logo' />
       </Link>
 
       {/* Menu */}
-      <ul className="flex lg:gap-8 xl:gap-10 items-center">
+      <ul className="flex lg:gap-5 xl:gap-10 items-center">
         {navData.map((data: NavDataInterface, index: number) => (
           <React.Fragment key={index}>
             {pathname === data?.link ? (

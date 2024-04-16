@@ -7,6 +7,7 @@ import { AlignJustify, XCircle } from 'lucide-react';
 import NavDataInterface from '@/interfaces/NavDataInterface';
 import { MobileModeDropdown } from './ModeDropdownComponent';
 import { MobileServicesDropdown } from './ServicesDropdown';
+import Image from 'next/image';
 
 type Props = {};
 
@@ -21,12 +22,10 @@ const MobileNav = (props: Props) => {
         showNav ? 'fixed h-screen w-screen z-50' : 'relative'
       } px-5`}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <h1 className="text-headerThree cursor-pointer text-baSecondary font-[800]">
-            LOGO
-          </h1>
+        <Image src="/bee_aware.svg" width={130} height={33} alt='beeaware logo' />
         </Link>
         <div className="flex items-center gap-3">
           <span onClick={() => setShowNav(true)}>
