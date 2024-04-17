@@ -3,7 +3,7 @@
 import { navData, navDataTwo } from '@/data';
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ButtonComponent from '../ButtonComponent';
 import NavDataInterface from '@/interfaces/NavDataInterface';
 import { ModeDropdownComponent } from './ModeDropdownComponent';
@@ -14,6 +14,7 @@ type Props = {};
 
 const DesktopNav = (props: Props) => {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <nav className="sm:hidden lg:flex justify-between h-[100px] items-center lg:px-14 xl:px-20 3xl:px-40">
@@ -83,11 +84,20 @@ const DesktopNav = (props: Props) => {
 
       {/* Sign up */}
       <div className="flex items-center gap-8">
+        {(pathname === "/" || pathname === "/auth/login") &&
         <ButtonComponent
           btnText="Sign up"
           width="w-[170px] 3xl:w-[250px]"
           variant="primary"
-        />
+          onClick={() => router.push('/auth/signup')}
+        />}
+        {pathname === "/auth/signup" &&
+        <ButtonComponent
+          btnText="Log in"
+          width="w-[170px] 3xl:w-[250px]"
+          variant="primary"
+          onClick={() => router.push('/auth/login')}
+        />}
         {/* Change mode dropdown */}
         <ModeDropdownComponent />
       </div>
