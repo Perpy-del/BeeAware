@@ -14,14 +14,12 @@ import {
 } from '@/components/ui/form';
 import { ToastAction } from '@/components/ui/toast';
 import { toast } from '@/components/ui/use-toast';
-import FormInputComponent from '@/components/FormComponents/FormInputComponent';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import ButtonComponent from '@/components/ButtonComponent';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
 
 type Props = {};
 
@@ -61,12 +59,12 @@ const SignupPage = (props: Props) => {
 
   return (
     <div>
-      <div className="bg-[url('/signup-bg.jpg')] w-full flex items-center justify-center">
-        <div className="w-1/2 py-16 my-3 bg-baLight dark:bg-baDark rounded-[20px] px-14">
+      <div className="md:bg-[url('/signup-bg.jpg')] bg-no-repeat bg-cover bg-center 3xl:h-[80vh] w-full flex items-center justify-center">
+        <div className="lg:w-1/2 py-16 my-3 bg-baLight dark:bg-baDark rounded-[20px] sm:px-5 md:px-14">
           <h1 className="text-center text-headerTwo font-ba_large text-baPrimary dark:text-baSecondary">
             Sign up
           </h1>
-          <p className="pb-14 text-center text-baBody dark:text-baLight text-headerSix font-ba_normal">
+          <p className="pb-14 text-center text-baBody dark:text-baLight sm:text-bodySize lg:text-headerSix font-ba_normal">
             Kindly create your account if you are a new user.
           </p>
           <Form {...form}>
@@ -78,7 +76,7 @@ const SignupPage = (props: Props) => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="mb-2 font-ba_normal text-headerSix">
+                      <FormLabel className="mb-2 font-ba_normal sm:text-bodySize md:text-headerSix">
                         Name
                       </FormLabel>
                       <FormControl>
@@ -99,7 +97,7 @@ const SignupPage = (props: Props) => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="mb-2 font-ba_normal text-headerSix">
+                      <FormLabel className="mb-2 font-ba_normal sm:text-bodySize md:text-headerSix">
                         Email
                       </FormLabel>
                       <FormControl>
@@ -120,17 +118,22 @@ const SignupPage = (props: Props) => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="mb-2 font-ba_normal text-headerSix">
+                      <FormLabel className="mb-2 font-ba_normal sm:text-bodySize md:text-headerSix">
                         Password
                       </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="********"
-                          {...field}
-                          className="rounded-[20px] h-12"
-                          type={showPassword ? 'text' : 'password'}
-                        />
-                      </FormControl>
+                      <div className="flex items-center rounded-[20px] h-12 border border-input bg-baLight/15 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                        <FormControl>
+                          <Input
+                            placeholder="********"
+                            {...field}
+                            className="border-none outline-none ring-0 focus-visible:ring-0 focus-visible:ring-none focus-visible:ring-offset-0"
+                            type={showPassword ? 'text' : 'password'}
+                          />
+                        </FormControl>
+                        <div className="cursor-pointer hover:scale-105 transition transform duration-300" onClick={handleClickShowPassword}>
+                          {showPassword ? <EyeOff /> : <Eye />}
+                        </div>
+                      </div>
                       <FormMessage className="text-[14px] font-ba_medium text-baWarning text-left" />
                     </FormItem>
                   )}
@@ -146,22 +149,25 @@ const SignupPage = (props: Props) => {
                   Sign Up
                 </Button>
               </div>
-              <span className='text-center block text-headerSix text-baSubtle pb-16'>
+              <span className="text-center block text-headerSix text-baSubtle pb-16">
                 Already have an account?{' '}
-                <span className='text-baPrimary dark:text-baSecondary hover:font-ba_normal'>
+                <span className="text-baPrimary dark:text-baSecondary hover:font-ba_normal">
                   <Link href="/auth/login">Log in here</Link>
                 </span>
               </span>
-              <div className='flex justify-between items-center pb-12'>
-                  <span className='h-[1px] w-[45%] bg-baDark dark:bg-baLight'></span>
-                  <span>OR</span>
-                  <span className='h-[1px] w-[45%] bg-baDark dark:bg-baLight'></span>
+              <div className="flex justify-between items-center pb-12">
+                <span className="h-[1px] w-[45%] bg-baSubtle dark:bg-baLight"></span>
+                <span>OR</span>
+                <span className="h-[1px] w-[45%] bg-baSubtle dark:bg-baLight"></span>
               </div>
               <div className="flex justify-center pb-4">
-              <Button
-                  className="w-full duration-300 transition bg-transparent border-[3px] border-baPrimary transform hover:bg-[#FAFAFA] dark:hover:bg-[#202020] hover:font-ba_medium h-14 rounded-[20px] flex gap-4"
-                >
-                  <Image src='/google.svg' width={24} height={24} alt="Google Logo" />
+                <Button className="w-[95%] hover:scale-105 duration-300 transition transform bg-transparent border-[3px] border-baPrimary hover:bg-[#FAFAFA] dark:hover:bg-[#202020] hover:font-ba_medium h-14 rounded-[20px] flex gap-4 text-baPrimary dark:text-baSecondary">
+                  <Image
+                    src="/google.svg"
+                    width={24}
+                    height={24}
+                    alt="Google Logo"
+                  />
                   Sign up with Google
                 </Button>
               </div>
