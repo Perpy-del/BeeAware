@@ -134,35 +134,35 @@ const SignupPage = (props: Props) => {
     });
     try {
       await signInWithPopup(auth, provider);
-      // const q = query(
-      //   collection(db, 'users'),
-      //   where('email', '==', user?.email)
-      // );
+      const q = query(
+        collection(db, 'users'),
+        where('email', '==', user?.email)
+      );
 
-      // const querySnapshot = await getDocs(q);
-      // // console.log(querySnapshot);
-      // let accountExists = false; // Flag variable to track if account exists
+      const querySnapshot = await getDocs(q);
+      // console.log(querySnapshot);
+      let accountExists = false; // Flag variable to track if account exists
 
-      // querySnapshot.forEach(doc => {
-      //   if (doc.exists()) {
-      //     accountExists = true;
-      //   }
-      // });
+      querySnapshot.forEach(doc => {
+        if (doc.exists()) {
+          accountExists = true;
+        }
+      });
 
-      // if (accountExists) {
-      //   toast({
-      //     variant: 'destructive',
-      //     title: 'Account Already Exists!',
-      //     description:
-      //       'This account already exists. Kindly log in to your account',
-      //     action: (
-      //       <ToastAction altText="Log in" onClick={() => router.push('/auth/login')}>
-      //         Log in
-      //       </ToastAction>
-      //     ),
-      //   });
-      //   return; // Return early if account exists
-      // }
+      if (accountExists) {
+        toast({
+          variant: 'destructive',
+          title: 'Account Already Exists!',
+          description:
+            'This account already exists. Kindly log in to your account',
+          action: (
+            <ToastAction altText="Log in" onClick={() => router.push('/auth/login')}>
+              Log in
+            </ToastAction>
+          ),
+        });
+        return; // Return early if account exists
+      }
       await addDoc(collection(db, 'users'), {
         name: user?.displayName,
         email: user?.email,
