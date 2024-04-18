@@ -1,7 +1,7 @@
 import { navData, navDataTwo } from '@/data';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { AlignJustify, XCircle } from 'lucide-react';
 import NavDataInterface from '@/interfaces/NavDataInterface';
@@ -13,6 +13,7 @@ type Props = {};
 
 const MobileNav = (props: Props) => {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [showNav, setShowNav] = useState(false);
 
@@ -25,7 +26,14 @@ const MobileNav = (props: Props) => {
       <div className="flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-        <Image src="/bee_aware.svg" width={130} height={33} alt='beeaware logo' />
+          <Image
+            src="/bee_aware.svg"
+            width={130}
+            height={33}
+            alt="beeaware logo"
+            loading='lazy'
+            className='object-center object-cover'
+          />
         </Link>
         <div className="flex items-center gap-3">
           <span onClick={() => setShowNav(true)}>
@@ -119,9 +127,22 @@ const MobileNav = (props: Props) => {
 
           {/* Sign up */}
           <div className="flex justify-center">
-            <Button className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12">
-              Sign up
-            </Button>
+            {(pathname === '/' || pathname === '/auth/login') && (
+              <Button
+                className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
+                onClick={() => router.push('/auth/signup')}
+              >
+                Sign up
+              </Button>
+            )}
+            {pathname === '/auth/signup' && (
+              <Button
+                className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
+                onClick={() => router.push('/auth/login')}
+              >
+                Log in
+              </Button>
+            )}
           </div>
         </div>
       )}

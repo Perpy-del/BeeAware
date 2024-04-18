@@ -8,6 +8,7 @@ type Props = {
   control: Control<FormInterface> | any;
   formName: 'name' | 'type' | 'location' | 'date' | 'email' | 'complaint';
   placeholder: string | undefined;
+  className?: string
 };
 
 const FormInputComponent = (props: Props) => {
@@ -19,7 +20,7 @@ const FormInputComponent = (props: Props) => {
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Input placeholder={props.placeholder} {...field} />
+              <Input placeholder={props.placeholder} {...field} className={props.className} />
             </FormControl>
             <FormMessage className="text-[14px] font-ba_medium text-baWarning text-left" />
           </FormItem>

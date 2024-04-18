@@ -3,7 +3,7 @@
 import { navData, navDataTwo } from '@/data';
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import ButtonComponent from '../ButtonComponent';
 import NavDataInterface from '@/interfaces/NavDataInterface';
 import { ModeDropdownComponent } from './ModeDropdownComponent';
@@ -14,12 +14,20 @@ type Props = {};
 
 const DesktopNav = (props: Props) => {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <nav className="sm:hidden lg:flex justify-between h-[100px] items-center lg:px-14 xl:px-20 3xl:px-40">
       {/* Logo */}
       <Link href="/">
-        <Image src="/bee_aware.svg" width={150} height={33} alt='beeaware logo' />
+        <Image
+          src="/bee_aware.svg"
+          width={150}
+          height={33}
+          alt="beeaware logo"
+          loading="lazy"
+          className="object-center object-cover"
+        />
       </Link>
 
       {/* Menu */}
@@ -43,7 +51,7 @@ const DesktopNav = (props: Props) => {
         ))}
 
         {pathname === '/services' ? (
-          <div className='flex items-center gap-2'>
+          <div className="flex items-center gap-2">
             <Link href="/services">
               <li className="text-baPrimary dark:text-baSecondary font-[600] text-headerFive 3xl:text-headerThree">
                 Services
@@ -52,7 +60,7 @@ const DesktopNav = (props: Props) => {
             <ServicesDropdown />
           </div>
         ) : (
-          <div className='flex items-center gap-2'>
+          <div className="flex items-center gap-2">
             <Link href="/services">
               <li className="text-baBody dark:text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
                 Services
@@ -83,11 +91,22 @@ const DesktopNav = (props: Props) => {
 
       {/* Sign up */}
       <div className="flex items-center gap-8">
-        <ButtonComponent
-          btnText="Sign up"
-          width="w-[170px] 3xl:w-[250px]"
-          variant="primary"
-        />
+        {(pathname === '/' || pathname === '/auth/login') && (
+          <ButtonComponent
+            btnText="Sign up"
+            width="w-[170px] 3xl:w-[250px]"
+            variant="primary"
+            onClick={() => router.push('/auth/signup')}
+          />
+        )}
+        {pathname === '/auth/signup' && (
+          <ButtonComponent
+            btnText="Log in"
+            width="w-[170px] 3xl:w-[250px]"
+            variant="primary"
+            onClick={() => router.push('/auth/login')}
+          />
+        )}
         {/* Change mode dropdown */}
         <ModeDropdownComponent />
       </div>
