@@ -31,8 +31,8 @@ const MobileNav = (props: Props) => {
             width={130}
             height={33}
             alt="beeaware logo"
-            loading='lazy'
-            className='object-center object-cover'
+            loading="lazy"
+            className="object-center object-cover"
           />
         </Link>
         <div className="flex items-center gap-3">
@@ -130,7 +130,10 @@ const MobileNav = (props: Props) => {
             {(pathname === '/' || pathname === '/auth/login') && (
               <Button
                 className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
-                onClick={() => router.push('/auth/signup')}
+                onClick={() => {
+                  router.push('/auth/signup');
+                  setShowNav(false);
+                }}
               >
                 Sign up
               </Button>
@@ -138,7 +141,10 @@ const MobileNav = (props: Props) => {
             {pathname === '/auth/signup' && (
               <Button
                 className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
-                onClick={() => router.push('/auth/login')}
+                onClick={() => {
+                  router.push('/auth/login');
+                  setShowNav(false);
+                }}
               >
                 Log in
               </Button>
