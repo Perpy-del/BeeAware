@@ -32,7 +32,6 @@ const ConsultationSection = (props: Props) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const validateName = (value: string) => {
       const valueValidate = /^[A-Za-z\s]*$/;
-      console.log(valueValidate.test(value));
       return valueValidate.test(value);
     };
 

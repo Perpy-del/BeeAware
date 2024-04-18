@@ -31,6 +31,8 @@ const MobileNav = (props: Props) => {
             width={130}
             height={33}
             alt="beeaware logo"
+            loading='lazy'
+            className='object-center object-cover'
           />
         </Link>
         <div className="flex items-center gap-3">
