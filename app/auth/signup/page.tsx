@@ -163,10 +163,10 @@ const SignupPage = (props: Props) => {
       //   });
       //   return; // Return early if account exists
       // }
-      // await addDoc(collection(db, 'users'), {
-      //   name: user?.displayName,
-      //   email: user?.email,
-      // });
+      await addDoc(collection(db, 'users'), {
+        name: user?.displayName,
+        email: user?.email,
+      });
       toast({
         title: 'Sign Up Successful... 🎉',
         description: 'You have successfully created an account with BeeAware.',
