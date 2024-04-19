@@ -33,9 +33,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <BeeawareContextProvider>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
-            <Footer />
+            {/* <Footer /> */}
           </BeeawareContextProvider>
         </ThemeProvider>
         <Toaster />

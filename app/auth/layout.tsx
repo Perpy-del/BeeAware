@@ -4,7 +4,7 @@ import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'BeeAware | Contact',
+  title: 'BeeAware | Authentication',
   description: 'An application to create more awareness about sexual health',
 };
 

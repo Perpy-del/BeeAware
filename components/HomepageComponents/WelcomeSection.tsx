@@ -3,10 +3,13 @@ import React from 'react';
 import ButtonComponent from '../ButtonComponent';
 import { motion } from 'framer-motion';
 import { countOneVariants, countTwoVariants, countThreeVariants } from '@/data';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const WelcomeSection = (props: Props) => {
+  const router = useRouter();
+  
   return (
     <div className="flex items-center gap-20 3xl:gap-0 sm:pb-14 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 text-baBody dark:text-baLight">
       <div className="sm:hidden lg:flex w-[35%]">
@@ -82,6 +85,7 @@ const WelcomeSection = (props: Props) => {
           btnText="Learn More"
           width="w-[200px] 3xl:w-[300px]"
           variant="primary"
+          onClick={() => router.push('/about')}
         />
       </div>
     </div>
