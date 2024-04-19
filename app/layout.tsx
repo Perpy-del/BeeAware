@@ -4,9 +4,14 @@ import './globals.css';
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from '@/components/ui/toaster';
+import BeeawareContextProvider from '@/context/BeeawareContext';
 
-const inter = Work_Sans({ subsets: ['latin'], display: 'swap', adjustFontFallback: false });
+const inter = Work_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = {
   title: 'BeeAware | Sexual Health Education',
@@ -27,9 +32,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-          <Footer />
+          <BeeawareContextProvider>
+            {/* <Navbar /> */}
+            {children}
+            {/* <Footer /> */}
+          </BeeawareContextProvider>
         </ThemeProvider>
         <Toaster />
       </body>

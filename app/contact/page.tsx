@@ -1,15 +1,11 @@
 'use client';
 
-import ButtonComponent from '@/components/ButtonComponent';
 import FormContactComponent from '@/components/FormComponents/FormContactComponent';
 import SocialsComponent from '@/components/SocialsComponent';
-import React, { ChangeEvent, useState } from 'react';
 
 type Props = {};
 
 const ContactPage = (props: Props) => {
-  
-
   return (
     <div className="sm:pt-10 lg:pt-14 sm:pb-14 lg:pb-24 sm:px-5 lg:pr-0 lg:pl-14 xl:pl-20 3xl:pl-40 3xl:h-[75vh]">
       <h1 className="sm:text-headerFour lg:text-headerThree xl:text-headerTwo 3xl:text-textLarge sm:font-ba_medium lg:font-ba_large sm:leading-normal sm:text-center lg:text-left dark:text-baSubtle text-baDark 3xl:pt-60">
