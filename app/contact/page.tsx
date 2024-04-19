@@ -3,7 +3,7 @@
 import ButtonComponent from '@/components/ButtonComponent';
 import FormContactComponent from '@/components/FormComponents/FormContactComponent';
 import SocialsComponent from '@/components/SocialsComponent';
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 
 type Props = {};
 

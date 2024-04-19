@@ -2,6 +2,9 @@ import React, { ChangeEvent, useState } from 'react';
 import ButtonComponent from '../ButtonComponent';
 import FormContactInputComponent from './FormContactInputComponent';
 import FormContactTextAreaComponent from './FormContactTextAreaComponent';
+import { sendContactMail } from '@/helpers/sendMail';
+import { CircularProgress } from '@mui/material';
+import { toast } from '../ui/use-toast';
 
 type Props = {};
 
@@ -15,6 +18,7 @@ const FormContactComponent = (props: Props) => {
   const [isEmailEmpty, setIsEmailEmpty] = useState<boolean>(false);
   const [isEmailNotValid, setIsEmailNotValid] = useState<boolean>(false);
   const [isMoreInfoEmpty, setIsMoreInfoEmpty] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   function handleFirstName(e: ChangeEvent<HTMLInputElement>) {
     setFirstName(e.target.value);
@@ -50,46 +54,59 @@ const FormContactComponent = (props: Props) => {
     setMoreInfo('');
   }
 
-  function handleSubmitContact(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmitContact(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!firstName) {
-      setIsFirstNameEmpty(true);
-    } else if (firstName && !lastName) {
-      setIsLastNameEmpty(true);
-      setIsFirstNameEmpty(false);
-    } else if (firstName && lastName && !email) {
-      setIsEmailEmpty(true);
-      setIsFirstNameEmpty(false);
-      setIsLastNameEmpty(false);
-    } else if (firstName && lastName && email && !validateEmail(email)) {
-      setIsEmailNotValid(true);
-      setIsEmailEmpty(false);
-      setIsFirstNameEmpty(false);
-      setIsLastNameEmpty(false);
-    } else if (
-      firstName &&
-      lastName &&
-      email &&
-      validateEmail(email) &&
-      !moreInfo
-    ) {
-      setIsMoreInfoEmpty(true);
-      setIsEmailNotValid(false);
-      setIsEmailEmpty(false);
-      setIsFirstNameEmpty(false);
-      setIsLastNameEmpty(false);
-    } else {
-      localStorage.setItem(
-        'userDetails',
-        JSON.stringify({
-          email,
-          firstName,
-          lastName,
-          moreInfo,
-        })
-      );
-      clearInputs();
+    setLoading(true);
+    try {
+      if (!firstName) {
+        setIsFirstNameEmpty(true);
+      } else if (firstName && !lastName) {
+        setIsLastNameEmpty(true);
+        setIsFirstNameEmpty(false);
+      } else if (firstName && lastName && !email) {
+        setIsEmailEmpty(true);
+        setIsFirstNameEmpty(false);
+        setIsLastNameEmpty(false);
+      } else if (firstName && lastName && email && !validateEmail(email)) {
+        setIsEmailNotValid(true);
+        setIsEmailEmpty(false);
+        setIsFirstNameEmpty(false);
+        setIsLastNameEmpty(false);
+      } else if (
+        firstName &&
+        lastName &&
+        email &&
+        validateEmail(email) &&
+        !moreInfo
+      ) {
+        setIsMoreInfoEmpty(true);
+        setIsEmailNotValid(false);
+        setIsEmailEmpty(false);
+        setIsFirstNameEmpty(false);
+        setIsLastNameEmpty(false);
+      } else {
+        await sendContactMail({email, firstName, lastName, detail: moreInfo})
+        localStorage.setItem(
+          'userDetails',
+          JSON.stringify({
+            email,
+            firstName,
+            lastName,
+            moreInfo,
+          })
+        );
+        setLoading(false);
+        clearInputs();
+        toast({
+          title: 'Feedback received successfully... 🎉',
+          description: 'Thank you for reaching out. A follow up email would be sent to acknowledge your feedback',
+          className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        });
+      }      
+    } catch (e) {
+      console.error(e)
+      setLoading(false);
     }
   }
 
@@ -141,6 +158,7 @@ const FormContactComponent = (props: Props) => {
         onChange={handleMoreInfo}
         isMoreInfoEmpty={isMoreInfoEmpty}
       />
+      {loading ? <div className="flex justify-center text-baLight"><CircularProgress size={30} /></div> :
       <div className="flex justify-center">
         <ButtonComponent
           variant="primary"
@@ -149,7 +167,7 @@ const FormContactComponent = (props: Props) => {
           className="mt-11"
           type="submit"
         />
-      </div>
+      </div>}
     </form>
   );
 };
