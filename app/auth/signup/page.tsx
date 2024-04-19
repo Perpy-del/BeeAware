@@ -20,7 +20,7 @@ import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 type Props = {};
 
 const SignupPage = (props: Props) => {
-  const {form, onSubmit, handleGoogleSignIn, loading} = useBeeawareHook();
+  const {form, onSubmit, handleGoogleAuth, loading} = useBeeawareHook();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -142,7 +142,7 @@ const SignupPage = (props: Props) => {
           <div className="flex justify-center pb-4">
             <Button
               className="w-[95%] hover:scale-105 duration-300 transition transform bg-transparent border-[3px] border-baPrimary hover:bg-[#FAFAFA] dark:hover:bg-[#202020] hover:font-ba_medium h-14 rounded-[20px] flex gap-4 text-baPrimary dark:text-baSecondary"
-              onClick={handleGoogleSignIn}
+              onClick={handleGoogleAuth}
             >
               <Image
                 src="/google.svg"

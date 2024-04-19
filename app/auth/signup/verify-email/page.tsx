@@ -14,7 +14,7 @@ type Props = {};
 const VerifyEmailPage = (props: Props) => {
   const router = useRouter();
 
-  const { user, isExpired, fiveDigitPin } = useBeeawareHook();
+  const { user, isExpired, fiveDigitPin, resendMail } = useBeeawareHook();
   const [loading, setLoading] = useState<boolean>(false);
   const [expired, setExpired] = useState<boolean>(false);
   const [pinNotValid, setPinNotValid] = useState<boolean>(false);
@@ -116,8 +116,8 @@ const VerifyEmailPage = (props: Props) => {
           </div>
           <span className="text-center block text-headerSix text-baSubtle pb-16">
             Yet to receive the code?{' '}
-            <span className="text-baPrimary dark:text-baSecondary hover:font-ba_normal">
-              <Link href="/auth/login">Resend</Link>
+            <span className="text-baPrimary dark:text-baSecondary hover:font-ba_normal" onClick={resendMail}>
+              Resend
             </span>
           </span>
         </div>
@@ -127,3 +127,4 @@ const VerifyEmailPage = (props: Props) => {
 };
 
 export default VerifyEmailPage;
+ 
