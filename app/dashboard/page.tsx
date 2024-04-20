@@ -18,7 +18,7 @@ const DashboardPage = (props: Props) => {
         setUser(user);
       } else {
         setUser(null);
-        router.push('/auth/login'); // Redirect to login page if user is not signed in
+        router.push('/auth/login');
       }
     });
 

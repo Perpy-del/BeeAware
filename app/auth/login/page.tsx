@@ -22,8 +22,13 @@ type Props = {};
 
 const LoginPage = (props: Props) => {
   const router = useRouter();
-  const { loginLoading, loginForm, handleLoginSubmit, handleGoogleAuth, passwordIncorrect } =
-    useBeeawareHook();
+  const {
+    loginLoading,
+    loginForm,
+    handleLoginSubmit,
+    handleGoogleAuth,
+    passwordIncorrect,
+  } = useBeeawareHook();
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -94,10 +99,19 @@ const LoginPage = (props: Props) => {
                     )}
                   />
                 </div>
-                <h6 className="pt-2 text-right cursor-pointer text-smallSize font-ba_normal text-baPrimary dark:text-baLight hover:font-ba_medium transition-all transform duration-300 hover:underline" onClick={() => router.push('/auth/login/forgot-password')}>
+                <h6
+                  className="pt-2 text-right cursor-pointer text-smallSize font-ba_normal text-baPrimary dark:text-baLight hover:font-ba_medium transition-all transform duration-300 hover:underline"
+                  onClick={() => router.push('/auth/login/forgot-password')}
+                >
                   Forgot Password?
                 </h6>
-                {passwordIncorrect && <p className='text-smallSize text-baError pt-1'>Password is incorrect. Kindly input the correct password or click the Forgot Password button to reset your password.</p>}
+                {passwordIncorrect && (
+                  <p className="text-smallSize text-baError pt-1">
+                    Email or password is incorrect. Please input the correct
+                    login details or click the Forgot Password button to reset
+                    your password.
+                  </p>
+                )}
               </>
 
               {/* Sign up button */}
