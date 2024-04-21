@@ -1,21 +1,21 @@
 'use client';
 
-import { createContext, useEffect, useState } from 'react';
+import { ChangeEvent, createContext, useEffect, useState } from 'react';
 import { ToastAction } from '@/components/ui/toast';
 import { toast } from '@/components/ui/use-toast';
 import {
   useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword,
+  useSignInWithEmailAndPassword
 } from 'react-firebase-hooks/auth';
 import { auth, db } from '../app/firebase/config';
-import { GoogleAuthProvider, User, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, User, signInWithPopup, confirmPasswordReset, sendPasswordResetEmail } from 'firebase/auth';
 import { loginFormSchema, signupFormSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-import { sendMail } from '@/helpers/sendMail';
+import { resetPasswordMail, sendMail } from '@/helpers/sendMail';
 import { generateRandomNumberWithExpiry, isNumberExpired } from '@/lib/utils';
 
 export const BeeawareContext = createContext<any>({});
@@ -28,7 +28,20 @@ export default function BeeawareContextProvider({
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const [forgotPasswordLoading, setForgotPasswordLoading] =
+    useState<boolean>(false);
+  const [resetPasswordLoading, setResetPasswordLoading] =
+    useState<boolean>(false);
+  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const [invalidPassword, setInvalidPassword] = useState<boolean>(false);
+  const [forgotPasswordEmailNotExist, setForgotPasswordEmailNotExist] = useState<boolean>(false);
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState<string>('');
   const [isExpired, setIsExpired] = useState<boolean>(false);
+  const [forgotPasswordDialog, setForgotPasswordDialog] = useState<boolean>(false);
+  const [resetPasswordDialog, setResetPasswordDialog] = useState<boolean>(false);
+  const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState<boolean>(false);
   const [passwordIncorrect, setPasswordIncorrect] = useState<boolean>(false);
   const [fiveDigitPin, setFiveDigitPin] = useState<number>(12345);
   const router = useRouter();
@@ -62,6 +75,16 @@ export default function BeeawareContextProvider({
     },
   });
 
+  const validateEmail = (email: string) => {
+    const emailValidate = /^[a-zA-Z0-9. _%-]+@[a-zA-Z0-9. -]+\.[a-zA-Z]{2,4}$/;
+    return emailValidate.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    const passwordValidate = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
+    return passwordValidate.test(password);
+  }
+
   async function onSubmit(values: z.infer<typeof signupFormSchema>) {
     setLoading(true);
     try {
@@ -86,7 +109,6 @@ export default function BeeawareContextProvider({
         where('email', '==', values.email)
       );
       const querySnapshot = await getDocs(q);
-      // console.log(querySnapshot);
       let accountExists = false; // Flag variable to track if account exists
 
       querySnapshot.forEach(doc => {
@@ -179,7 +201,6 @@ export default function BeeawareContextProvider({
   }
 
   async function handleLoginSubmit(values: z.infer<typeof loginFormSchema>) {
-    console.log(values);
     setLoginLoading(true);
     try {
       const q = query(
@@ -208,7 +229,6 @@ export default function BeeawareContextProvider({
           values?.email,
           values?.password
         );
-        console.log({ res });
         if (res === undefined) {
           setPasswordIncorrect(true);
           return;
@@ -301,12 +321,122 @@ export default function BeeawareContextProvider({
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setLoading(false);
     } finally {
       setLoginLoading(false);
     }
   }
+
+  function handleEmail(e: ChangeEvent<HTMLInputElement>) {
+    const newMail = e.target.value;
+    if (!validateEmail(newMail)) {
+      setInvalidEmail(true);
+    } else {
+      setInvalidEmail(false);
+    }
+    setForgotPasswordEmail(newMail);
+  }
+
+  async function handleForgotPassword() {
+    setForgotPasswordLoading(true);
+    try {
+      const q = query(
+        collection(db, 'users'),
+        where('email', '==', forgotPasswordEmail)
+      );
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        setForgotPasswordEmailNotExist(true);
+        return;
+      }
+      setForgotPasswordEmailNotExist(false);
+      querySnapshot.forEach(async doc => {
+        // console.log(doc.id, ' => ', doc.data());
+        // await resetPasswordMail({ email: forgotPasswordEmail, userId: doc.id })
+        sendPasswordResetEmail(auth, forgotPasswordEmail)
+      });
+      setForgotPasswordDialog(true);
+      toast({
+        title: 'Password Reset Sent Successfully... 🎉',
+        description:
+          'Kindly check your mail for details on how to reset your password.',
+        action: (
+          <ToastAction
+            altText="Reset Password"
+            onClick={() => router.push('/auth/login/forgot-password')}
+            >
+            Cancel
+          </ToastAction>
+        ),
+        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+      });
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setForgotPasswordLoading(false);
+      setForgotPasswordEmail('');
+    }
+  }
+
+  function handleNewPassword(e: ChangeEvent<HTMLInputElement>) {
+    const password = e.target.value;
+    if (!validatePassword(password)) {
+      setInvalidPassword(true);
+    } else {
+      setInvalidPassword(false);
+    }
+    setNewPassword(password);
+  }
+
+  function handleConfirmPassword(e: ChangeEvent<HTMLInputElement>) {
+    const password = e.target.value;
+    if (!validatePassword(password)) {
+      setInvalidPassword(true);
+    } else {
+      setInvalidPassword(false);
+    }
+    setConfirmPassword(password);
+  }
+
+  async function handleResetPassword() {
+    setResetPasswordLoading(true);
+    try {
+      if (newPassword !== confirmPassword) {
+        setPasswordDoesNotMatch(true)
+        return;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const oobCode = urlParams.get('oobCode') as string;
+
+      await confirmPasswordReset(auth, oobCode, confirmPassword)
+      setResetPasswordDialog(true);
+      toast({
+        title: 'Password Has been Reset Successfully... 🎉',
+        description:
+          'You can now log into your account with the new password.',
+        action: (
+          <ToastAction
+            altText="Log in"
+            onClick={() => router.push('/auth/login')}
+            >
+            Log in
+          </ToastAction>
+        ),
+        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+      });
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setResetPasswordLoading(false);
+      setPasswordDoesNotMatch(false);
+      setNewPassword('')
+      setConfirmPassword('')
+    }
+
+  }
+
+
 
   return (
     <BeeawareContext.Provider
@@ -318,11 +448,27 @@ export default function BeeawareContextProvider({
         loginForm,
         loading,
         loginLoading,
+        forgotPasswordLoading,
         isExpired,
         fiveDigitPin,
         resendMail,
         handleLoginSubmit,
-        passwordIncorrect
+        passwordIncorrect,
+        forgotPasswordEmail,
+        handleEmail,
+        invalidEmail,
+        handleForgotPassword,
+        forgotPasswordDialog,
+        forgotPasswordEmailNotExist,
+        newPassword,
+        confirmPassword,
+        handleNewPassword,
+        handleConfirmPassword,
+        invalidPassword,
+        passwordDoesNotMatch,
+        resetPasswordLoading,
+        handleResetPassword,
+        resetPasswordDialog
       }}
     >
       {children}
