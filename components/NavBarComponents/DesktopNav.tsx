@@ -36,13 +36,13 @@ const DesktopNav = (props: Props) => {
           <React.Fragment key={index}>
             {pathname === data?.link ? (
               <Link href={data?.link} key={data?.name}>
-                <li className="text-baPrimary dark:text-baSecondary font-[600] text-headerFive 3xl:text-headerThree">
+                <li className="text-baPrimary dark:text-baSecondary font-[600] lg:text-headerSix xl:text-headerFive 3xl:text-headerThree">
                   {data?.name}
                 </li>
               </Link>
             ) : (
               <Link href={data?.link} key={data?.name}>
-                <li className="text-baBody dark:text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
+                <li className="text-baBody dark:text-baLight font-ba_normal lg:text-[18px] xl:text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
                   {data?.name}
                 </li>
               </Link>
@@ -53,16 +53,16 @@ const DesktopNav = (props: Props) => {
         {pathname === '/services' ? (
           <div className="flex items-center gap-2">
             <Link href="/services">
-              <li className="text-baPrimary dark:text-baSecondary font-[600] text-headerFive 3xl:text-headerThree">
+              <li className="text-baPrimary dark:text-baSecondary font-[600] lg:text-headerSix xl:text-headerFive 3xl:text-headerThree">
                 Services
               </li>
             </Link>
             <ServicesDropdown />
           </div>
         ) : (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center lg:gap-1 xl:gap-2">
             <Link href="/services">
-              <li className="text-baBody dark:text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
+              <li className="text-baBody dark:text-baLight font-ba_normal lg:text-[18px] xl:text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
                 Services
               </li>
             </Link>
@@ -74,13 +74,13 @@ const DesktopNav = (props: Props) => {
           <React.Fragment key={index}>
             {pathname === data?.link ? (
               <Link href={data?.link} key={data?.name}>
-                <li className="text-baPrimary dark:text-baSecondary font-[600] text-headerFive 3xl:text-headerThree">
+                <li className="text-baPrimary dark:text-baSecondary font-[600] lg:text-headerSix xl:text-headerFive 3xl:text-headerThree">
                   {data?.name}
                 </li>
               </Link>
             ) : (
               <Link href={data?.link} key={data?.name}>
-                <li className="text-baBody dark:text-baLight font-ba_normal text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
+                <li className="text-baBody dark:text-baLight font-ba_normal lg:text-[18px] xl:text-headerSix transition transform duration-200 hover:scale-105 3xl:text-headerFour">
                   {data?.name}
                 </li>
               </Link>

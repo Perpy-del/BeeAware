@@ -17,8 +17,8 @@ export const navDataTwo = [
     link: '/articles',
   },
   {
-    name: 'Contact',
-    link: '/contact',
+    name: 'For Doctors',
+    link: '/doctors',
   },
 ]
 
