@@ -47,8 +47,8 @@ const LoginPage = (props: Props) => {
           <Form {...loginForm}>
             <form onSubmit={loginForm.handleSubmit(handleLoginSubmit)}>
               <>
-                {/* Email Field */}
                 <div className="space-y-8">
+                  {/* Email Field */}
                   <FormField
                     control={loginForm.control}
                     name="email"
@@ -114,7 +114,7 @@ const LoginPage = (props: Props) => {
                 )}
               </>
 
-              {/* Sign up button */}
+              {/* Login button */}
               <div className="flex justify-center mt-12 pb-4">
                 <Button
                   className="w-[95%] hover:scale-105 duration-300 transition transform hover:bg-baPrimary/90 hover:font-ba_medium h-12"
