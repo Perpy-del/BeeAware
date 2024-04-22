@@ -1,11 +1,15 @@
-import React from 'react'
+import ButtonComponent from '@/components/ButtonComponent';
+import DoctorsHeroSection from '@/components/DoctorsSectionComponents/DoctorsHeroSection';
+import Image from 'next/image';
 
-type Props = {}
+type Props = {};
 
 const DoctorsPage = (props: Props) => {
   return (
-    <div>DoctorsPage</div>
-  )
-}
+    <div>
+      <DoctorsHeroSection />
+    </div>
+  );
+};
 
-export default DoctorsPage
+export default DoctorsPage;

@@ -102,7 +102,7 @@ export async function resetPasswordMail({
       from: '"BeeAware" <noreply@beeaware.com>', // sender address
       to: email, // list of receivers
       subject: 'Password Reset', // Subject line
-      html: `<div>Hello, did you request for a password reset? <div>Kindly click on this link <a href="${process.env.NEXT_PUBLIC_DEV_BASE_URL}/auth/login/reset-password?userId=${userId}">here</a> to reset your BeeAware password.</div> <div>We are excited to have you join us.</div>`, // html body
+      html: `<div>Hello, did you request for a password reset? <div>Kindly click on this link <a href="${process.env.NEXT_PUBLIC_BASE_URL}/auth/login/reset-password?userId=${userId}">here</a> to reset your BeeAware password.</div> <div>We are excited to have you join us.</div>`, // html body
     });
 
     return info;
