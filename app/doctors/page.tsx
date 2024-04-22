@@ -1,11 +1,9 @@
 'use client';
 
 import DoctorsHeroSection from '@/components/DoctorsSectionComponents/DoctorsHeroSection';
+import DoctorsNeedSection from '@/components/DoctorsSectionComponents/DoctorsNeedSection';
 import DoctorsWorkSection from '@/components/DoctorsSectionComponents/DoctorsWorkSection';
 import ScrollButton from '@/components/ScrollButton';
-import { ApplyIcon, ApprovalIcon, VerifyIcon } from '@/components/SvgIcons';
-import { countOneVariants, countThreeVariants, countTwoVariants } from '@/data';
-import { motion } from 'framer-motion';
 
 type Props = {};
 
@@ -14,6 +12,7 @@ const DoctorsPage = (props: Props) => {
     <div>
       <DoctorsHeroSection />
       <DoctorsWorkSection />
+      <DoctorsNeedSection />
       <ScrollButton sectionId="doctors" />
     </div>
   );

@@ -8,7 +8,7 @@ type Props = {};
 
 const DoctorsWorkSection = (props: Props) => {
   return (
-    <div className="sm:px-5 lg:px-20 3xl:px-40 text-baDark dark:text-baLight sm:pb-14 lg:pb-24">
+    <div className="sm:px-5 lg:px-20 3xl:px-40 text-baDark dark:text-baLight sm:pb-14 lg:pb-24 py-12">
       <h1 className="text-center sm:text-headerThree lg:text-headerTwo pb-4 font-ba_medium lg:font-ba_large">
         How It Works
       </h1>

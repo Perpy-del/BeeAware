@@ -54,3 +54,22 @@ export const VerifyIcon = () => {
     </svg>
   );
 };
+
+export const EssentialsIcon = ({path}:{path: string}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 30 30"
+      fill="none"
+    >
+      <path
+        d={path}
+        stroke="#E1EEFF"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
