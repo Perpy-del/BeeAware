@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import '../globals.css';
-import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import DashboardNavBar from '@/components/DashboardNavBar';
+import DashboardFooter from '@/components/DashboardFooter';
 
 export const metadata: Metadata = {
   title: 'BeeAware | Dashboard',
@@ -16,9 +17,9 @@ export default function RootLayout({
 
   return (
     <div>
-      <Navbar />
+      <DashboardNavBar />
       {children}
-      <Footer />
+      <DashboardFooter />
     </div>
   );
 }
