@@ -22,6 +22,21 @@ export const navDataTwo = [
   },
 ]
 
+export const dashboardNavData = [
+  {
+    name: 'Consultations',
+    link: '/dashboard',
+  },
+  {
+    name: 'Articles',
+    link: '/dashboard/articles',
+  },
+  {
+    name: 'Community',
+    link: '/dashboard/community',
+  },
+]
+
 export const moreAboutData = [
   {
     header: 'Education',
