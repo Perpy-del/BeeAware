@@ -38,7 +38,7 @@ const DashboardPage = (props: Props) => {
         <ButtonComponent btnText={'Upgrade Now'} width={'w-[220px] 3xl:w-[300px]'} variant='primary' />
         </div>
       </div>
-      <div className='flex items-center flex-col h-[50vh]'>
+      <div className='flex items-center flex-col h-[80vh]'>
         <div className='pb-9'>
           <Image src="/empty.svg" alt="empty state" width={133} height={235} />
         </div>

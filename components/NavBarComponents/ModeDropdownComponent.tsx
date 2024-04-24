@@ -23,14 +23,14 @@ export const ModeDropdownComponent = (props: Props) => {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+      <DropdownMenuContent align="end" className='border border-slate-200 dark:border-slate-800 dark:text-slate-50'>
+        <DropdownMenuItem className='hover:bg-baPrimary hover:text-baLight dark:hover:bg-baSubtle' onClick={() => setTheme('light')}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem className='hover:bg-baPrimary hover:text-baLight dark:hover:bg-baSubtle' onClick={() => setTheme('dark')}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem className='hover:bg-baPrimary hover:text-baLight dark:hover:bg-baSubtle' onClick={() => setTheme('system')}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

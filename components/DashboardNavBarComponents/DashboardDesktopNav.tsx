@@ -10,11 +10,14 @@ import Image from 'next/image';
 import { ModeDropdownComponent } from '../NavBarComponents/ModeDropdownComponent';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-  } from '@/components/ui/dropdown-menu';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { FaRegUser } from 'react-icons/fa6';
+import { IoMdHelpCircleOutline } from 'react-icons/io';
+import { TbLogout2 } from 'react-icons/tb';
 
 type Props = {};
 
@@ -58,35 +61,56 @@ const DashboardDesktopNav = (props: Props) => {
       </ul>
 
       {/* Sign up */}
-      <div className="flex items-center gap-8">
+      <div className="flex items-center gap-5">
         <div className="text-baPrimary p-2 bg-baAccent rounded-full cursor-pointer">
           <Bell />
         </div>
         <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Avatar className='bg-baSecondary dark:bg-baLight cursor-pointer'>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          <AvatarFallback className='text-baLight dark:text-baSecondary font-ba_medium'>CN</AvatarFallback>
-        </Avatar>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem className='flex items-center gap-1'>
-          <div>
-            <h2 className='text-baLight dark:text-baSecondary font-ba_medium '>CN</h2>
-          </div>
-          <div>
-            <h3>Catherine Nath</h3>
-            <h5>catherinenath@gmail.com</h5>
-          </div>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Avatar className="bg-baAccent cursor-pointer">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
+                CN
+              </AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="end"
+            className="mt-2 rounded-[20px] border-none dark:border dark:border-slate-800 w-fit"
+          >
+            <DropdownMenuItem className="flex items-center gap-3 p-4 cursor-default hover:bg-none hover:rounded-tl-[20px] hover:rounded-tr-[20px] border-b border-baPrimary/20">
+              <Avatar className="bg-baAccent">
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
+                  CN
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 className="text-headerFive font-ba_normal">
+                  Catherine Nath
+                </h3>
+                <h5 className="font-ba_normal text-baSubtle">
+                  catherinenath@gmail.com
+                </h5>
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal">
+              <FaRegUser />
+              Profile Settings
+            </DropdownMenuItem>
+            <DropdownMenuItem className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal">
+              <IoMdHelpCircleOutline />
+              Help Center
+            </DropdownMenuItem>
+            <DropdownMenuItem className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 hover:rounded-bl-[20px] hover:rounded-br-[20px] dark:hover:bg-baBody dark:hover:rounded-bl-[20px] dark:hover:rounded-br-[20px] text-baError font-ba_normal">
+              <TbLogout2 />
+              Log Out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         {/* Change mode dropdown */}
         <ModeDropdownComponent />
       </div>

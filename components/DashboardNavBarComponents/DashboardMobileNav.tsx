@@ -9,7 +9,11 @@ import { AlignJustify, XCircle } from 'lucide-react';
 import NavDataInterface from '@/interfaces/NavDataInterface';
 import { MobileModeDropdown } from '../NavBarComponents/ModeDropdownComponent';
 import { MobileServicesDropdown } from '../NavBarComponents/ServicesDropdown';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
+import { FaRegUser } from 'react-icons/fa6';
+import { IoMdHelpCircleOutline } from 'react-icons/io';
+import { TbLogout2 } from 'react-icons/tb';
 
 type Props = {};
 
@@ -53,7 +57,40 @@ const DashboardMobileNav = (props: Props) => {
           >
             <XCircle />
           </span>
-          <ul className="flex flex-col gap-10 items-center pt-14 pb-10">
+          <div className="flex flex-col items-center pt-14">
+            <div className="flex items-center gap-3">
+              <Avatar className="bg-baAccent">
+                <AvatarImage
+                  src="https://github.com/shadcn.png"
+                  alt="@shadcn"
+                />
+                <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
+                  CN
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 className="text-headerFive text-baLight font-ba_normal">
+                  Catherine Nath
+                </h3>
+                <h5 className="font-ba_normal text-baSubtle">
+                  catherinenath@gmail.com
+                </h5>
+              </div>
+            </div>
+            <div className='py-4 flex items-center gap-3 text-baLight font-ba_normal'>
+              <FaRegUser />
+              Profile Settings
+            </div>
+            <div className='py-4 flex items-center gap-3 text-baLight font-ba_normal'>
+              <IoMdHelpCircleOutline />
+              Help Center
+            </div>
+            <div className='py-4 flex items-center gap-3 text-baError font-ba_normal'>
+              <TbLogout2 />
+              Log Out
+            </div>
+          </div>
+          <ul className="flex flex-col gap-10 items-center pt-8 pb-10">
             {dashboardNavData.map((data: NavDataInterface) => (
               <>
                 {pathname === data?.link ? (
@@ -78,32 +115,6 @@ const DashboardMobileNav = (props: Props) => {
               </>
             ))}
           </ul>
-
-          {/* Sign up */}
-          <div className="flex justify-center">
-            {(pathname === '/' || pathname === '/auth/login') && (
-              <Button
-                className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
-                onClick={() => {
-                  router.push('/auth/signup');
-                  setShowNav(false);
-                }}
-              >
-                Sign up
-              </Button>
-            )}
-            {pathname === '/auth/signup' && (
-              <Button
-                className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
-                onClick={() => {
-                  router.push('/auth/login');
-                  setShowNav(false);
-                }}
-              >
-                Log in
-              </Button>
-            )}
-          </div>
         </div>
       )}
     </nav>
