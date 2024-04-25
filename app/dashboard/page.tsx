@@ -1,52 +1,152 @@
 'use client';
 
 import { User } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { auth } from '../firebase/config';
 import { useRouter } from 'next/navigation';
 import ButtonComponent from '@/components/ButtonComponent';
 import Image from 'next/image';
+import { useBeeawareHook } from '@/hooks/useBeeawareHook';
+import MessagesBreadcrumbComponent from '@/components/BreadcrumbComponents/MessagesBreadcrumbComponent';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { SendHorizontal } from 'lucide-react';
 
 type Props = {};
 
 const DashboardPage = (props: Props) => {
-  // const router = useRouter();
+  const router = useRouter();
+  const { numMessages } = useBeeawareHook();
 
-  // const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(user => {
-  //     if (user) {
-  //       setUser(user);
-  //     } else {
-  //       setUser(null);
-  //       router.push('/auth/login');
-  //     }
-  //   });
+  const [userMessage, setUserMessage] = useState<string>('');
+  const [messages, setMessages] = useState<Array<string>>([]);
 
-  //   return () => unsubscribe();
-  // }, [router]);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+        router.push('/auth/login');
+      }
+    });
 
-  // return user ? <div>DashboardPage</div> : null;
-  return (
+    return () => unsubscribe();
+  }, [router]);
+
+  return user ? (
     <div>
-      <div className="mx-5 lg:mx-20 3xl:mx-40 bg-baAccent h-fit py-5 rounded-[20px] mb-14 lg:mb-24">
-        <h1 className="sm:text-headerFive lg:text-headerThree sm:font-ba_normal lg:font-ba_medium text-baPrimary text-center mx-auto w-[80%] pb-3">
-          Upgrade Your Plan to Enjoy More Benefits During Consultation
-        </h1>
-        <div className='flex justify-center'>
-        <ButtonComponent btnText={'Upgrade Now'} width={'w-[220px] 3xl:w-[300px]'} variant='primary' />
+      {numMessages ? (
+        <div className="px-5 lg:px-20 3xl:px-40">
+          <MessagesBreadcrumbComponent />
+          <div className="pt-5 flex justify-between">
+            <div className="h-[80vh] pt-5 w-[30%]">
+              <h1 className="sm:hidden md:flex text-headerThree font-ba_normal pb-5 px-5">
+                Messages
+              </h1>
+              <div className="flex items-center gap-3 bg-baAccent dark:bg-baSubtle cursor-pointer transition-all transform hover:scale-105 duration-300 py-3 pl-5 pr-10 rounded-sm">
+                <Avatar className="bg-baAccent">
+                  <AvatarImage src="/Profile.png" alt="Profile Image" />
+                  <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
+                    NW
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="text-headerSix text-baDark font-ba_normal">
+                    Nwakaego Onyah
+                  </h3>
+                  <span className="block text-baBody">
+                    Quick Doctor Consultation
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="w-[65%] relative">
+              <div className="flex items-center gap-3 py-3 pl-5 w-full rounded-sm">
+                <Avatar className="bg-baAccent">
+                  <AvatarImage src="/Profile.png" alt="Profile Image" />
+                  <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
+                    NW
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="text-headerSix text-baDark dark:text-baLight font-ba_normal">
+                    Nwakaego Onyah
+                  </h3>
+                  <span className="block text-baBody dark:font-ba_normal">
+                    Doctor
+                  </span>
+                </div>
+              </div>
+              <span className="text-baSubtle text-smallSize block text-center">
+                Today
+              </span>
+              <div className="absolute block w-full bottom-7">
+                {messages.length !== 0 ? <div></div> : null}
+                <div></div>
+                <div className="sm:hidden md:block w-full relative">
+                  <Textarea
+                    name="send-message"
+                    id="send-message"
+                    placeholder="Type your message..."
+                    rows={4}
+                    className="rounded-[20px] pl-4 pt-4"
+                    value={userMessage}
+                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                      setUserMessage(e.target.value)
+                    }
+                  />
+                  <Button
+                    variant="primary"
+                    className={`absolute bottom-4 right-4 flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 w-fit h-fit px-3 py-4`}
+                  >
+                    <SendHorizontal />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className='flex items-center flex-col h-[80vh]'>
-        <div className='pb-9'>
-          <Image src="/empty.svg" alt="empty state" width={133} height={235} />
-        </div>
-        <h3 className='font-ba_normal text-headerFive text-baSubtle w-[80%] lg:w-[30%] text-center pb-4'>You have no open consultations. Book one now!</h3>
-        <ButtonComponent btnText={'Book Consultation'} width={'w-[220px] 3xl:w-[300px]'} variant='primary' />
-      </div>
+      ) : (
+        <>
+          <div className="mx-5 lg:mx-20 3xl:mx-40 bg-baAccent h-fit py-5 rounded-[20px] mb-14 lg:mb-24">
+            <h1 className="sm:text-headerFive lg:text-headerThree sm:font-ba_normal lg:font-ba_medium text-baPrimary text-center mx-auto w-[80%] pb-3">
+              Upgrade Your Plan to Enjoy More Benefits During Consultation
+            </h1>
+            <div className="flex justify-center">
+              <ButtonComponent
+                btnText={'Upgrade Now'}
+                width={'w-[220px] 3xl:w-[300px]'}
+                variant="primary"
+              />
+            </div>
+          </div>
+          <div className="flex items-center flex-col h-[80vh]">
+            <div className="pb-9">
+              <Image
+                src="/empty.svg"
+                alt="empty state"
+                width={133}
+                height={235}
+              />
+            </div>
+            <h3 className="font-ba_normal text-headerFive text-baSubtle w-[80%] lg:w-[30%] text-center pb-4">
+              You have no open consultations. Book one now!
+            </h3>
+            <ButtonComponent
+              btnText={'Book Consultation'}
+              width={'w-[220px] 3xl:w-[300px]'}
+              variant="primary"
+              onClick={() => router.push('/dashboard/consult')}
+            />
+          </div>
+        </>
+      )}
     </div>
-  );
+  ) : null;
 };
 
 export default DashboardPage;

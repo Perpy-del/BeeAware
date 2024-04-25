@@ -6,6 +6,10 @@
     color: #808080;
 }
 
+#complaint::placeholder {
+    font-size: 14px;
+}
+
 .articles-input::placeholder {
     font-size: 12px;
 }

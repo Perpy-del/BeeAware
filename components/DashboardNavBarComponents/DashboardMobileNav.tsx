@@ -11,6 +11,7 @@ import { MobileModeDropdown } from '../NavBarComponents/ModeDropdownComponent';
 import { MobileServicesDropdown } from '../NavBarComponents/ServicesDropdown';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
+import { Bell } from 'lucide-react';
 import { FaRegUser } from 'react-icons/fa6';
 import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { TbLogout2 } from 'react-icons/tb';
@@ -31,7 +32,7 @@ const DashboardMobileNav = (props: Props) => {
     >
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link href="/">
+        <Link href="/dashboard">
           <Image
             src="/bee_aware.svg"
             width={130}
@@ -77,23 +78,37 @@ const DashboardMobileNav = (props: Props) => {
                 </h5>
               </div>
             </div>
-            <div className='py-4 flex items-center gap-3 text-baLight font-ba_normal'>
-              <FaRegUser />
-              Profile Settings
-            </div>
-            <div className='py-4 flex items-center gap-3 text-baLight font-ba_normal'>
-              <IoMdHelpCircleOutline />
-              Help Center
-            </div>
-            <div className='py-4 flex items-center gap-3 text-baError font-ba_normal'>
-              <TbLogout2 />
-              Log Out
+            <div>
+              <div className="pb-2 pt-4 flex items-center gap-3 text-baLight font-ba_normal">
+                <div className="text-baPrimary p-2 bg-baAccent rounded-full">
+                  <Bell size={17} />
+                </div>
+                Notifications
+              </div>
+              <div className="py-2 flex items-center gap-3 text-baLight font-ba_normal">
+                <div className="text-baPrimary p-2 bg-baAccent rounded-full">
+                  <FaRegUser />
+                </div>
+                Profile Settings
+              </div>
+              <div className="py-2 flex items-center gap-3 text-baLight font-ba_normal">
+                <div className="text-baPrimary p-2 bg-baAccent rounded-full">
+                  <IoMdHelpCircleOutline />
+                </div>
+                Help Center
+              </div>
+              <div className="py-2 flex items-center gap-3 text-baError font-ba_normal">
+                <div className="text-baError border border-baError p-2 bg-none rounded-full">
+                  <TbLogout2 />
+                </div>
+                Log Out
+              </div>
             </div>
           </div>
           <ul className="flex flex-col gap-10 items-center pt-8 pb-10">
             {dashboardNavData.map((data: NavDataInterface) => (
               <>
-                {pathname === data?.link ? (
+                {(pathname === data?.link || pathname.startsWith(data?.link)) ? (
                   <Link href={data?.link} key={data?.name}>
                     <li
                       className="text-baSubtle font-ba_large text-headerFive"

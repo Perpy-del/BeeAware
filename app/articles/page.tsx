@@ -15,9 +15,11 @@ type Props = {};
 const ArticlesPage = (props: Props) => {
   const [query, setQuery] = useState('');
 
-  const filteredData = query ? articlesData.filter(data =>
-    data.topic.toLowerCase().includes(query.toLowerCase())
-  ) : [];
+  const filteredData = query
+    ? articlesData.filter(data =>
+        data.topic.toLowerCase().includes(query.toLowerCase())
+      )
+    : [];
 
   return (
     <>
@@ -27,28 +29,31 @@ const ArticlesPage = (props: Props) => {
           <PopularArticleComponent />
         ) : (
           <>
-          <div className='sm:mx-10 lg:mx-28 3xl:mx-44 pb-10 lg:text-headerFive 3xl:text-headerThree hover:text-baSecondary flex items-center gap-2 transition-all transform duration-300 hover:scale-105 hover:font-ba_medium cursor-pointer' onClick={() => setQuery('')}>
-            <ArrowLeftToLine />
-            Back to Articles
-          </div>
-          <div className="flex flex-wrap gap-8  sm:mx-5 lg:mx-20 3xl:mx-40 pb-5 justify-center">
-            {filteredData.map((article, index) => {
-              return (
-                <div
-                  key={index}
-                  className="pb-5 w-[400px] md:w-[340px] lg:w-[400px]"
-                >
-                  <ArticleCardComponent
-                    focus={article?.focus}
-                    date={article?.date}
-                    topic={article?.topic}
-                    sub={article?.sub}
-                    image={article?.image}
-                  />
-                </div>
-              );
-            })}
-          </div>
+            <div
+              className="sm:mx-10 lg:mx-28 3xl:mx-44 pb-10 lg:text-headerFive 3xl:text-headerThree hover:text-baSecondary flex items-center gap-2 transition-all transform duration-300 hover:scale-105 hover:font-ba_medium cursor-pointer"
+              onClick={() => setQuery('')}
+            >
+              <ArrowLeftToLine />
+              Back to Articles
+            </div>
+            <div className="flex flex-wrap gap-8  sm:mx-5 lg:mx-20 3xl:mx-40 pb-5 justify-center">
+              {filteredData.map((article, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="pb-5 w-[400px] md:w-[340px] lg:w-[400px]"
+                  >
+                    <ArticleCardComponent
+                      focus={article?.focus}
+                      date={article?.date}
+                      topic={article?.topic}
+                      sub={article?.sub}
+                      image={article?.image}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </>
         )}
 

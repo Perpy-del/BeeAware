@@ -36,7 +36,7 @@ export function ForgotPasswordDialog() {
         <AlertDialogHeader>
           <AlertDialogTitle className='text-center text-headerSix'>You&apos;ve got mail...📧</AlertDialogTitle>
           <AlertDialogDescription className='text-center'>
-          Kindly check your mail and click on the link attached to reset your password.
+          Kindly check your mail and click on the link to reset your password.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className='text-center'>

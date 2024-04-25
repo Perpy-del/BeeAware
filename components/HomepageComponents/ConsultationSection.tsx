@@ -11,18 +11,20 @@ import FormDateComponent from '../FormComponents/FormDateComponent';
 import { formSchema } from '@/schema/formSchema';
 import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const ConsultationSection = (props: Props) => {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       email: '',
-      type: '',
+      // type: '',
       date: undefined,
       location: '',
       complaint: '',
@@ -46,6 +48,20 @@ const ConsultationSection = (props: Props) => {
       return;
     }
     console.log(values);
+    toast({
+      title: 'You Need to be signed in',
+      description: 'Please log in to book a consultation.',
+      action: (
+        <ToastAction
+          altText="login"
+          onClick={() => router.push('/auth/login')}
+        >
+          Log In
+        </ToastAction>
+      ),
+      className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+    });
+    router.push('/auth/login')
   }
 
   return (
