@@ -8,7 +8,7 @@ import {
   useSignInWithEmailAndPassword
 } from 'react-firebase-hooks/auth';
 import { auth, db } from '../app/firebase/config';
-import { GoogleAuthProvider, User, signInWithPopup, confirmPasswordReset, sendPasswordResetEmail } from 'firebase/auth';
+import { GoogleAuthProvider, User, signInWithPopup, confirmPasswordReset, sendPasswordResetEmail, signOut } from 'firebase/auth';
 import { loginFormSchema, signupFormSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -44,6 +44,7 @@ export default function BeeawareContextProvider({
   const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState<boolean>(false);
   const [passwordIncorrect, setPasswordIncorrect] = useState<boolean>(false);
   const [fiveDigitPin, setFiveDigitPin] = useState<number>(12345);
+  const [numMessages, setNumMessages] = useState<number>(1);
   const router = useRouter();
 
   const [createUserWithEmailAndPassword, error] =
@@ -147,6 +148,7 @@ export default function BeeawareContextProvider({
       });
 
       const userDetails = {
+        userName: values.name,
         userEmail: values.email,
         digit: digits?.number,
         expiry: digits?.expiry,
@@ -436,7 +438,29 @@ export default function BeeawareContextProvider({
 
   }
 
-
+  async function signOutUser() {
+    try {
+      await signOut(auth);
+      toast({
+        title: 'You have signed out of your account.',
+        description:
+          'You have signed out of your account. Log into your account to access your BeeAware dashboard.',
+        action: (
+          <ToastAction
+            altText="Log in"
+            onClick={() => router.push('/auth/login')}
+            >
+            Log in
+          </ToastAction>
+        ),
+        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+      });
+      router.push('/auth/login')
+      console.log('Signed out user');
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <BeeawareContext.Provider
@@ -468,7 +492,10 @@ export default function BeeawareContextProvider({
         passwordDoesNotMatch,
         resetPasswordLoading,
         handleResetPassword,
-        resetPasswordDialog
+        resetPasswordDialog,
+        numMessages,
+        setNumMessages,
+        signOutUser
       }}
     >
       {children}
