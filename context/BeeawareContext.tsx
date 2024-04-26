@@ -5,10 +5,17 @@ import { ToastAction } from '@/components/ui/toast';
 import { toast } from '@/components/ui/use-toast';
 import {
   useCreateUserWithEmailAndPassword,
-  useSignInWithEmailAndPassword
+  useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
 import { auth, db } from '../app/firebase/config';
-import { GoogleAuthProvider, User, signInWithPopup, confirmPasswordReset, sendPasswordResetEmail, signOut } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  User,
+  signInWithPopup,
+  confirmPasswordReset,
+  sendPasswordResetEmail,
+  signOut,
+} from 'firebase/auth';
 import { loginFormSchema, signupFormSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -29,6 +36,7 @@ export default function BeeawareContextProvider({
   children: React.ReactNode;
 }) {
   const [user, setUser] = useState<User | null>(null);
+  const [userName, setUserName] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
   const [forgotPasswordLoading, setForgotPasswordLoading] =
@@ -37,17 +45,21 @@ export default function BeeawareContextProvider({
     useState<boolean>(false);
   const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
   const [invalidPassword, setInvalidPassword] = useState<boolean>(false);
-  const [forgotPasswordEmailNotExist, setForgotPasswordEmailNotExist] = useState<boolean>(false);
+  const [forgotPasswordEmailNotExist, setForgotPasswordEmailNotExist] =
+    useState<boolean>(false);
   const [newPassword, setNewPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState<string>('');
   const [isExpired, setIsExpired] = useState<boolean>(false);
-  const [forgotPasswordDialog, setForgotPasswordDialog] = useState<boolean>(false);
-  const [resetPasswordDialog, setResetPasswordDialog] = useState<boolean>(false);
-  const [passwordDoesNotMatch, setPasswordDoesNotMatch] = useState<boolean>(false);
+  const [forgotPasswordDialog, setForgotPasswordDialog] =
+    useState<boolean>(false);
+  const [resetPasswordDialog, setResetPasswordDialog] =
+    useState<boolean>(false);
+  const [passwordDoesNotMatch, setPasswordDoesNotMatch] =
+    useState<boolean>(false);
   const [passwordIncorrect, setPasswordIncorrect] = useState<boolean>(false);
   const [fiveDigitPin, setFiveDigitPin] = useState<number>(12345);
-  const [numMessages, setNumMessages] = useState<number>(1);
+  const [numMessages, setNumMessages] = useState<number>(0);
   const router = useRouter();
 
   const [createUserWithEmailAndPassword, error] =
@@ -85,9 +97,10 @@ export default function BeeawareContextProvider({
   };
 
   const validatePassword = (password: string) => {
-    const passwordValidate = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
+    const passwordValidate =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,}$/;
     return passwordValidate.test(password);
-  }
+  };
 
   async function onSubmit(values: z.infer<typeof signupFormSchema>) {
     setLoading(true);
@@ -150,20 +163,16 @@ export default function BeeawareContextProvider({
         digits: digits?.number,
       });
 
-      const userDetails = {
-        userName: values.name,
-        userEmail: values.email,
-        digit: digits?.number,
-        expiry: digits?.expiry,
-      };
-      cookies.set('user', userDetails);
+      cookies.set('userName', values.name);
+      cookies.set('userEmail', values.email);
+      setUserName(values.name);
+
       await sendMail({
         userName: values?.name,
         email: values?.email,
         digit: digits?.number,
       });
       form.reset();
-      setLoading(false);
       toast({
         title: 'Sign Up Successful... 🎉',
         description: 'Please verify your account with BeeAware.',
@@ -180,6 +189,7 @@ export default function BeeawareContextProvider({
       router.push('/auth/signup/verify-email');
     } catch (e) {
       console.error('Error adding document: ', e, error);
+    } finally {
       setLoading(false);
     }
   }
@@ -234,6 +244,12 @@ export default function BeeawareContextProvider({
           values?.email,
           values?.password
         );
+        querySnapshot.forEach(doc => {
+          const userData = doc.data();
+          console.log('User data:', userData);
+          const userName = userData?.name
+          setUserName(userName);
+        });
         if (res === undefined) {
           setPasswordIncorrect(true);
           return;
@@ -359,7 +375,7 @@ export default function BeeawareContextProvider({
       querySnapshot.forEach(async doc => {
         // console.log(doc.id, ' => ', doc.data());
         // await resetPasswordMail({ email: forgotPasswordEmail, userId: doc.id })
-        sendPasswordResetEmail(auth, forgotPasswordEmail)
+        sendPasswordResetEmail(auth, forgotPasswordEmail);
       });
       setForgotPasswordDialog(true);
       toast({
@@ -370,14 +386,14 @@ export default function BeeawareContextProvider({
           <ToastAction
             altText="Reset Password"
             onClick={() => router.push('/auth/login/forgot-password')}
-            >
+          >
             Cancel
           </ToastAction>
         ),
         className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     } finally {
       setForgotPasswordLoading(false);
       setForgotPasswordEmail('');
@@ -408,37 +424,35 @@ export default function BeeawareContextProvider({
     setResetPasswordLoading(true);
     try {
       if (newPassword !== confirmPassword) {
-        setPasswordDoesNotMatch(true)
+        setPasswordDoesNotMatch(true);
         return;
       }
       const urlParams = new URLSearchParams(window.location.search);
       const oobCode = urlParams.get('oobCode') as string;
 
-      await confirmPasswordReset(auth, oobCode, confirmPassword)
+      await confirmPasswordReset(auth, oobCode, confirmPassword);
       setResetPasswordDialog(true);
       toast({
         title: 'Password Has been Reset Successfully... 🎉',
-        description:
-          'You can now log into your account with the new password.',
+        description: 'You can now log into your account with the new password.',
         action: (
           <ToastAction
             altText="Log in"
             onClick={() => router.push('/auth/login')}
-            >
+          >
             Log in
           </ToastAction>
         ),
         className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     } finally {
       setResetPasswordLoading(false);
       setPasswordDoesNotMatch(false);
-      setNewPassword('')
-      setConfirmPassword('')
+      setNewPassword('');
+      setConfirmPassword('');
     }
-
   }
 
   async function signOutUser() {
@@ -452,16 +466,16 @@ export default function BeeawareContextProvider({
           <ToastAction
             altText="Log in"
             onClick={() => router.push('/auth/login')}
-            >
+          >
             Log in
           </ToastAction>
         ),
         className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
       });
-      router.push('/auth/login')
+      router.push('/auth/login');
       console.log('Signed out user');
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 
@@ -498,7 +512,8 @@ export default function BeeawareContextProvider({
         resetPasswordDialog,
         numMessages,
         setNumMessages,
-        signOutUser
+        signOutUser,
+        userName,
       }}
     >
       {children}

@@ -11,13 +11,19 @@ import MessagesBreadcrumbComponent from '@/components/BreadcrumbComponents/Messa
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { SendHorizontal } from 'lucide-react';
+import { SendHorizontal, EllipsisVertical, Trash2 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 type Props = {};
 
 const DashboardPage = (props: Props) => {
   const router = useRouter();
-  const { numMessages } = useBeeawareHook();
+  const { numMessages, setNumMessages } = useBeeawareHook();
 
   const [user, setUser] = useState<User | null>(null);
 
@@ -40,7 +46,7 @@ const DashboardPage = (props: Props) => {
   const handleSendMessage = () => {
     setMessages([...messages, userMessage]);
     setUserMessage('');
-  }
+  };
 
   return user ? (
     <div>
@@ -67,6 +73,25 @@ const DashboardPage = (props: Props) => {
                     Quick Doctor Consultation
                   </span>
                 </div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <div className="p-2 rounded-full cursor-pointer hover:bg-baPrimary/20">
+                      <EllipsisVertical />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="start"
+                    className="mt-2 rounded-lg border-none bg-baLight dark:baSubtle dark:border dark:border-slate-800 w-fit"
+                  >
+                    <DropdownMenuItem
+                      className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baError font-ba_normal"
+                      onClick={() => setNumMessages((prev: number) => prev - 1)}
+                    >
+                      <Trash2 />
+                      Delete Chat
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
             <div className="w-[65%] relative">
@@ -91,18 +116,24 @@ const DashboardPage = (props: Props) => {
               </span>
               <div className="absolute block w-full bottom-7 space-y-5">
                 {messages.length !== 0 ? (
-                  <div className='space-y-2 flex flex-col justify-end items-end'>
+                  <div className="space-y-2 flex flex-col justify-end items-end">
                     {messages.map((message: string, index: number) => (
-                      <h2 key={index} className="px-5 py-2 font-ba_normal bg-baAccent w-fit text-baDark rounded-lg">
+                      <h2
+                        key={index}
+                        className="px-5 py-2 font-ba_normal bg-baAccent w-fit text-baDark rounded-lg"
+                      >
                         {message}
                       </h2>
                     ))}
                   </div>
                 ) : null}
                 {messages.length !== 0 ? (
-                  <div className='space-y-2 flex flex-col justify-start items-start'>
+                  <div className="space-y-2 flex flex-col justify-start items-start">
                     {messages.map((message: string, index: number) => (
-                      <h2 key={index} className="px-5 py-2 font-ba_normal bg-[#b8b3db] w-fit text-baDark rounded-lg">
+                      <h2
+                        key={index}
+                        className="px-5 py-2 font-ba_normal bg-[#b8b3db] w-fit text-baDark rounded-lg"
+                      >
                         {message}
                       </h2>
                     ))}
@@ -119,7 +150,9 @@ const DashboardPage = (props: Props) => {
                     onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                       setUserMessage(e.target.value)
                     }
-                    onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                    onKeyDown={(
+                      e: React.KeyboardEvent<HTMLTextAreaElement>
+                    ) => {
                       if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault(); // Prevent newline in textarea
                         handleSendMessage();
@@ -130,7 +163,6 @@ const DashboardPage = (props: Props) => {
                     variant="primary"
                     className={`absolute bottom-4 right-4 flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 w-fit h-fit px-3 py-4`}
                     onClick={handleSendMessage}
-                    
                   >
                     <SendHorizontal />
                   </Button>

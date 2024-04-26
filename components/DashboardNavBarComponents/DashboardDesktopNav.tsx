@@ -20,6 +20,7 @@ import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { TbLogout2 } from 'react-icons/tb';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 import Cookies from 'universal-cookie';
+import { capitalizeFirstLetterOfEachWord } from '@/lib/utils';
 
 const cookies = new Cookies();
 
@@ -27,13 +28,13 @@ type Props = {};
 
 const DashboardDesktopNav = (props: Props) => {
   const pathname = usePathname();
-  const {user, signOutUser} = useBeeawareHook();
+  const {user, userName, signOutUser} = useBeeawareHook();
 
-  const currUser = cookies.get('user');
+  const currUser = cookies.get('userName');
 
   const profileImage = user && user?.photoURL ? user?.photoURL : "https://github.com/shadcn.png"
-  const userName = user?.displayName || currUser?.userName || user?.email.split("@")[0]
-  const userFallBack = userName?.slice(0, 2).toUpperCase();
+  const currentUserName = capitalizeFirstLetterOfEachWord(user?.displayName || currUser || userName || user?.email.split("@")[0])
+  const userFallBack = currentUserName?.slice(0, 2).toUpperCase();
 
   return (
     <nav className="sm:hidden lg:flex justify-between h-[100px] items-center lg:px-14 xl:px-20 3xl:px-40">
@@ -141,7 +142,7 @@ const DashboardDesktopNav = (props: Props) => {
               </Avatar>
               <div>
                 <h3 className="text-headerFive font-ba_normal">
-                  {userName}
+                  {currentUserName}
                 </h3>
                 <h5 className="font-ba_normal text-baSubtle">
                   {user?.email}

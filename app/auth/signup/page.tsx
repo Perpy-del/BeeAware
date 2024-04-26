@@ -50,7 +50,7 @@ const SignupPage = (props: Props) => {
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter your name"
+                          placeholder="Enter your name e.g. John Doe"
                           {...field}
                           className="rounded-[20px] h-12"
                         />
