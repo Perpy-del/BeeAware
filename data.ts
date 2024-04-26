@@ -41,18 +41,22 @@ export const moreAboutData = [
   {
     header: 'Education',
     text: 'Accessible and Reliable Information about STIs, Contraception and Sexual Health. ',
+    link: '/articles'
   },
   {
     header: 'Consultation',
     text: 'Talk to skilled personnels and make good decisons concerning your health. ',
+    link: '/#consult'
   },
   {
     header: 'Testing',
     text: 'Locate nearby testing facilities conveniently and with ease. ',
+    link: '/auth/login'
   },
   {
     header: 'Community',
     text: 'Join a supportive community of individuals navigating similar experiences. ',
+    link: '/#community'
   },
 ];
 

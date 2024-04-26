@@ -5,10 +5,13 @@ import Image from 'next/image';
 import { ArrowRightToLine } from 'lucide-react';
 import ButtonComponent from '../ButtonComponent';
 import ScrollButton from '../ScrollButton';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const HeroSection = (props: Props) => {
+  const router = useRouter();
+
   return (
     <>
       <div id="hero" className="sm:p-5 lg:px-14 xl:px-20 3xl:px-40">
@@ -37,6 +40,7 @@ const HeroSection = (props: Props) => {
               btnText="Explore Community"
               width="w-[220px] 3xl:w-[350px]"
               variant="primary"
+              onClick={() => router.push('/#community')}
             />
           </div>
 

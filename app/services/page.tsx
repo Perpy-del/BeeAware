@@ -1,5 +1,8 @@
+'use client';
+
 import ButtonComponent from '@/components/ButtonComponent';
 import CommunitySection from '@/components/HomepageComponents/CommunitySection';
+import ScrollButton from '@/components/ScrollButton';
 import ServiceCardComponent, {
   ServicesProps,
 } from '@/components/ServiceCardComponent';
@@ -56,6 +59,7 @@ const ServicesPage = (props: Props) => {
         </div>
       </div>
       <CommunitySection />
+      <ScrollButton sectionId='about'/>
     </>
   );
 };

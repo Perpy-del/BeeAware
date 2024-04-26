@@ -3,10 +3,12 @@
 import { moreAboutData } from '@/data';
 import React, { useState } from 'react';
 import { IoArrowForwardOutline } from 'react-icons/io5';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const MoreAboutSection = (props: Props) => {
+  const router = useRouter();
   const [hoverStates, setHoverStates] = useState(
     Array(moreAboutData.length).fill(false)
   );
@@ -35,6 +37,7 @@ const MoreAboutSection = (props: Props) => {
             className="flex sm:w-full lg:w-[400px] xl:w-[500px] 3xl:w-full items-center sm:justify-between sm:gap-3 lg:gap-4 3xl:gap-20 cursor-pointer"
             onMouseOver={() => handleMouseOver(index)}
             onMouseLeave={() => handleMouseLeave(index)}
+            onClick={() => router.push(data?.link)}
           >
             <div className="transition transform hover:scale-105 duration-700">
               <h3
