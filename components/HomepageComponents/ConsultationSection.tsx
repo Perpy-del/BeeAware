@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -12,12 +12,23 @@ import { formSchema } from '@/schema/formSchema';
 import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 type Props = {};
 
 const ConsultationSection = (props: Props) => {
   const { toast } = useToast();
   const router = useRouter();
+
+  const [homeConsultDialog, setHomeConsultDialog] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,24 +59,27 @@ const ConsultationSection = (props: Props) => {
       return;
     }
     console.log(values);
+  }
+
+  const handleConsultSubmit = () => {
+    setHomeConsultDialog(true);
     toast({
       title: 'You Need to be signed in',
       description: 'Please log in to book a consultation.',
       action: (
-        <ToastAction
-          altText="login"
-          onClick={() => router.push('/auth/login')}
-        >
+        <ToastAction altText="login" onClick={() => router.push('/auth/login')}>
           Log In
         </ToastAction>
       ),
-      className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+      className: 'bg-baLight dark:text-baBody',
     });
-    router.push('/auth/login')
-  }
+    setTimeout(() => {
+      router.push('/auth/login');
+    }, 10000);
+  };
 
   return (
-    <div className="sm:mb-14 lg:mb-28 text-baLight lg:bg-[url('/book-consult.jpg')] lg:bg-no-repeat lg:bg-cover lg:h-[544px] sm:pb-0 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 flex justify-center items-center">
+    <div className="sm:mb-14 lg:mb-28 text-baLight lg:bg-[url('/book-consult.jpg')] lg:bg-no-repeat lg:bg-cover lg:h-[544px] sm:pb-0 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 flex justify-center items-center" id='consult'>
       <div className="sm:w-[99.5%] lg:w-1/2 bg-baPrimary text-center lg:mt-[95px] rounded-xl pt-5 3xl:mt-20 pb-10 lg:pb-7 sm:px-5 lg:px-10">
         <h2 className="text-headerFour pb-2 font-ba_medium">
           Get A Consultation
@@ -92,21 +106,51 @@ const ConsultationSection = (props: Props) => {
                 placeholder="Location/Address"
               />
             </div>
-            <div className='pb-10 pt-5'>
-            <FormInputComponent
-              control={form.control}
-              formName="complaint"
-              placeholder="Complaint"
-            />
-            </div>
-            <div className="flex justify-center">
-              <ButtonComponent
-                variant="baSecondary"
-                btnText={'Book Consultation'}
-                width={'w-[250px] 3xl:w-[300px]'}
-                type="submit"
+            <div className="pb-10 pt-5">
+              <FormInputComponent
+                control={form.control}
+                formName="complaint"
+                placeholder="Complaint"
               />
             </div>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <div className="flex justify-center">
+                  <ButtonComponent
+                    variant="baSecondary"
+                    btnText={'Book Consultation'}
+                    width={'w-[250px] 3xl:w-[300px]'}
+                    onClick={handleConsultSubmit}
+                  />
+                </div>
+              </AlertDialogTrigger>
+              {homeConsultDialog && (
+                <AlertDialogContent className="bg-baLight dark:bg-baPrimary text-baDark dark:text-baLight w-[50%]">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="text-center text-headerSix">
+                      You Have to be Logged In to Book A Consultation
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="text-center">
+                      Kindly log into your BeeAware account or Create an Account
+                      to access consultation services and other services on the
+                      BeeAware dashboard.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter className="text-center">
+                    <div className="flex justify-center items-center gap-2">
+                      <ButtonComponent
+                        variant="baSecondary"
+                        btnText={'Log In'}
+                        width={'w-[250px] 3xl:w-[300px]'}
+                        onClick={() => {
+                          router.push('/auth/login')
+                        }}
+                      />
+                    </div>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              )}
+            </AlertDialog>
           </form>
         </Form>
       </div>

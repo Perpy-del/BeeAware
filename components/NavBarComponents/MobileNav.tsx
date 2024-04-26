@@ -127,27 +127,30 @@ const MobileNav = (props: Props) => {
 
           {/* Sign up */}
           <div className="flex justify-center">
-            {(pathname === '/' || pathname === '/auth/login') && (
-              <Button
-                className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
-                onClick={() => {
-                  router.push('/auth/signup');
-                  setShowNav(false);
-                }}
-              >
-                Sign up
-              </Button>
-            )}
-            {pathname === '/auth/signup' && (
-              <Button
-                className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
-                onClick={() => {
-                  router.push('/auth/login');
-                  setShowNav(false);
-                }}
-              >
-                Log in
-              </Button>
+            {pathname === '/doctors' ? null : (
+              <>
+                {pathname === '/auth/signup' ? (
+                  <Button
+                    className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
+                    onClick={() => {
+                      router.push('/auth/login');
+                      setShowNav(false);
+                    }}
+                  >
+                    Log in
+                  </Button>
+                ) : (
+                  <Button
+                    className="bg-baSubtle text-baPrimary w-44 rounded-3xl font-ba_medium h-12"
+                    onClick={() => {
+                      router.push('/auth/signup');
+                      setShowNav(false);
+                    }}
+                  >
+                    Sign up
+                  </Button>
+                )}
+              </>
             )}
           </div>
         </div>

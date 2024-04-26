@@ -17,6 +17,9 @@ import { useRouter } from 'next/navigation';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { resetPasswordMail, sendMail } from '@/helpers/sendMail';
 import { generateRandomNumberWithExpiry, isNumberExpired } from '@/lib/utils';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 export const BeeawareContext = createContext<any>({});
 
@@ -153,7 +156,7 @@ export default function BeeawareContextProvider({
         digit: digits?.number,
         expiry: digits?.expiry,
       };
-      sessionStorage.setItem('user', JSON.stringify(userDetails));
+      cookies.set('user', userDetails);
       await sendMail({
         userName: values?.name,
         email: values?.email,

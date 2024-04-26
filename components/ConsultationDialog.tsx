@@ -1,9 +1,8 @@
 import {
   AlertDialog,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
+  // AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -65,7 +64,7 @@ export function ConsultationDialog(props: ConsultDialogProps) {
               </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter></AlertDialogFooter>
+          {/* <AlertDialogFooter></AlertDialogFooter> */}
           <h6 className="text-center">
             For more enquiries call: +234 8124 900 0000{' '}
           </h6>

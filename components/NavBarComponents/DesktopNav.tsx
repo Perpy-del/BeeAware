@@ -91,20 +91,24 @@ const DesktopNav = (props: Props) => {
 
       {/* Sign up */}
       <div className="flex items-center gap-8">
-        {pathname === '/auth/signup' ? (
-          <ButtonComponent
-            btnText="Log in"
-            width="w-[170px] 3xl:w-[250px]"
-            variant="primary"
-            onClick={() => router.push('/auth/login')}
-          />
-        ): (
-          <ButtonComponent
-            btnText="Sign up"
-            width="w-[170px] 3xl:w-[250px]"
-            variant="primary"
-            onClick={() => router.push('/auth/signup')}
-          />
+        {pathname === '/doctors' ? null : (
+          <>
+            {pathname === '/auth/signup' ? (
+              <ButtonComponent
+                btnText="Log in"
+                width="w-[170px] 3xl:w-[250px]"
+                variant="primary"
+                onClick={() => router.push('/auth/login')}
+              />
+            ) : (
+              <ButtonComponent
+                btnText="Sign up"
+                width="w-[170px] 3xl:w-[250px]"
+                variant="primary"
+                onClick={() => router.push('/auth/signup')}
+              />
+            )}
+          </>
         )}
         {/* Change mode dropdown */}
         <ModeDropdownComponent />
