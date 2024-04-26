@@ -145,7 +145,7 @@ const ConsultationPage = () => {
       setLoading(false);
     }, 5000);
     resetDetails();
-    console.log(consultDetails);
+    // console.log(consultDetails);
   }
 
   return (

@@ -18,6 +18,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import MobileMessageComponent from '@/components/MobileMessageComponent';
 
 type Props = {};
 
@@ -51,7 +52,8 @@ const DashboardPage = (props: Props) => {
   return user ? (
     <div>
       {numMessages ? (
-        <div className="px-5 lg:px-20 3xl:px-40">
+        <>
+        <div className="px-5 lg:px-20 3xl:px-40 sm:hidden md:block">
           <MessagesBreadcrumbComponent />
           <div className="pt-5 flex justify-between">
             <div className="h-[80vh] pt-5 w-[30%]">
@@ -171,6 +173,8 @@ const DashboardPage = (props: Props) => {
             </div>
           </div>
         </div>
+        <MobileMessageComponent />
+        </>
       ) : (
         <>
           <div className="mx-5 lg:mx-20 3xl:mx-40 bg-baAccent h-fit py-5 rounded-[20px] mb-14 lg:mb-24">
