@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import '../globals.css';
-import Footer from '@/components/Footer';
 import DashboardNavBar from '@/components/DashboardNavBar';
 import DashboardFooter from '@/components/DashboardFooter';
 
@@ -16,7 +15,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <div>
+    <div className='relative'>
       <DashboardNavBar />
       {children}
       <DashboardFooter />

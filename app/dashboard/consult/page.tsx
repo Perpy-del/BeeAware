@@ -20,10 +20,6 @@ export interface ConsultDetailsInterface {
   complaint: string;
 }
 
-type Props = {
-  details: ConsultDetailsInterface;
-};
-
 const defaultValues = {
   name: '',
   email: '',
@@ -32,7 +28,7 @@ const defaultValues = {
   complaint: '',
 };
 
-const ConsultationPage = (props: Props) => {
+const ConsultationPage = () => {
   const {setNumMessages} = useBeeawareHook();
   const [consultDetails, setConsultDetails] =
     useState<ConsultDetailsInterface>(defaultValues);

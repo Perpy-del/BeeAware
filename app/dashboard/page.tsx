@@ -37,6 +37,11 @@ const DashboardPage = (props: Props) => {
     return () => unsubscribe();
   }, [router]);
 
+  const handleSendMessage = () => {
+    setMessages([...messages, userMessage]);
+    setUserMessage('');
+  }
+
   return user ? (
     <div>
       {numMessages ? (
@@ -84,9 +89,25 @@ const DashboardPage = (props: Props) => {
               <span className="text-baSubtle text-smallSize block text-center">
                 Today
               </span>
-              <div className="absolute block w-full bottom-7">
-                {messages.length !== 0 ? <div></div> : null}
-                <div></div>
+              <div className="absolute block w-full bottom-7 space-y-5">
+                {messages.length !== 0 ? (
+                  <div className='space-y-2 flex flex-col justify-end items-end'>
+                    {messages.map((message: string, index: number) => (
+                      <h2 key={index} className="px-5 py-2 font-ba_normal bg-baAccent w-fit text-baDark rounded-lg">
+                        {message}
+                      </h2>
+                    ))}
+                  </div>
+                ) : null}
+                {messages.length !== 0 ? (
+                  <div className='space-y-2 flex flex-col justify-start items-start'>
+                    {messages.map((message: string, index: number) => (
+                      <h2 key={index} className="px-5 py-2 font-ba_normal bg-[#b8b3db] w-fit text-baDark rounded-lg">
+                        {message}
+                      </h2>
+                    ))}
+                  </div>
+                ) : null}
                 <div className="sm:hidden md:block w-full relative">
                   <Textarea
                     name="send-message"
@@ -98,10 +119,18 @@ const DashboardPage = (props: Props) => {
                     onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                       setUserMessage(e.target.value)
                     }
+                    onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault(); // Prevent newline in textarea
+                        handleSendMessage();
+                      }
+                    }}
                   />
                   <Button
                     variant="primary"
                     className={`absolute bottom-4 right-4 flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 w-fit h-fit px-3 py-4`}
+                    onClick={handleSendMessage}
+                    
                   >
                     <SendHorizontal />
                   </Button>

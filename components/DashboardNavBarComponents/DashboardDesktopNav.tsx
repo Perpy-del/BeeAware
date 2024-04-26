@@ -19,6 +19,9 @@ import { FaRegUser } from 'react-icons/fa6';
 import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { TbLogout2 } from 'react-icons/tb';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 type Props = {};
 
@@ -26,9 +29,7 @@ const DashboardDesktopNav = (props: Props) => {
   const pathname = usePathname();
   const {user, signOutUser} = useBeeawareHook();
 
-  const currUser = JSON.parse(sessionStorage.getItem('user') as string);
-  // const router = useRouter();
-  // console.log(user);
+  const currUser = cookies.get('user');
 
   const profileImage = user && user?.photoURL ? user?.photoURL : "https://github.com/shadcn.png"
   const userName = user?.displayName || currUser?.userName || user?.email.split("@")[0]
