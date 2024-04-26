@@ -1,28 +1,28 @@
 'use client';
 
-import { dashboardNavData, navData, navDataTwo } from '@/data';
+import { dashboardNavData } from '@/data';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Button } from '../ui/button';
 import { AlignJustify, XCircle } from 'lucide-react';
 import NavDataInterface from '@/interfaces/NavDataInterface';
 import { MobileModeDropdown } from '../NavBarComponents/ModeDropdownComponent';
-import { MobileServicesDropdown } from '../NavBarComponents/ServicesDropdown';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
 import { Bell } from 'lucide-react';
 import { FaRegUser } from 'react-icons/fa6';
 import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { TbLogout2 } from 'react-icons/tb';
+import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 
 type Props = {};
 
 const DashboardMobileNav = (props: Props) => {
   const pathname = usePathname();
-  const router = useRouter();
+  const { signOutUser } = useBeeawareHook();
 
   const [showNav, setShowNav] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   return (
     <nav
@@ -79,12 +79,62 @@ const DashboardMobileNav = (props: Props) => {
               </div>
             </div>
             <div>
-              <div className="pb-2 pt-4 flex items-center gap-3 text-baLight font-ba_normal">
-                <div className="text-baPrimary p-2 bg-baAccent rounded-full">
+              <div
+                className="pb-2 pt-4 flex items-center gap-3 text-baLight font-ba_normal"
+                onClick={() => setShowNotifications(true)}
+              >
+                <div className="relative text-baPrimary p-2 bg-baAccent rounded-full">
                   <Bell size={17} />
+                  <div className="absolute h-1 w-1 bg-baError rounded-full right-3 top-2"></div>
                 </div>
                 Notifications
               </div>
+
+              {showNotifications && (
+                <div className="pt-7 px-5 fixed right-0 left-0 top-0 bottom-0 h-screen bg-baPrimary z-10">
+                  <>
+                    <div className="flex gap-1 p-4 border-b border-baSubtle">
+                      <h1 className="text-headerSix font-ba_normal">
+                        Notifications
+                      </h1>
+                      <sup className="text-baLight bg-baError p-2 h-fit rounded-full">
+                        1
+                      </sup>
+                    </div>
+                    <span
+                      className="absolute right-4 top-4 text-baLight"
+                      onClick={() => setShowNotifications(false)}
+                    >
+                      <XCircle />
+                    </span>
+                  </>
+                  <div className="flex items-center pl-6 py-4 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baPrimary/20">
+                    <div>
+                      <h4 className="w-[85%] pb-1">
+                        Your have four new likes on your comment
+                      </h4>
+                      <h6 className="text-baSubtle text-[12px]">2h ago</h6>
+                    </div>
+                    <div className="h-2 w-2 bg-baError rounded-full"></div>
+                  </div>
+                  <div className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baPrimary/20">
+                    <div>
+                      <h4 className="w-[85%] pb-1">
+                        A doctor is waiting for you in the consultation group
+                      </h4>
+                      <h6 className="text-baSubtle text-[12px]">3h ago</h6>
+                    </div>
+                  </div>
+                  <div className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baPrimary/20">
+                    <div>
+                      <h4 className="w-[85%] pb-1">
+                        A doctor is waiting for you in the consultation group
+                      </h4>
+                      <h6 className="text-baSubtle text-[12px]">5h ago</h6>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="py-2 flex items-center gap-3 text-baLight font-ba_normal">
                 <div className="text-baPrimary p-2 bg-baAccent rounded-full">
                   <FaRegUser />
@@ -97,18 +147,22 @@ const DashboardMobileNav = (props: Props) => {
                 </div>
                 Help Center
               </div>
-              <div className="py-2 flex items-center gap-3 text-baError font-ba_normal">
-                <div className="text-baError border border-baError p-2 bg-none rounded-full">
+              <div className="py-2 flex items-center gap-3 text-baWarning font-ba_normal" onClick={() => {
+                    setShowNav(false);
+                    signOutUser();
+                  }}>
+                <div
+                  className="text-baWarning border border-baWarning p-2 bg-none rounded-full">
                   <TbLogout2 />
                 </div>
                 Log Out
               </div>
             </div>
           </div>
-          <ul className="flex flex-col gap-10 items-center pt-8 pb-10">
+          <ul className="flex flex-col gap-7 items-center pt-8 pb-10">
             {dashboardNavData.map((data: NavDataInterface) => (
               <>
-                {(pathname === data?.link || pathname.startsWith(data?.link)) ? (
+                {pathname === data?.link || pathname.startsWith(data?.link) ? (
                   <Link href={data?.link} key={data?.name}>
                     <li
                       className="text-baSubtle font-ba_large text-headerFive"
