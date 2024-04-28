@@ -1,9 +1,12 @@
 import React from 'react';
 import ButtonComponent from '../ButtonComponent';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const AboutHeroComponent = (props: Props) => {
+  const router = useRouter();
+
   return (
     <div
       className="bg-no-repeat bg-[url('/aboutimg.jpg')] rounded-[30px] bg-center bg-cover sm:px-3 lg:pl-16 sm:py-20 lg:py-24 sm:mx-5 lg:mx-20 3xl:mx-40 3xl:mt-20"
@@ -23,6 +26,7 @@ const AboutHeroComponent = (props: Props) => {
         btnText={'Explore Communities'}
         width="w-[230px] 3xl:w-[350px]"
         variant={'primary'}
+        onClick={() => router.push('/#about-community')}
       />
     </div>
   );
