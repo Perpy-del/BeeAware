@@ -62,11 +62,11 @@ export const moreAboutData = [
 
 export const articlesData = [
   {
-    image: '/article_image.jpg',
-    focus: 'Sexual Health',
+    image: '/contraception.jpg',
+    focus: 'Contraception',
     date: 'January 2nd, 2024',
-    topic: 'STDs: What Are They and How Do You Get Them?',
-    sub: 'The number of cases of sexually transmitted diseases (STDs) — now more commonly referred to as sexually transmitted infections (STIs) — in the United States hit an all-time high in 2019, according to data released on April 13, 2021, by the Centers for Disease Control and Prevention (CDC).',
+    topic: 'Understanding Contraception',
+    sub: "When it comes to sexual health, it's important to be informed and make responsible choices. Contraception, also known as birth control, plays a crucial role in preventing unintended pregnancies and protecting against sexually transmitted infections (STIs). In this article, we'll explore different methods of contraception.",
   },
   {
     image: '/article_image.jpg',
@@ -182,7 +182,7 @@ export const footerData = [
     header: 'RESOURCES',
     links: [
       { href: '/services', text: 'Services' },
-      { href: '/contact', text: 'Contact' },
+      { href: '/doctors', text: 'For Doctors' },
       { href: '/articles', text: 'Articles' },
       { href: '/tos', text: 'Terms of Service' },
     ],

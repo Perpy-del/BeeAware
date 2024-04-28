@@ -19,12 +19,22 @@ const DesktopNav = (props: Props) => {
   return (
     <nav className="sm:hidden lg:flex justify-between h-[100px] items-center lg:px-14 xl:px-20 3xl:px-40">
       {/* Logo */}
-      <Link href="/">
+      <Link href="/" className='dark:hidden'>
         <Image
           src="/bee_aware.svg"
           width={150}
           height={33}
-          alt="beeaware logo"
+          alt="BeeAware Logo"
+          loading="lazy"
+          className="object-center object-cover"
+        />
+      </Link>
+      <Link href="/" className='hidden dark:flex'>
+        <Image
+          src="/beeaware_logo.svg"
+          width={150}
+          height={33}
+          alt="BeeAware Logo"
           loading="lazy"
           className="object-center object-cover"
         />

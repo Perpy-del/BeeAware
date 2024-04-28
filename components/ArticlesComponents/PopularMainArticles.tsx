@@ -8,7 +8,7 @@ const PopularMainArticles = (props: Props) => {
   return (
     <>
       {/* Tablet */}
-      <div className="md:grid grid-cols-2 sm:hidden lg:hidden gap-4 sm:mx-5 lg:mx-20">
+      <div className="md:grid grid-cols-2 sm:hidden lg:hidden gap-2 sm:mx-5 lg:mx-20">
         {articlesData
           .slice(0, 4)
           .map((article: ArticleInterface, index: number) => {

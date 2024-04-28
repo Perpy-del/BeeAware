@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { footerData } from '@/data';
 import FooterInterface, { LinkInterface } from '@/interfaces/FooterInterface';
 import SocialsComponent from './SocialsComponent';
+import Image from 'next/image';
 
 type Props = {};
 
@@ -14,10 +15,15 @@ const Footer = (props: Props) => {
       <div className="flex flex-wrap sm:gap-12 lg:gap-0 pb-12 border-b border-baLight justify-between sm:items-start lg:items-center">
         {/* Left side */}
         <div className="flex flex-col gap-3">
-          <Link href="/">
-            <h1 className="text-headerThree cursor-pointer pb-8 text-baLight font-[800]">
-              LOGO
-            </h1>
+          <Link href="/" className='pb-5'>
+            <Image
+              src="/beeaware_logo.svg"
+              width={150}
+              height={33}
+              alt="beeaware logo"
+              loading="lazy"
+              className="object-center object-cover"
+            />
           </Link>
           <span className="text-baLight 3xl:text-headerSix">
             Email: info@beeaware.com
@@ -28,7 +34,11 @@ const Footer = (props: Props) => {
           <span className="text-baLight 3xl:text-headerSix">
             Address: 1234 Main St. <br /> Moonstone City, Stardust State 12345
           </span>
-          <SocialsComponent bgVariant={'bg-baLight'} color="black" className='flex items-center gap-5' />
+          <SocialsComponent
+            bgVariant={'bg-baLight'}
+            color="black"
+            className="flex items-center gap-5"
+          />
         </div>
 
         {footerData.map((data: FooterInterface) => {
@@ -73,7 +83,9 @@ const Footer = (props: Props) => {
       </div>
       <div className="pt-12 flex flex-wrap sm:gap-2 lg:gap-7 text-smallSize text-baLight">
         <h6>&copy; 2023 Positivus. All Rights Reserved.</h6>
-        <h6 className='hover:font-ba_normal hover:underline cursor-pointer'>Privacy Policy</h6>
+        <h6 className="hover:font-ba_normal hover:underline cursor-pointer">
+          Privacy Policy
+        </h6>
       </div>
     </footer>
   );
