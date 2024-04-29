@@ -10,6 +10,29 @@ export const getAllData = async () => {
     scope,
     content,
     "mainImage": mainImage.asset->url,
+    "mainScreenImage": mainScreenImage.asset->url,
+    "mainVideo": mainVideo.asset->url,
+    _id,
+    slug,
+    conclusion,
+    videoAuthor
+  }`;
+
+  const data = await client.fetch(query);
+  return data;
+};
+
+export const getSlugData = async (slug: string) => {
+  const query = `*[_type in ["stis", "consent", "intimacy", "contraception", "communication", "puberty"] && slug.current == "${slug}"] {
+    title,
+    focus,
+    overview,
+    _createdAt,
+    keyfacts,
+    scope,
+    content,
+    "mainImage": mainImage.asset->url,
+    "mainScreenImage": mainScreenImage.asset->url,
     "mainVideo": mainVideo.asset->url,
     _id,
     slug,
@@ -31,6 +54,7 @@ export const getSTIData = async () => {
         scope,
         content,
         "mainImage": mainImage.asset->url,
+        "mainScreenImage": mainScreenImage.asset->url,
         "mainVideo": mainVideo.asset->url,
         _id,
         slug,
@@ -52,6 +76,7 @@ export const getConsentData = async () => {
         scope,
         content,
         "mainImage": mainImage.asset->url,
+        "mainScreenImage": mainScreenImage.asset->url,
         "mainVideo": mainVideo.asset->url,
         _id,
         slug,
@@ -73,6 +98,7 @@ export const getCommunicationData = async () => {
         scope,
         content,
         "mainImage": mainImage.asset->url,
+        "mainScreenImage": mainScreenImage.asset->url,
         "mainVideo": mainVideo.asset->url,
         _id,
         slug,
@@ -94,6 +120,7 @@ export const getContraceptionData = async () => {
         scope,
         content,
         "mainImage": mainImage.asset->url,
+        "mainScreenImage": mainScreenImage.asset->url,
         "mainVideo": mainVideo.asset->url,
         _id,
         slug,
@@ -115,6 +142,7 @@ export const getIntimacyData = async () => {
         scope,
         content,
         "mainImage": mainImage.asset->url,
+        "mainScreenImage": mainScreenImage.asset->url,
         "mainVideo": mainVideo.asset->url,
         _id,
         slug,
@@ -136,6 +164,7 @@ export const getPubertyData = async () => {
         scope,
         content,
         "mainImage": mainImage.asset->url,
+        "mainScreenImage": mainScreenImage.asset->url,
         "mainVideo": mainVideo.asset->url,
         _id,
         slug,

@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import ArticleCardComponent from './ArticleCardComponent';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 import { convertArticleDate } from '@/lib/utils';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 
-type Props = {}
+type Props = {};
 
 const PopularCommunicationArticles = (props: Props) => {
-    const {communicationArticles} = useBeeawareHook();
-    
+  const { communicationArticles } = useBeeawareHook();
+
   return (
     <>
       {/* Tablet */}
@@ -24,6 +24,7 @@ const PopularCommunicationArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
+                slug={`/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -41,6 +42,7 @@ const PopularCommunicationArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
+                slug={`/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -58,12 +60,13 @@ const PopularCommunicationArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
+                slug={`/articles/${article?.slug.current}`}
               />
             );
           })}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default PopularCommunicationArticles
+export default PopularCommunicationArticles;

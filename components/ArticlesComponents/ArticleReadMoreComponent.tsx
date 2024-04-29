@@ -1,5 +1,4 @@
 import Image from 'next/image';
-// import { lastArticle } from './PopularArticleComponent';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 import Link from 'next/link';
@@ -31,14 +30,14 @@ const ArticleReadMoreComponent = (props: Props) => {
           <h4 className="font-ba_normal text-baPrimary 3xl:text-headerFive">
             {lastArticle?.focus}
           </h4>
-          <span className="font-ba_normal text-baSubtle 3xl:text-headerFive">
+          {lastArticle && <span className="font-ba_normal text-baSubtle 3xl:text-headerFive">
             | {convertArticleDate(lastArticle?._createdAt)}
-          </span>
+          </span>}
         </div>
-        <h1 className="text-headerFour 3xl:text-headerTwo font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline">
+        <Link href={`/articles/${lastArticle?.slug.current}`} className="text-headerFour 3xl:text-headerTwo font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline">
           {lastArticle?.title}
-        </h1>
-        <p className="text-smallSize 3xl:text-headerFour font-ba_normal text-baBody dark:text-baLight leading-[22px] 3xl:leading-9">
+        </Link>
+        {lastArticle && <p className="text-smallSize 3xl:text-headerFour font-ba_normal text-baBody dark:text-baLight leading-[22px] 3xl:leading-9 z-0">
           {lastArticle?.overview}.{' '}
           <Link
             href={`/articles/${lastArticle?.slug.current}`}
@@ -46,7 +45,7 @@ const ArticleReadMoreComponent = (props: Props) => {
           >
             Read More...
           </Link>
-        </p>
+        </p>}
       </div>
     </div>
   );

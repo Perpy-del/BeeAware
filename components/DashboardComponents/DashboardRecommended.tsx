@@ -1,18 +1,17 @@
-import { articlesData } from '@/data';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
-import ArticleInterface from '@/interfaces/ArticleInterface';
 import { convertArticleDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 type Props = {};
 
-const RecommendedArticles = (props: Props) => {
-  const {allArticles} = useBeeawareHook();
+const DashboardRecommended = (props: Props) => {
+  const { allArticles } = useBeeawareHook();
 
   return (
-    <div className='sm:pb-14 lg:pb-24'>
+    <div className="sm:pb-14 lg:pb-24">
       <h1 className="sm:text-headerFour lg:text-headerTwo sm:font-ba_normal lg:font-ba_large sm:pb-6 lg:pb-5 sm:mx-5 lg:mx-20 3xl:mx-40">
         Recommended Articles
       </h1>
@@ -35,7 +34,7 @@ const RecommendedArticles = (props: Props) => {
                     loading="lazy"
                   />
                 </div>
-                <div className='md:w-[65%]'>
+                <div className="md:w-[65%]">
                   <div className="flex gap-1 pb-3 pt-2">
                     <h4 className="font-ba_normal text-baPrimary 3xl:text-headerFive">
                       {article?.focus}
@@ -44,11 +43,14 @@ const RecommendedArticles = (props: Props) => {
                       | {convertArticleDate(article?._createdAt)}
                     </span>
                   </div>
-                  <Link href={`/articles/${article?.slug.current}`} className="text-headerFive line-clamp-2 3xl:text-headerTwo font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline">
+                  <Link
+                    href={`/dashboard/articles/${article?.slug.current}`}
+                    className="text-headerFive line-clamp-2 3xl:text-headerTwo font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline"
+                  >
                     {article.title}...
                   </Link>
                   <Link
-                    href={`/articles/${article?.slug.current}`}
+                    href={`/dashboard/articles/${article?.slug.current}`}
                     className="text-baSecondary hover:font-ba_medium font-ba_normal"
                   >
                     Read More...
@@ -62,4 +64,4 @@ const RecommendedArticles = (props: Props) => {
   );
 };
 
-export default RecommendedArticles;
+export default DashboardRecommended;

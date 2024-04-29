@@ -1,5 +1,4 @@
-import { articlesData } from '@/data';
-import ArticleInterface from '@/interfaces/ArticleInterface';
+import { CircularProgress } from '@mui/material';
 import ArticleCardComponent from './ArticleCardComponent';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
@@ -13,8 +12,11 @@ const PopularMainArticles = (props: Props) => {
   return (
     <>
       {/* Tablet */}
+      {allArticles.length === 0 && <div className="h-screen mx-auto flex justify-center z-50">
+          <CircularProgress size={50} />
+        </div>}
       <div className="md:grid grid-cols-2 gap-5 pb-5 sm:hidden lg:hidden mx-5 lg:mx-20">
-        {allArticles
+        {allArticles.length !== 0 && allArticles
           .slice(0, 4)
           .map((article: ArticleDataInterface, index: number) => {
             return (
@@ -25,6 +27,7 @@ const PopularMainArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
+                slug={`/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -42,6 +45,7 @@ const PopularMainArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
+                slug={`/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -59,6 +63,7 @@ const PopularMainArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
+                slug={`/articles/${article?.slug.current}`}
               />
             );
           })}

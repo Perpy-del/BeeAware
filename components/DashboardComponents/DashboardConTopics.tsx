@@ -1,12 +1,13 @@
+import { useBeeawareHook } from '@/hooks/useBeeawareHook';
+import { CircularProgress } from '@mui/material';
 import React from 'react';
-import ArticleCardComponent from './ArticleCardComponent';
+import ArticleCardComponent from '../ArticlesComponents/ArticleCardComponent';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 import { convertArticleDate } from '@/lib/utils';
-import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 
 type Props = {};
 
-const PopularContraceptionArticles = (props: Props) => {
+const DashboardConTopics = (props: Props) => {
   const { contraceptionArticles } = useBeeawareHook();
 
   return (
@@ -24,7 +25,7 @@ const PopularContraceptionArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
-                slug={`/articles/${article?.slug.current}`}
+                slug={`/dashboard/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -42,7 +43,7 @@ const PopularContraceptionArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
-                slug={`/articles/${article?.slug.current}`}
+                slug={`/dashboard/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -60,7 +61,7 @@ const PopularContraceptionArticles = (props: Props) => {
                 topic={article?.title}
                 sub={article?.overview}
                 image={article?.mainImage}
-                slug={`/articles/${article?.slug.current}`}
+                slug={`/dashboard/articles/${article?.slug.current}`}
               />
             );
           })}
@@ -69,4 +70,4 @@ const PopularContraceptionArticles = (props: Props) => {
   );
 };
 
-export default PopularContraceptionArticles;
+export default DashboardConTopics;

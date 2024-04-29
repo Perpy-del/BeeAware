@@ -9,6 +9,7 @@ export interface ArticleDataInterface {
     conclusion: string;
     videoAuthor: string;
     mainImage: string;
+    mainScreenImage: string;
     mainVideo: string;
     _id: string;
     slug: {
