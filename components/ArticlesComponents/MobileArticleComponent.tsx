@@ -76,7 +76,7 @@ const MobileArticleComponent = (props: Props) => {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-8">
             {allArticles
-              .slice(0, 4)
+              .slice(-4)
               .map((article: ArticleDataInterface, index: number) => {
                 return (
                   <ArticleCardComponent
@@ -93,7 +93,7 @@ const MobileArticleComponent = (props: Props) => {
           {showMore && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-8">
               {allArticles
-                .slice(4)
+                .slice(0, allArticles?.length - 4)
                 .map((article: ArticleDataInterface, index: number) => {
                   return (
                     <ArticleCardComponent

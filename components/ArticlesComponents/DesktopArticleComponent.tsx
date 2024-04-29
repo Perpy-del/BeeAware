@@ -7,6 +7,7 @@ type Props = {
   popularArticles: boolean;
   latestArticles: boolean;
   slicedArticles: Array<ArticleDataInterface>;
+  latestSlicedArticles: Array<ArticleDataInterface>;
 };
 
 const DesktopArticleComponent = (props: Props) => {
@@ -32,7 +33,7 @@ const DesktopArticleComponent = (props: Props) => {
       )}
       {props.latestArticles && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-5 lg:gap-10 3xl:gap-14 pt-8">
-          {props.slicedArticles.map(
+          {props.latestSlicedArticles.map(
             (article: ArticleDataInterface, index: number) => {
               return (
                 <ArticleCardComponent

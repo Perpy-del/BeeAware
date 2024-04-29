@@ -39,6 +39,10 @@ const HealthArticleSection = (props: Props) => {
     startIndex,
     endIndex
   );
+  const latestSlicedArticles: Array<ArticleDataInterface> = allArticles.reverse().slice(
+    startIndex,
+    endIndex
+  );
 
   const totalPages = Math.ceil(allArticles.length / numOfItemsPerPage);
 
@@ -63,6 +67,7 @@ const HealthArticleSection = (props: Props) => {
         latestArticles={latestArticles}
         popularArticles={popularArticles}
         slicedArticles={slicedArticles}
+        latestSlicedArticles={latestSlicedArticles}
       />
       <MobileArticleComponent
         latestArticles={latestArticles}
