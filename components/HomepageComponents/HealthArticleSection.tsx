@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { articlesData } from '@/data';
-import ArticleInterface from '@/interfaces/ArticleInterface';
+// import { articlesData } from '@/data';
 import MobileArticleComponent from '../ArticlesComponents/MobileArticleComponent';
 import DesktopArticleComponent from '../ArticlesComponents/DesktopArticleComponent';
 import ArticleCountComponent from '../ArticlesComponents/ArticleCountComponent';
+import { useBeeawareHook } from '@/hooks/useBeeawareHook';
+import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 
 type Props = {};
 
 const HealthArticleSection = (props: Props) => {
+  const {allArticles} = useBeeawareHook();
+
   const [currPage, setCurrPage] = useState<number>(1);
   const [popularArticles, setPopularArticles] = useState<boolean>(true);
   const [latestArticles, setLatestArticles] = useState<boolean>(false);
@@ -32,12 +35,12 @@ const HealthArticleSection = (props: Props) => {
 
   const startIndex: number = (currPage - 1) * numOfItemsPerPage;
   const endIndex: number = startIndex + numOfItemsPerPage;
-  const slicedArticles: Array<ArticleInterface> = articlesData.slice(
+  const slicedArticles: Array<ArticleDataInterface> = allArticles.slice(
     startIndex,
     endIndex
   );
 
-  const totalPages = Math.ceil(articlesData.length / numOfItemsPerPage);
+  const totalPages = Math.ceil(allArticles.length / numOfItemsPerPage);
 
   return (
     <div className="sm:pb-20 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40">

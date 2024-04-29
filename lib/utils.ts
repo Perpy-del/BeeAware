@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import moment from 'moment';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -7,18 +8,18 @@ export function cn(...inputs: ClassValue[]) {
 
 export function generateRandomNumberWithExpiry(expiryTimeInSeconds: number) {
   let currentTime = Date.now();
-  let expiryTimestamp = currentTime + (expiryTimeInSeconds * 1000); // Convert seconds to milliseconds
-  
+  let expiryTimestamp = currentTime + expiryTimeInSeconds * 1000; // Convert seconds to milliseconds
+
   let randomNumber = 0;
   for (let i = 0; i < 5; i++) {
-      let randomArray = new Uint32Array(1);
-      window.crypto.getRandomValues(randomArray);
-      randomNumber = randomNumber * 10 + randomArray[0] % 10;
+    let randomArray = new Uint32Array(1);
+    window.crypto.getRandomValues(randomArray);
+    randomNumber = randomNumber * 10 + (randomArray[0] % 10);
   }
-  
+
   return {
-      number: randomNumber,
-      expiry: expiryTimestamp
+    number: randomNumber,
+    expiry: expiryTimestamp,
   };
 }
 
@@ -38,4 +39,14 @@ export function capitalizeFirstLetterOfEachWord(str: string) {
   });
 
   return capitalizedWords.join(' ');
+}
+
+export function convertArticleDate(str: string) {
+  const newDate = new Date(str).toLocaleString().split(',')[0]
+  const date = moment(newDate, 'DD/MM/YYYY');
+
+  // Format the date to the desired format
+  const formattedDate = date.format('MMMM Do, YYYY');
+
+  return formattedDate;
 }

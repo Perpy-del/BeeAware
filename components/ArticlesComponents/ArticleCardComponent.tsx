@@ -10,8 +10,8 @@ type Props = {
 
 const ArticleCardComponent = (props: Props) => {
   return (
-    <div className='lg:w-[35%]'>
-      <div className="rounded-xl lg:w-[350px] lg:h-[250px] mb-2">
+    <div className='sm:pb-10 md:pb-0'>
+      <div className="rounded-xl mb-2">
         <Image
           width={350}
           height={250}
@@ -25,11 +25,11 @@ const ArticleCardComponent = (props: Props) => {
         <h4 className="font-ba_normal text-baPrimary 3xl:text-headerFive">{props.focus}</h4>
         <span className="font-ba_normal text-baSubtle 3xl:text-headerFive">| {props.date}</span>
       </div>
-      <h1 className="text-headerFive 3xl:text-headerTwo font-ba_normal leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline">
-        {props.topic}
+      <h1 className="text-headerFive 3xl:text-headerTwo font-ba_normal md:leading-9 pb-2 text-baDark dark:text-baSubtle cursor-pointer hover:underline lg:w-[95%] line-clamp-2">
+        {props.topic}...
       </h1>
-      <p className="text-smallSize 3xl:text-headerFour font-ba_normal leading-4 text-baBody dark:text-baLight 3xl:leading-9">
-        {props.sub}
+      <p className="text-smallSize 3xl:text-headerFour font-ba_normal leading-4 text-baBody dark:text-baLight 3xl:leading-9 md:w-[95%] line-clamp-6">
+        {props.sub}...
       </p>
     </div>
   );
