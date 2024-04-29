@@ -25,7 +25,7 @@ import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { resetPasswordMail, sendMail } from '@/helpers/sendMail';
 import { generateRandomNumberWithExpiry, isNumberExpired } from '@/lib/utils';
 import Cookies from 'universal-cookie';
-import { getAllData, getCommunicationData, getContraceptionData, getSTIData, getIntimacyData, getConsentData, getPubertyData } from '@/lib/apiLibrary';
+import { getAllData, getCommunicationData, getContraceptionData, getSTIData, getIntimacyData, getConsentData, getPubertyData, getSlugData } from '@/lib/apiLibrary';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 
 const cookies = new Cookies();
@@ -524,6 +524,15 @@ export default function BeeawareContextProvider({
       console.error(error);
     }
   }
+  
+  async function getSlugArticleData(slug: string) {
+    try {
+      const articlesData = await getSlugData(slug)
+      return articlesData;      
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   async function getSTIArticlesData() {
     try {
@@ -620,7 +629,8 @@ export default function BeeawareContextProvider({
         consentArticles,
         intimacyArticles,
         pubertyArticles,
-        contraceptionArticles
+        contraceptionArticles,
+        getSlugArticleData
       }}
     >
       {children}

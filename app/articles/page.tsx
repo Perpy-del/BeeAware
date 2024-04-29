@@ -68,6 +68,7 @@ const ArticlesPage = (props: Props) => {
                       topic={article?.title}
                       sub={article?.overview}
                       image={article?.mainImage}
+                      slug={`/articles/${article?.slug.current}`}
                     />
                   </div>
                 );

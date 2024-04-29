@@ -1,12 +1,7 @@
-import { articlesData } from '@/data';
-import ArticleInterface from '@/interfaces/ArticleInterface';
 import ArticleReadMoreComponent from './ArticleReadMoreComponent';
 import PopularMainArticles from './PopularMainArticles';
-import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 
 type Props = {};
-
-// export const lastArticle: ArticleDataInterface = articlesData[articlesData.length - 1];
 
 const PopularArticleComponent = (props: Props) => {
 
