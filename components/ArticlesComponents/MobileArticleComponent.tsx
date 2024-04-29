@@ -3,6 +3,9 @@ import ButtonComponent from '../ButtonComponent';
 import ArticleCardComponent from './ArticleCardComponent';
 import ArticleInterface from '@/interfaces/ArticleInterface';
 import { articlesData } from '@/data';
+import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
+import { convertArticleDate } from '@/lib/utils';
+import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 
 type Props = {
   latestArticles: boolean;
@@ -10,41 +13,43 @@ type Props = {
 };
 
 const MobileArticleComponent = (props: Props) => {
+  const { allArticles } = useBeeawareHook();
+
   const [showMore, setShowMore] = useState<boolean>(false);
 
   return (
     <div className="sm:flex flex-col lg:hidden">
       {props.popularArticles && (
         <>
-          <div className="flex flex-col justify-between gap-10 py-8">
-            {articlesData
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-8">
+            {allArticles
               .slice(0, 4)
-              .map((article: ArticleInterface, index: number) => {
+              .map((article: ArticleDataInterface, index: number) => {
                 return (
                   <ArticleCardComponent
                     key={index}
                     focus={article?.focus}
-                    date={article?.date}
-                    topic={article?.topic}
-                    sub={article?.sub}
-                    image={article?.image}
+                    date={convertArticleDate(article?._createdAt)}
+                    topic={article?.title}
+                    sub={article?.overview}
+                    image={article?.mainImage}
                   />
                 );
               })}
           </div>
           {showMore && (
-            <div className="flex flex-col justify-between gap-10 py-8">
-              {articlesData
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-8">
+              {allArticles
                 .slice(4)
-                .map((article: ArticleInterface, index: number) => {
+                .map((article: ArticleDataInterface, index: number) => {
                   return (
                     <ArticleCardComponent
                       key={index}
                       focus={article?.focus}
-                      date={article?.date}
-                      topic={article?.topic}
-                      sub={article?.sub}
-                      image={article?.image}
+                      date={convertArticleDate(article?._createdAt)}
+                      topic={article?.title}
+                      sub={article?.overview}
+                      image={article?.mainImage}
                     />
                   );
                 })}
@@ -69,35 +74,35 @@ const MobileArticleComponent = (props: Props) => {
       )}
       {props.latestArticles && (
         <>
-          <div className="flex flex-col justify-between gap-10 py-8">
-            {articlesData
-              .slice(0, 4)
-              .map((article: ArticleInterface, index: number) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-8">
+            {allArticles
+              .slice(-4)
+              .map((article: ArticleDataInterface, index: number) => {
                 return (
                   <ArticleCardComponent
                     key={index}
                     focus={article?.focus}
-                    date={article?.date}
-                    topic={article?.topic}
-                    sub={article?.sub}
-                    image={article?.image}
+                    date={convertArticleDate(article?._createdAt)}
+                    topic={article?.title}
+                    sub={article?.overview}
+                    image={article?.mainImage}
                   />
                 );
               })}
           </div>
           {showMore && (
-            <div className="flex flex-col justify-between gap-10 py-8">
-              {articlesData
-                .slice(4)
-                .map((article: ArticleInterface, index: number) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-8">
+              {allArticles
+                .slice(0, allArticles?.length - 4)
+                .map((article: ArticleDataInterface, index: number) => {
                   return (
                     <ArticleCardComponent
                       key={index}
                       focus={article?.focus}
-                      date={article?.date}
-                      topic={article?.topic}
-                      sub={article?.sub}
-                      image={article?.image}
+                      date={convertArticleDate(article?._createdAt)}
+                      topic={article?.title}
+                      sub={article?.overview}
+                      image={article?.mainImage}
                     />
                   );
                 })}
