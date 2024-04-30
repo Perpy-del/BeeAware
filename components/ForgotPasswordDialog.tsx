@@ -32,7 +32,7 @@ export function ForgotPasswordDialog() {
           </Button>
         </div>
       </AlertDialogTrigger>
-      {forgotPasswordDialog && <AlertDialogContent className='bg-baLight dark:bg-baPrimary text-baDark dark:text-baLight'>
+      {forgotPasswordDialog && <AlertDialogContent className='bg-baAccent dark:bg-baPrimary text-baDark w-[90%] lg:w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14'>
         <AlertDialogHeader>
           <AlertDialogTitle className='text-center text-headerSix'>You&apos;ve got mail...📧</AlertDialogTitle>
           <AlertDialogDescription className='text-center'>

@@ -163,12 +163,13 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                         width={400}
                         height={300}
                       />
+                      <div className='w-[400px] h-[300px] z-10 rounded-xl bg-baDark/70 absolute top-0 right-0 left-0'></div>
                       {!showVideo && (
                         <div
-                          className="absolute inset-0 flex items-center justify-center md:right-[40%] lg:right-0 cursor-pointer hover:scale-110 transition transform duration-300 ease-in-out"
+                          className="absolute inset-0 flex z-20 items-center justify-center md:right-[40%] lg:right-0 cursor-pointer hover:scale-125 transition transform duration-300 ease-in-out"
                           onClick={handleCoverClick}
                         >
-                          <FaPlay color="#1F2B6C" size={40} />
+                          <FaPlay color="#0524C9" size={40} />
                         </div>
                       )}
                     </div>
@@ -188,7 +189,7 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                     )}
                   </div>
                   <span className="pt-2 italic block md:pb-4">
-                    By: {articleSlug[0]?.videoAuthor}
+                    Video By: {articleSlug[0]?.videoAuthor}
                   </span>
                   <h1 className="sm:text-[18px] md:text-headerFive md:w-[60%] w-full xl:w-full font-ba_normal">
                     {articleSlug[0]?.title}

@@ -25,18 +25,18 @@ const ArticleDialogComponent = (props: Props) => {
         {props.children}
       </AlertDialogTrigger>
       {props.articleOpenDialog && (
-        <AlertDialogContent className="bg-baLight dark:bg-baPrimary text-baDark rounded-[20px] dark:text-baLight w-[50%]">
+        <AlertDialogContent className="bg-baAccent dark:bg-baPrimary text-baDark w-[90%] lg:w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-center text-headerSix">
+            <AlertDialogTitle className="text-center text-headerSix lg:text-headerFour font-ba_normal">
               You Have to be Logged In to Like, Read Comments or Share Articles
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-center">
+            <AlertDialogDescription className="text-center font-ba_normal mx-auto w-[80%]">
               Kindly log into your BeeAware account or Create an Account to
               access consultation services and other services on the BeeAware
               dashboard.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter className="text-center flex gap-3">
+          <AlertDialogFooter className="text-center flex flex-col lg:flex-row gap-3">
             <div className="flex justify-center items-center gap-2">
               <ButtonComponent
                 variant="baSecondary"
