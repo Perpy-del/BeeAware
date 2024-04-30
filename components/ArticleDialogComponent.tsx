@@ -23,7 +23,7 @@ const ArticleDialogComponent = (props: Props) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>{props.children}</AlertDialogTrigger>
       {props.articleOpenDialog && (
-        <AlertDialogContent className="bg-baAccent dark:bg-baPrimary text-baDark mx-auto w-[90%] lg:w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14">
+        <AlertDialogContent className="bg-baAccent dark:bg-baPrimary text-baDark mx-auto w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-center text-headerSix lg:text-headerFour font-ba_normal">
               You Have to be Logged In to Like, Read Comments or Share Articles
