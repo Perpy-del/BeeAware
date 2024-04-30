@@ -13,8 +13,8 @@ const CommunityCommentComponent = (props: Props) => {
 
   return (
     <div>
-      <div className="py-10 bg-baAccent px-5 rounded-[20px] mb-5">
-        <h2 className="text-headerFour text-baDark font-ba_normal pb-7 text-center">
+      <div className="py-7 md:py-10 bg-baAccent px-5 rounded-[20px] mb-5">
+        <h2 className="text-[18px] lg:text-headerFour text-baDark font-ba_normal md:pb-7 text-center">
           What type of contraception do you use and why?
         </h2>
       </div>
@@ -29,7 +29,7 @@ const CommunityCommentComponent = (props: Props) => {
               {user?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <h3 className="text-headerFive font-ba_normal">
+          <h3 className="text-[18px] lg:text-headerFive font-ba_normal">
             I and my partner use the calendar rhythm method. It&apos;s working
             for now 😉
           </h3>
@@ -41,7 +41,7 @@ const CommunityCommentComponent = (props: Props) => {
           <FaHeart size={24} />
         </span>
       </div>
-      <div className="flex items-center gap-10 pl-5">
+      <div className="flex items-center gap-5 md:gap-10 pl-5">
         <div className="flex items-center gap-3">
           <Avatar className="bg-baAccent h-8 w-8">
             <AvatarImage src="/avatar_too.svg" alt="Profile Image" />
@@ -49,9 +49,9 @@ const CommunityCommentComponent = (props: Props) => {
               {user?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <h3 className="text-headerFive text-baSubtle font-ba_normal">Me too 🤣</h3>
+          <h3 className="text-[18px] lg:text-headerFive text-baSubtle font-ba_normal">Me too 🤣</h3>
         </div>
-        <span className='text-baPrimary dark:text-baSecondary text-headerSix font-ba_normal hover:font-ba_medium cursor-pointer'>View all replies</span>
+        <span className='text-baPrimary dark:text-baSecondary lg:text-headerSix font-ba_normal hover:font-ba_medium cursor-pointer'>View all replies</span>
       </div>
     </div>
   );

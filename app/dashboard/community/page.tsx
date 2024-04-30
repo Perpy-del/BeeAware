@@ -53,8 +53,8 @@ const DashboardCommunityPage = (props: Props) => {
   };
 
   return (
-    <div className="px-5 lg:px-20 3xl:px-40">
-      <div className="pt-5 justify-center flex flex-wrap gap-5 pb-10">
+    <div className="px-5 lg:px-20 3xl:px-40 pb-20">
+      <div className="pt-5 justify-center flex flex-wrap gap-5 pb-10 lg:pb-20">
         <h3
           className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-2.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             popular
@@ -87,7 +87,7 @@ const DashboardCommunityPage = (props: Props) => {
           Saved
         </h3>
         <h3
-          className={`inline-flex items-center justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:p0: string, { ...props }: Toastops }: ToastmallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
+          className={`inline-flex items-center gap-2 justify-center whitespace-nowrap rounded-full sm:px-4 lg:px-7 xl:px-10 py-2.5 text-smallSize 3xl:text-headerFive border-[0.5px] border-baSubtle font-ba_normal transition-all hover:scale-105 disabled:pointer-events-none disabled:opacity-50 cursor-pointer w-fit ${
             comments
               ? 'bg-baPrimary text-baLight shadow-sm dark:bg-baAccent dark:text-baDark'
               : 'bg-none text-baDark dark:text-baLight'
@@ -118,7 +118,7 @@ const DashboardCommunityPage = (props: Props) => {
         </>
       )}
       {following && (
-        <div className="space-y-10 pb-20">
+        <div className="space-y-5 lg:space-y-10 pb-20">
           <Breadcrumb className="sm:hidden lg:flex">
             <BreadcrumbList>
               <BreadcrumbItem className="text-headerFive">

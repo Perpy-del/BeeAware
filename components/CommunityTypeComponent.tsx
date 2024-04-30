@@ -7,6 +7,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 type Props = {
   type: string;
@@ -22,14 +31,17 @@ const CommunityTypeComponent = (props: Props) => {
           <h2 className="text-headerSix lg:text-headerFour font-ba_normal">
             {props.type}
           </h2>
-          <span className="text-baPrimary dark:text-baSecondary font-ba_normal text-smallSize lg:text-bodySize hover:font-ba_medium flex cursor-pointer" onClick={props.handleClickFollow}>
+          <span
+            className="text-baPrimary dark:text-baSecondary font-ba_normal text-smallSize lg:text-bodySize hover:font-ba_medium flex cursor-pointer"
+            onClick={props.handleClickFollow}
+          >
             Follow
           </span>
         </div>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <div className="dark:text-baLight p-2 rounded-full hover:dark:bg-baSubtle cursor-pointer text-baDark hover:bg-baAccent">
+            <div className="dark:text-baLight p-2 rounded-full hover:dark:bg-baSubtle cursor-pointer text-baDark hover:bg-baAccent hidden md:block">
               <Ellipsis />
             </div>
           </DropdownMenuTrigger>
@@ -37,21 +49,20 @@ const CommunityTypeComponent = (props: Props) => {
             align="end"
             className="mt-2 rounded-lg border-none bg-baLight dark:baSubtle dark:border dark:border-slate-800 w-fit"
           >
-            <DropdownMenuItem
-              className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baDark dark:text-baLight font-ba_normal"
-            >
+            <DropdownMenuItem className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baDark dark:text-baLight font-ba_normal">
               🏃‍♀️ Start a new thread on {props.type}
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baDark dark:text-baLight font-ba_normal" onClick={props.handleClickFollow}
+              className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baDark dark:text-baLight font-ba_normal"
+              onClick={props.handleClickFollow}
             >
               👉 Follow {props.type}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="pt-20 pb-5 bg-baAccent px-5 rounded-[20px] mb-10">
-        <h2 className="text-headerFour text-baDark font-ba_normal pb-7 text-center">
+      <div className="sm:pt-10 lg:pt-20 pb-5 bg-baAccent px-5 rounded-[20px] mb-10">
+        <h2 className="text-[18px] lg:text-headerFour text-baDark font-ba_normal pb-7 text-center">
           {props.comment}
         </h2>
         <div className="flex justify-between items-center">

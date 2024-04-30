@@ -14,8 +14,8 @@ const CommunityFollowComponent = (props: Props) => {
 
   return (
     <div>
-      <div className="pt-20 pb-5 bg-baAccent px-5 rounded-[20px] mb-5">
-        <h2 className="text-headerFour text-baDark font-ba_normal pb-7 text-center">
+      <div className="pt-10 lg:pt-20 pb-5 bg-baAccent px-5 rounded-[20px] mb-5">
+        <h2 className="text-[18px] lg:text-headerFour text-baDark font-ba_normal pb-7 text-center">
           {props.comment}
         </h2>
         <div className="flex justify-between items-center">
@@ -49,17 +49,17 @@ const CommunityFollowComponent = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className='flex items-center justify-between'>
-        <div className='flex items-center gap-3'>
+      <div className='flex flex-col lg:flex-row items-center justify-between'>
+        <div className='flex items-center gap-3 pb-3 md:pb-0'>
           <Avatar className="bg-baAccent">
             <AvatarImage src="/avatar.svg" alt="Profile Image" />
             <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
               {user?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <h3 className='text-headerFive font-ba_normal'>I and my partner use the calendar rhythm method. It&apos;s working for now 😉</h3>
+          <h3 className='sm:text-[18px] lg:text-headerFive font-ba_normal'>I and my partner use the calendar rhythm method. It&apos;s working for now 😉</h3>
         </div>
-        <span className='text-baPrimary dark:text-baSecondary text-headerSix font-ba_normal cursor-pointer hover:font-ba_medium' onClick={props.handleClickComments}>View all 15 comments</span>
+        <span className='text-baPrimary dark:text-baSecondary lg:text-headerSix font-ba_normal cursor-pointer hover:font-ba_medium' onClick={props.handleClickComments}>View all 15 comments</span>
       </div>
     </div>
   );

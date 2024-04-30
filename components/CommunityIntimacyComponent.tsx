@@ -58,7 +58,7 @@ const CommunityIntimacyComponent = (props: Props) => {
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <div className="dark:text-baLight p-2 rounded-full hover:dark:bg-baSubtle cursor-pointer text-baDark hover:bg-baAccent">
+            <div className="dark:text-baLight p-2 rounded-full hover:dark:bg-baSubtle cursor-pointer text-baDark hover:bg-baAccent hidden md:block">
               <Ellipsis />
             </div>
           </DropdownMenuTrigger>
@@ -79,14 +79,14 @@ const CommunityIntimacyComponent = (props: Props) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="pt-20 pb-5 bg-baAccent px-5 rounded-[20px] mb-10">
-        <h2 className="text-headerFour text-baDark font-ba_normal pb-3 text-center">
+      <div className="pt-10 lg:pt-20 pb-5 bg-baAccent px-5 rounded-[20px] mb-10">
+        <h2 className="text-[18px] lg:text-headerFour text-baDark font-ba_normal pb-7 lg:pb-3 text-center">
           {props.type}
         </h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="font-ba_normal text-baDark flex gap-10 justify-center items-center pb-7"
+            className="font-ba_normal text-baDark flex flex-col lg:flex-row sm:gap-5 lg:gap-10 justify-center items-center pb-7"
           >
             <FormField
               control={form.control}
@@ -97,7 +97,7 @@ const CommunityIntimacyComponent = (props: Props) => {
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                      className="flex gap-5 justify-center"
+                      className="flex flex-col md:flex-row gap-5 justify-center"
                     >
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
