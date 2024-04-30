@@ -26,7 +26,7 @@ const CommunityCommentComponent = (props: Props) => {
           <Avatar className="bg-baAccent">
             <AvatarImage src="/avatar.svg" alt="Profile Image" />
             <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
-              {user?.slice(0, 2).toUpperCase()}
+              {user?.email?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <h3 className="text-[18px] lg:text-headerFive font-ba_normal">
@@ -46,7 +46,7 @@ const CommunityCommentComponent = (props: Props) => {
           <Avatar className="bg-baAccent h-8 w-8">
             <AvatarImage src="/avatar_too.svg" alt="Profile Image" />
             <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
-              {user?.slice(0, 2).toUpperCase()}
+              BA
             </AvatarFallback>
           </Avatar>
           <h3 className="text-[18px] lg:text-headerFive text-baSubtle font-ba_normal">Me too 🤣</h3>

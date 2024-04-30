@@ -101,7 +101,7 @@ const FormContactComponent = (props: Props) => {
         toast({
           title: 'Feedback received successfully... 🎉',
           description: 'Thank you for reaching out. A follow up email would be sent to acknowledge your feedback',
-          className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
       }      
     } catch (e) {

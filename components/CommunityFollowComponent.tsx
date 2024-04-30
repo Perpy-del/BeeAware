@@ -54,7 +54,7 @@ const CommunityFollowComponent = (props: Props) => {
           <Avatar className="bg-baAccent">
             <AvatarImage src="/avatar.svg" alt="Profile Image" />
             <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
-              {user?.slice(0, 2).toUpperCase()}
+              {user?.email?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <h3 className='sm:text-[18px] lg:text-headerFive font-ba_normal'>I and my partner use the calendar rhythm method. It&apos;s working for now 😉</h3>
