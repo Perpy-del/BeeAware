@@ -43,7 +43,7 @@ const CommunityTypeComponent = (props: Props) => {
               🏃‍♀️ Start a new thread on {props.type}
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baDark dark:text-baLight font-ba_normal"
+              className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baDark dark:text-baLight font-ba_normal" onClick={props.handleClickFollow}
             >
               👉 Follow {props.type}
             </DropdownMenuItem>
