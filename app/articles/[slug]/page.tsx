@@ -179,7 +179,7 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                         height="600"
                         autoPlay={false}
                         controls
-                        className="absolute top-0 left-0 bottom-0 h-full"
+                        className="absolute top-0 left-0 z-20 bottom-0 h-full"
                       >
                         <source
                           src={`${articleSlug[0]?.mainVideo}`}
