@@ -21,6 +21,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { AlertDialogCancel } from '@radix-ui/react-alert-dialog';
 
 type Props = {};
 
@@ -71,15 +72,18 @@ const ConsultationSection = (props: Props) => {
           Log In
         </ToastAction>
       ),
-      className: 'bg-baLight dark:text-baBody',
+      className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
     });
-    setTimeout(() => {
-      router.push('/auth/login');
-    }, 10000);
+    // setTimeout(() => {
+    //   router.push('/auth/login');
+    // }, 10000);
   };
 
   return (
-    <div className="sm:mb-14 lg:mb-28 text-baLight lg:bg-[url('/book-consult.jpg')] lg:bg-no-repeat lg:bg-cover lg:h-[544px] sm:pb-0 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 flex justify-center items-center" id='consult'>
+    <div
+      className="sm:mb-14 lg:mb-28 text-baLight lg:bg-[url('/book-consult.jpg')] lg:bg-no-repeat lg:bg-cover lg:h-[544px] sm:pb-0 lg:pb-24 sm:px-5 lg:px-14 xl:px-20 3xl:px-40 flex justify-center items-center"
+      id="consult"
+    >
       <div className="sm:w-[99.5%] lg:w-1/2 bg-baPrimary text-center lg:mt-[95px] rounded-xl pt-5 3xl:mt-20 pb-10 lg:pb-7 sm:px-5 lg:px-10">
         <h2 className="text-headerFour pb-2 font-ba_medium">
           Get A Consultation
@@ -125,28 +129,31 @@ const ConsultationSection = (props: Props) => {
                 </div>
               </AlertDialogTrigger>
               {homeConsultDialog && (
-                <AlertDialogContent className="bg-baLight dark:bg-baPrimary text-baDark dark:text-baLight w-[50%]">
+                <AlertDialogContent className="bg-baAccent dark:bg-baPrimary text-baDark w-[90%] lg:w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14">
                   <AlertDialogHeader>
-                    <AlertDialogTitle className="text-center text-headerSix">
+                    <AlertDialogTitle className="text-center text-headerSix lg:text-headerFour font-ba_normal">
                       You Have to be Logged In to Book A Consultation
                     </AlertDialogTitle>
-                    <AlertDialogDescription className="text-center">
+                    <AlertDialogDescription className="text-center font-ba_normal mx-auto lg:w-[80%]">
                       Kindly log into your BeeAware account or Create an Account
                       to access consultation services and other services on the
                       BeeAware dashboard.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
-                  <AlertDialogFooter className="text-center">
+                  <AlertDialogFooter className="text-center flex flex-col lg:flex-row items-center gap-3">
                     <div className="flex justify-center items-center gap-2">
                       <ButtonComponent
                         variant="baSecondary"
                         btnText={'Log In'}
                         width={'w-[250px] 3xl:w-[300px]'}
                         onClick={() => {
-                          router.push('/auth/login')
+                          router.push('/auth/login');
                         }}
                       />
                     </div>
+                    <AlertDialogCancel className="w-[250px] rounded-[20px] h-12 border border-baLight">
+                      Cancel
+                    </AlertDialogCancel>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               )}

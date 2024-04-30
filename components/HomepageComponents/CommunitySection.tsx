@@ -4,6 +4,7 @@ import React from 'react';
 import ButtonComponent from '../ButtonComponent';
 import {
   AlertDialog,
+  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -37,7 +38,7 @@ const CommunitySection = (props: Props) => {
                 variant="primary"
               />
             </AlertDialogTrigger>
-            <AlertDialogContent className="bg-baLight dark:bg-baPrimary text-baDark dark:text-baLight w-[50%] py-8 rounded-[20px]">
+            <AlertDialogContent className="bg-baAccent dark:bg-baPrimary text-baDark w-[90%] lg:w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14">
               <AlertDialogHeader>
                 <AlertDialogTitle className="text-center text-headerSix">
                   You Have to be Logged In to Join The Community
@@ -48,8 +49,8 @@ const CommunitySection = (props: Props) => {
                   dashboard.
                 </AlertDialogDescription>
               </AlertDialogHeader>
-              <AlertDialogFooter className="text-center">
-                <div className="flex justify-center items-center gap-2">
+              <AlertDialogFooter className="text-center items-center flex sm:flex-col lg:flex-row gap-3">
+                <div className="flex justify-center gap-2">
                   <ButtonComponent
                     variant="baSecondary"
                     btnText={'Log In'}
@@ -59,6 +60,7 @@ const CommunitySection = (props: Props) => {
                     }}
                   />
                 </div>
+                <AlertDialogCancel className='w-[250px] rounded-[20px] h-12 border border-baLight'>Cancel</AlertDialogCancel>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

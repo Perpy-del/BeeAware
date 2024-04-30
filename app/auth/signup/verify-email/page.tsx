@@ -71,7 +71,7 @@ const VerifyEmailPage = (props: Props) => {
             Dashboard
           </ToastAction>
         ),
-        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
       router.push('/dashboard');
     }
