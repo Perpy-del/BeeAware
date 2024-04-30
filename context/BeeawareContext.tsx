@@ -21,7 +21,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, serverTimestamp, onSnapshot } from 'firebase/firestore';
 import { resetPasswordMail, sendMail } from '@/helpers/sendMail';
 import { generateRandomNumberWithExpiry, isNumberExpired } from '@/lib/utils';
 import Cookies from 'universal-cookie';
@@ -69,6 +69,8 @@ export default function BeeawareContextProvider({
   const [contraceptionArticles, setContraceptionArticles] = useState<ArticleDataInterface[]>([])
   const [intimacyArticles, setIntimacyArticles] = useState<ArticleDataInterface[]>([])
   const [pubertyArticles, setPubertyArticles] = useState<ArticleDataInterface[]>([])
+  const [userMessage, setUserMessage] = useState<string>('');
+  const [messages, setMessages] = useState<Array<string>>([]);
   const router = useRouter();
 
   const [createUserWithEmailAndPassword, error] =
@@ -82,6 +84,8 @@ export default function BeeawareContextProvider({
 
     return () => unsubscribe();
   }, [setUser]);
+
+  const messagesRef = collection(db, "messages");
 
   useEffect(() => {
     getArticlesData().then((data: any) => setAllArticles(data));
@@ -109,6 +113,7 @@ export default function BeeawareContextProvider({
 
   useEffect(() => {
     getSTIArticlesData().then((data: any) => setStiArticles(data));
+
   }, [])
 
   const form = useForm<z.infer<typeof signupFormSchema>>({
@@ -221,7 +226,7 @@ export default function BeeawareContextProvider({
             Verify Email
           </ToastAction>
         ),
-        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
       router.push('/auth/signup/verify-email');
     } catch (e) {
@@ -244,7 +249,7 @@ export default function BeeawareContextProvider({
       toast({
         title: 'Pin Resent Successfully... 🎉',
         description: 'Verify Your Account.',
-        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
       console.error(error);
@@ -303,7 +308,7 @@ export default function BeeawareContextProvider({
               Dashboard
             </ToastAction>
           ),
-          className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
         router.push('/dashboard');
       }
@@ -356,9 +361,10 @@ export default function BeeawareContextProvider({
               Dashboard
             </ToastAction>
           ),
-          className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
         router.push('/dashboard');
+        setLoginLoading(false);
       } else {
         // User exists in the database, log in the user
         toast({
@@ -373,7 +379,7 @@ export default function BeeawareContextProvider({
               Dashboard
             </ToastAction>
           ),
-          className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
         router.push('/dashboard');
       }
@@ -427,7 +433,7 @@ export default function BeeawareContextProvider({
             Cancel
           </ToastAction>
         ),
-        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
       console.error(error);
@@ -480,7 +486,7 @@ export default function BeeawareContextProvider({
             Log in
           </ToastAction>
         ),
-        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
       console.error(error);
@@ -507,7 +513,7 @@ export default function BeeawareContextProvider({
             Log in
           </ToastAction>
         ),
-        className: 'bg-baSecondary dark:bg-baLight dark:text-baBody',
+        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
       router.push('/auth/login');
       console.log('Signed out user');
@@ -588,6 +594,20 @@ export default function BeeawareContextProvider({
     }
   }
 
+  const handleSendMessage = async(e: any) => {
+    e.preventDefault();
+
+    if (userMessage === "") return;
+    
+    await addDoc(messagesRef, {
+      message: userMessage,
+      createdAt: serverTimestamp(),
+      user: auth?.currentUser?.displayName || userName
+    })
+    setMessages([...messages, userMessage]);
+    setUserMessage('');
+  };
+
   return (
     <BeeawareContext.Provider
       value={{
@@ -630,7 +650,12 @@ export default function BeeawareContextProvider({
         intimacyArticles,
         pubertyArticles,
         contraceptionArticles,
-        getSlugArticleData
+        getSlugArticleData,
+        messages,
+        userMessage,
+        setUserMessage,
+        handleSendMessage,
+        messagesRef
       }}
     >
       {children}

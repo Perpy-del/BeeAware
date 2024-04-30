@@ -21,9 +21,7 @@ const ArticleDialogComponent = (props: Props) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        {props.children}
-      </AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{props.children}</AlertDialogTrigger>
       {props.articleOpenDialog && (
         <AlertDialogContent className="bg-baAccent dark:bg-baPrimary text-baDark w-[90%] lg:w-[60%] dark:text-baLight rounded-[20px] p-5 lg:p-14">
           <AlertDialogHeader>
@@ -36,8 +34,8 @@ const ArticleDialogComponent = (props: Props) => {
               dashboard.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter className="text-center flex flex-col lg:flex-row gap-3">
-            <div className="flex justify-center items-center gap-2">
+          <AlertDialogFooter className="text-center flex flex-col lg:flex-row justify-center items-center gap-3">
+            <div className="flex justify-center gap-2">
               <ButtonComponent
                 variant="baSecondary"
                 btnText={'Log In'}
@@ -47,7 +45,9 @@ const ArticleDialogComponent = (props: Props) => {
                 }}
               />
             </div>
-            <AlertDialogCancel className='w-[250px] rounded-[20px] border border-baLight'>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="w-[250px] 3xl:w-[300px] rounded-[20px] border border-baLight h-12">
+              Cancel
+            </AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>
       )}

@@ -36,8 +36,6 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
     );
   }, [getSlugArticleData, params.slug]);
 
-  console.log(articleSlug);
-
   const PortableTextComponent: any = {
     types: {
       image: ({ value }: { value: any }) => {
@@ -95,7 +93,7 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                       articleOpenDialog={showDialog}
                       
                     >
-                      <div className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform" onClick={() => setShowDialog(true)}>
+                      <div className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baError transition transform" onClick={() => setShowDialog(true)}>
                         <FaHeart />
                       </div>
                     </ArticleDialogComponent>

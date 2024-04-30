@@ -19,17 +19,24 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import MobileMessageComponent from '@/components/MobileMessageComponent';
+import { query, onSnapshot, where } from 'firebase/firestore';
 
 type Props = {};
 
 const DashboardPage = (props: Props) => {
   const router = useRouter();
-  const { numMessages, setNumMessages } = useBeeawareHook();
+  const {
+    numMessages,
+    setNumMessages,
+    messages,
+    userMessage,
+    setUserMessage,
+    handleSendMessage,
+    userName,
+    messagesRef
+  } = useBeeawareHook();
 
   const [user, setUser] = useState<User | null>(null);
-
-  const [userMessage, setUserMessage] = useState<string>('');
-  const [messages, setMessages] = useState<Array<string>>([]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -44,136 +51,144 @@ const DashboardPage = (props: Props) => {
     return () => unsubscribe();
   }, [router]);
 
-  const handleSendMessage = () => {
-    setMessages([...messages, userMessage]);
-    setUserMessage('');
-  };
+  useEffect(() => {
+    const currUser = user?.displayName || userName
+    const queryMessages = query(messagesRef, where("user", "==", currUser))
+    onSnapshot(queryMessages, (snapshot) => {
+      console.log("NEW MESSAGE")
+    });
+  }, [messagesRef, user?.displayName, userName])
 
   return user ? (
     <div>
       {numMessages ? (
         <>
-        <div className="px-5 lg:px-20 3xl:px-40 sm:hidden md:block">
-          <MessagesBreadcrumbComponent />
-          <div className="pt-5 flex justify-between">
-            <div className="h-[80vh] pt-5 w-[30%]">
-              <h1 className="sm:hidden md:flex text-headerThree font-ba_normal pb-5 px-5">
-                Messages
-              </h1>
-              <div className="flex items-center gap-3 bg-baAccent dark:bg-baSubtle cursor-pointer transition-all transform hover:scale-105 duration-300 py-3 pl-5 pr-10 rounded-sm">
-                <Avatar className="bg-baAccent">
-                  <AvatarImage src="/Profile.png" alt="Profile Image" />
-                  <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
-                    NW
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="text-headerSix text-baDark font-ba_normal">
-                    Nwakaego Onyah
-                  </h3>
-                  <span className="block text-baBody">
-                    Quick Doctor Consultation
-                  </span>
-                </div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <div className="p-2 rounded-full cursor-pointer hover:bg-baPrimary/20">
-                      <EllipsisVertical />
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="start"
-                    className="mt-2 rounded-lg border-none bg-baLight dark:baSubtle dark:border dark:border-slate-800 w-fit"
-                  >
-                    <DropdownMenuItem
-                      className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baError font-ba_normal"
-                      onClick={() => setNumMessages((prev: number) => prev - 1)}
+          <div className="px-5 lg:px-20 3xl:px-40 sm:hidden md:block">
+            <MessagesBreadcrumbComponent />
+            <div className="pt-5 flex justify-between">
+              <div className="h-[80vh] pt-5 w-[30%]">
+                <h1 className="sm:hidden md:flex text-headerThree font-ba_normal pb-5 px-5">
+                  Messages
+                </h1>
+                <div className="flex items-center gap-3 bg-baAccent dark:bg-baSubtle cursor-pointer transition-all transform hover:scale-105 duration-300 py-3 pl-5 pr-10 rounded-sm">
+                  <Avatar className="bg-baAccent">
+                    <AvatarImage src="/Profile.png" alt="Profile Image" />
+                    <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
+                      NW
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="text-headerSix text-baDark font-ba_normal">
+                      Nwakaego Onyah
+                    </h3>
+                    <span className="block text-baBody">
+                      Quick Doctor Consultation
+                    </span>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <div className="p-2 rounded-full cursor-pointer hover:bg-baPrimary/20">
+                        <EllipsisVertical />
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="start"
+                      className="mt-2 rounded-lg border-none bg-baLight dark:baSubtle dark:border dark:border-slate-800 w-fit"
                     >
-                      <Trash2 />
-                      Delete Chat
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div>
-            <div className="w-[65%] relative">
-              <div className="flex items-center gap-3 py-3 pl-5 w-full rounded-sm">
-                <Avatar className="bg-baAccent">
-                  <AvatarImage src="/Profile.png" alt="Profile Image" />
-                  <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
-                    NW
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <h3 className="text-headerSix text-baDark dark:text-baLight font-ba_normal">
-                    Nwakaego Onyah
-                  </h3>
-                  <span className="block text-baBody dark:font-ba_normal">
-                    Doctor
-                  </span>
+                      <DropdownMenuItem
+                        className="px-4 py-2 space-x-2 hover:bg-baPrimary/50 dark:hover:bg-baBody dark:hover:rounded-lg text-baError font-ba_normal"
+                        onClick={() =>
+                          setNumMessages((prev: number) => prev - 1)
+                        }
+                      >
+                        <Trash2 />
+                        Delete Chat
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
-              <span className="text-baSubtle text-smallSize block text-center">
-                Today
-              </span>
-              <div className="absolute block w-full bottom-7 space-y-5">
-                {messages.length !== 0 ? (
-                  <div className="space-y-2 flex flex-col justify-end items-end">
-                    {messages.map((message: string, index: number) => (
-                      <h2
-                        key={index}
-                        className="px-5 py-2 font-ba_normal bg-baAccent w-fit text-baDark rounded-lg"
-                      >
-                        {message}
-                      </h2>
-                    ))}
+              <div className="w-[65%] relative">
+                <div className="flex items-center gap-3 py-3 pl-5 w-full rounded-sm">
+                  <Avatar className="bg-baAccent">
+                    <AvatarImage src="/Profile.png" alt="Profile Image" />
+                    <AvatarFallback className="dark:text-baSecondary font-ba_medium p-2 rounded-full bg-baSecondary text-baLight dark:bg-baAccent">
+                      NW
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <h3 className="text-headerSix text-baDark dark:text-baLight font-ba_normal">
+                      Nwakaego Onyah
+                    </h3>
+                    <span className="block text-baBody dark:font-ba_normal">
+                      Doctor
+                    </span>
                   </div>
-                ) : null}
-                {messages.length !== 0 ? (
-                  <div className="space-y-2 flex flex-col justify-start items-start">
-                    {messages.map((message: string, index: number) => (
-                      <h2
-                        key={index}
-                        className="px-5 py-2 font-ba_normal bg-[#b8b3db] w-fit text-baDark rounded-lg"
-                      >
-                        {message}
-                      </h2>
-                    ))}
-                  </div>
-                ) : null}
-                <div className="sm:hidden md:block w-full relative">
-                  <Textarea
-                    name="send-message"
-                    id="send-message"
-                    placeholder="Type your message..."
-                    rows={4}
-                    className="rounded-[20px] pl-4 pt-4"
-                    value={userMessage}
-                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                      setUserMessage(e.target.value)
-                    }
-                    onKeyDown={(
-                      e: React.KeyboardEvent<HTMLTextAreaElement>
-                    ) => {
-                      if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault(); // Prevent newline in textarea
-                        handleSendMessage();
-                      }
-                    }}
-                  />
-                  <Button
-                    variant="primary"
-                    className={`absolute bottom-4 right-4 flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 w-fit h-fit px-3 py-4`}
-                    onClick={handleSendMessage}
+                </div>
+                <span className="text-baSubtle text-smallSize block text-center">
+                  Today
+                </span>
+                <div className="absolute block w-full bottom-7 space-y-5">
+                  {messages.length !== 0 ? (
+                    <div className="space-y-2 flex flex-col justify-end items-end">
+                      {messages.map((message: string, index: number) => (
+                        <h2
+                          key={index}
+                          className="px-5 py-2 font-ba_normal bg-baAccent w-fit text-baDark rounded-lg"
+                        >
+                          {message}
+                        </h2>
+                      ))}
+                    </div>
+                  ) : null}
+                  {messages.length !== 0 ? (
+                    <div className="space-y-2 flex flex-col justify-start items-start">
+                      {messages.map((message: string, index: number) => (
+                        <h2
+                          key={index}
+                          className="px-5 py-2 font-ba_normal bg-[#b8b3db] w-fit text-baDark rounded-lg"
+                        >
+                          {message}
+                        </h2>
+                      ))}
+                    </div>
+                  ) : null}
+                  <form
+                    className="sm:hidden md:block w-full relative"
+                    onSubmit={handleSendMessage}
                   >
-                    <SendHorizontal />
-                  </Button>
+                    <Textarea
+                      name="send-message"
+                      id="send-message"
+                      placeholder="Type your message..."
+                      rows={4}
+                      className="rounded-[20px] pl-4 pt-4"
+                      value={userMessage}
+                      onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        setUserMessage(e.target.value)
+                      }
+                      onKeyDown={(
+                        e: React.KeyboardEvent<HTMLTextAreaElement>
+                      ) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault(); // Prevent newline in textarea
+                          handleSendMessage(e);
+                        }
+                      }}
+                    />
+                    <Button
+                      variant="primary"
+                      className={`absolute bottom-4 right-4 flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 w-fit h-fit px-3 py-4`}
+                      // onClick={handleSendMessage}
+                    >
+                      <SendHorizontal />
+                    </Button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <MobileMessageComponent />
+          <MobileMessageComponent />
         </>
       ) : (
         <>
