@@ -14,15 +14,25 @@ import { FaRegUser } from 'react-icons/fa6';
 import { IoMdHelpCircleOutline } from 'react-icons/io';
 import { TbLogout2 } from 'react-icons/tb';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
+import Cookies from 'universal-cookie';
+import { capitalizeFirstLetterOfEachWord } from '@/lib/utils';
+
+const cookies = new Cookies();
 
 type Props = {};
 
 const DashboardMobileNav = (props: Props) => {
   const pathname = usePathname();
-  const { signOutUser } = useBeeawareHook();
+  const { user, userName, signOutUser } = useBeeawareHook();
 
   const [showNav, setShowNav] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+
+  const currUser = cookies.get('userName');
+
+  const profileImage = user && user?.photoURL ? user?.photoURL : "https://github.com/shadcn.png"
+  const currentUserName = capitalizeFirstLetterOfEachWord(user?.displayName || currUser || userName || user?.email.split("@")[0])
+  const userFallBack = currentUserName?.slice(0, 2).toUpperCase();
 
   return (
     <nav
@@ -62,19 +72,19 @@ const DashboardMobileNav = (props: Props) => {
             <div className="flex items-center gap-3">
               <Avatar className="bg-baAccent">
                 <AvatarImage
-                  src="https://github.com/shadcn.png"
+                  src={profileImage}
                   alt="@shadcn"
                 />
                 <AvatarFallback className="text-baSecondary font-ba_medium border border-baPrimary dark:border-none">
-                  CN
+                  {userFallBack}
                 </AvatarFallback>
               </Avatar>
               <div>
                 <h3 className="text-headerFive text-baLight font-ba_normal">
-                  Catherine Nath
+                  {currentUserName}
                 </h3>
                 <h5 className="font-ba_normal text-baSubtle">
-                  catherinenath@gmail.com
+                  {user?.email}
                 </h5>
               </div>
             </div>
@@ -108,18 +118,18 @@ const DashboardMobileNav = (props: Props) => {
                       <XCircle />
                     </span>
                   </>
-                  <div className="flex items-center pl-6 py-4 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baPrimary/20">
+                  <div className="flex items-center justify-between pl-6 md:px-6 py-4 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baSubtle">
                     <div>
-                      <h4 className="w-[85%] pb-1">
+                      <h4 className="pb-1">
                         Your have four new likes on your comment
                       </h4>
                       <h6 className="text-baSubtle text-[12px]">2h ago</h6>
                     </div>
                     <div className="h-2 w-2 bg-baError rounded-full"></div>
                   </div>
-                  <div className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baPrimary/20">
+                  <div className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baSubtle">
                     <div>
-                      <h4 className="w-[85%] pb-1">
+                      <h4 className="pb-1">
                         A doctor is waiting for you in the consultation group
                       </h4>
                       <h6 className="text-baSubtle text-[12px]">3h ago</h6>
@@ -127,7 +137,7 @@ const DashboardMobileNav = (props: Props) => {
                   </div>
                   <div className="pl-6 py-4 flex items-center gap-3 hover:bg-baPrimary/50 dark:hover:bg-baBody text-baDark dark:text-baLight font-ba_normal border-b border-baPrimary/20">
                     <div>
-                      <h4 className="w-[85%] pb-1">
+                      <h4 className="pb-1">
                         A doctor is waiting for you in the consultation group
                       </h4>
                       <h6 className="text-baSubtle text-[12px]">5h ago</h6>

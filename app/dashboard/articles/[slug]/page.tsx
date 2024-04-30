@@ -1,6 +1,5 @@
 'use client';
 
-import ArticleBreadcrumbComponent from '@/components/BreadcrumbComponents/ArticleBreadcrumbComponent';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 import { urlFor } from '@/lib/sanityImageUrl';
@@ -14,7 +13,6 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { FaFacebookF } from 'react-icons/fa';
 import Link from 'next/link';
 import { CircularProgress } from '@mui/material';
-import ArticleDialogComponent from '@/components/ArticleDialogComponent';
 import DashboardArticleBreadCrumb from '@/components/BreadcrumbComponents/DashboardArticleBreadCrumb';
 
 type Props = {};
@@ -25,7 +23,6 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
     null
   );
   const [showVideo, setShowVideo] = useState<boolean>(false);
-  const [showDialog, setShowDialog] = useState<boolean>(false);
 
   const handleCoverClick = () => {
     setShowVideo(true);
@@ -36,8 +33,6 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
       setArticleSlug([...data])
     );
   }, [getSlugArticleData, params.slug]);
-
-  console.log(articleSlug);
 
   const PortableTextComponent: any = {
     types: {
@@ -94,13 +89,11 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                   <div className="flex items-center gap-5">
                     <div
                       className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform"
-                      onClick={() => setShowDialog(true)}
                     >
                       <FaHeart />
                     </div>
                     <div
                       className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform"
-                      onClick={() => setShowDialog(true)}
                     >
                       <FaCommentDots />
                     </div>
@@ -110,19 +103,16 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                   <span>Share:</span>
                   <span
                     className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
-                    onClick={() => setShowDialog(true)}
                   >
                     <FiLink />
                   </span>
                   <span
                     className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
-                    onClick={() => setShowDialog(true)}
                   >
                     <RiTwitterXFill />
                   </span>
                   <span
                     className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
-                    onClick={() => setShowDialog(true)}
                   >
                     <FaFacebookF />
                   </span>
@@ -242,19 +232,16 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                   <span>Share:</span>
                   <span
                     className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
-                    onClick={() => setShowDialog(true)}
                   >
                     <FiLink />
                   </span>
                   <span
                     className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
-                    onClick={() => setShowDialog(true)}
                   >
                     <RiTwitterXFill />
                   </span>
                   <span
                     className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
-                    onClick={() => setShowDialog(true)}
                   >
                     <FaFacebookF />
                   </span>

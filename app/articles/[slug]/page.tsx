@@ -36,8 +36,6 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
     );
   }, [getSlugArticleData, params.slug]);
 
-  console.log(articleSlug);
-
   const PortableTextComponent: any = {
     types: {
       image: ({ value }: { value: any }) => {
