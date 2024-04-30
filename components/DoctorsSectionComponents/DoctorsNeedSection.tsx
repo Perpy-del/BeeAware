@@ -22,7 +22,7 @@ const DoctorsNeedSection = (props: Props) => {
         {essentialData.map(data => (
           <div
             key={data.header}
-            className="flex gap-2 sm:p-2 lg:p-4 border-[0.5px] border-baAccent dark:border-baDark mb-16 shadow-md"
+            className="flex gap-2 sm:p-2 lg:p-4 border-[0.5px] border-baAccent dark:bg-baDark dark:border-baDark mb-16 shadow-md"
           >
             <div className="sm:p-2 lg:p-4 rounded-full h-fit bg-baPrimary">
               <EssentialsIcon path={data?.svgPath} />

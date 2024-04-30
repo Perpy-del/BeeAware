@@ -88,12 +88,12 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                   </span>
                   <div className="flex items-center gap-5">
                     <div
-                      className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform"
+                      className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baError transition transform"
                     >
                       <FaHeart />
                     </div>
                     <div
-                      className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform"
+                      className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition-all transform"
                     >
                       <FaCommentDots />
                     </div>

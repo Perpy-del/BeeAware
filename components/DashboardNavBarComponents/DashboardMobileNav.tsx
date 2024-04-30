@@ -42,12 +42,22 @@ const DashboardMobileNav = (props: Props) => {
     >
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link href="/dashboard">
+        <Link href="/" className="dark:hidden">
           <Image
             src="/bee_aware.svg"
             width={130}
             height={33}
-            alt="beeaware logo"
+            alt="BeeAware Logo"
+            loading="lazy"
+            className="object-center object-cover"
+          />
+        </Link>
+        <Link href="/" className="hidden dark:flex">
+          <Image
+            src="/beeaware_logo.svg"
+            width={130}
+            height={33}
+            alt="BeeAware Logo"
             loading="lazy"
             className="object-center object-cover"
           />

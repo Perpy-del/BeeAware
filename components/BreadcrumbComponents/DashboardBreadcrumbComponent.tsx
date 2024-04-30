@@ -7,12 +7,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 
 type Props = {};
 
@@ -29,24 +23,6 @@ const DashboardBreadcrumbComponent = (props: Props) => {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator className="text-baSecondary" />
-        {/* <BreadcrumbItem>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1">
-              <BreadcrumbEllipsis className="h-4 w-4" />
-              <span className="sr-only">Toggle menu</span>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem>Documentation</DropdownMenuItem>
-              <DropdownMenuItem>Themes</DropdownMenuItem>
-              <DropdownMenuItem>GitHub</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </BreadcrumbItem> */}
-        {/* <BreadcrumbSeparator /> */}
-        {/* <BreadcrumbItem>
-          <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator /> */}
         <BreadcrumbItem className="text-headerFive">
           <BreadcrumbPage className="text-baSecondary font-ba_normal">
             Get a Consultation
