@@ -21,11 +21,28 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
-import { collection, addDoc, query, where, getDocs, serverTimestamp, onSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  serverTimestamp,
+  onSnapshot,
+} from 'firebase/firestore';
 import { resetPasswordMail, sendMail } from '@/helpers/sendMail';
 import { generateRandomNumberWithExpiry, isNumberExpired } from '@/lib/utils';
 import Cookies from 'universal-cookie';
-import { getAllData, getCommunicationData, getContraceptionData, getSTIData, getIntimacyData, getConsentData, getPubertyData, getSlugData } from '@/lib/apiLibrary';
+import {
+  getAllData,
+  getCommunicationData,
+  getContraceptionData,
+  getSTIData,
+  getIntimacyData,
+  getConsentData,
+  getPubertyData,
+  getSlugData,
+} from '@/lib/apiLibrary';
 import { ArticleDataInterface } from '@/interfaces/ArticleDataInterface';
 
 const cookies = new Cookies();
@@ -62,15 +79,26 @@ export default function BeeawareContextProvider({
   const [passwordIncorrect, setPasswordIncorrect] = useState<boolean>(false);
   const [fiveDigitPin, setFiveDigitPin] = useState<number>(12345);
   const [numMessages, setNumMessages] = useState<number>(0);
-  const [allArticles, setAllArticles] = useState<ArticleDataInterface[]>([])
-  const [stiArticles, setStiArticles] = useState<ArticleDataInterface[]>([])
-  const [communicationArticles, setCommunicationArticles] = useState<ArticleDataInterface[]>([])
-  const [consentArticles, setConsentArticles] = useState<ArticleDataInterface[]>([])
-  const [contraceptionArticles, setContraceptionArticles] = useState<ArticleDataInterface[]>([])
-  const [intimacyArticles, setIntimacyArticles] = useState<ArticleDataInterface[]>([])
-  const [pubertyArticles, setPubertyArticles] = useState<ArticleDataInterface[]>([])
+  const [allArticles, setAllArticles] = useState<ArticleDataInterface[]>([]);
+  const [stiArticles, setStiArticles] = useState<ArticleDataInterface[]>([]);
+  const [communicationArticles, setCommunicationArticles] = useState<
+    ArticleDataInterface[]
+  >([]);
+  const [consentArticles, setConsentArticles] = useState<
+    ArticleDataInterface[]
+  >([]);
+  const [contraceptionArticles, setContraceptionArticles] = useState<
+    ArticleDataInterface[]
+  >([]);
+  const [intimacyArticles, setIntimacyArticles] = useState<
+    ArticleDataInterface[]
+  >([]);
+  const [pubertyArticles, setPubertyArticles] = useState<
+    ArticleDataInterface[]
+  >([]);
   const [userMessage, setUserMessage] = useState<string>('');
-  const [messages, setMessages] = useState<Array<string>>([]);
+  const [messages, setMessages] = useState<Array<any>>([]);
+  const [docMessages, setDocMessages] = useState<Array<any>>([]);
   const router = useRouter();
 
   const [createUserWithEmailAndPassword, error] =
@@ -85,36 +113,39 @@ export default function BeeawareContextProvider({
     return () => unsubscribe();
   }, [setUser]);
 
-  const messagesRef = collection(db, "messages");
+  const messagesRef = collection(db, 'messages');
 
   useEffect(() => {
     getArticlesData().then((data: any) => setAllArticles(data));
-  }, [])
+  }, []);
 
   useEffect(() => {
-    getCommunicationArticlesData().then((data: any) => setCommunicationArticles(data));
-  }, [])
+    getCommunicationArticlesData().then((data: any) =>
+      setCommunicationArticles(data)
+    );
+  }, []);
 
   useEffect(() => {
     getConsentArticlesData().then((data: any) => setConsentArticles(data));
-  }, [])
+  }, []);
 
   useEffect(() => {
     getIntimacyArticlesData().then((data: any) => setIntimacyArticles(data));
-  }, [])
+  }, []);
 
   useEffect(() => {
     getPubertyArticlesData().then((data: any) => setPubertyArticles(data));
-  }, [])
+  }, []);
 
   useEffect(() => {
-    getContraceptionArticlesData().then((data: any) => setContraceptionArticles(data));
-  }, [])
+    getContraceptionArticlesData().then((data: any) =>
+      setContraceptionArticles(data)
+    );
+  }, []);
 
   useEffect(() => {
     getSTIArticlesData().then((data: any) => setStiArticles(data));
-
-  }, [])
+  }, []);
 
   const form = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
@@ -226,7 +257,8 @@ export default function BeeawareContextProvider({
             Verify Email
           </ToastAction>
         ),
-        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+        className:
+          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
       router.push('/auth/signup/verify-email');
     } catch (e) {
@@ -249,7 +281,8 @@ export default function BeeawareContextProvider({
       toast({
         title: 'Pin Resent Successfully... 🎉',
         description: 'Verify Your Account.',
-        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+        className:
+          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
       console.error(error);
@@ -289,7 +322,7 @@ export default function BeeawareContextProvider({
         querySnapshot.forEach(doc => {
           const userData = doc.data();
           console.log('User data:', userData);
-          const userName = userData?.name
+          const userName = userData?.name;
           setUserName(userName);
         });
         if (res === undefined) {
@@ -308,7 +341,8 @@ export default function BeeawareContextProvider({
               Dashboard
             </ToastAction>
           ),
-          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+          className:
+            'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
         router.push('/dashboard');
       }
@@ -361,7 +395,8 @@ export default function BeeawareContextProvider({
               Dashboard
             </ToastAction>
           ),
-          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+          className:
+            'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
         router.push('/dashboard');
         setLoginLoading(false);
@@ -379,7 +414,8 @@ export default function BeeawareContextProvider({
               Dashboard
             </ToastAction>
           ),
-          className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+          className:
+            'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
         });
         router.push('/dashboard');
       }
@@ -433,7 +469,8 @@ export default function BeeawareContextProvider({
             Cancel
           </ToastAction>
         ),
-        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+        className:
+          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
       console.error(error);
@@ -486,7 +523,8 @@ export default function BeeawareContextProvider({
             Log in
           </ToastAction>
         ),
-        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+        className:
+          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
     } catch (error) {
       console.error(error);
@@ -513,7 +551,8 @@ export default function BeeawareContextProvider({
             Log in
           </ToastAction>
         ),
-        className: 'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+        className:
+          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
       });
       router.push('/auth/login');
       console.log('Signed out user');
@@ -524,17 +563,17 @@ export default function BeeawareContextProvider({
 
   async function getArticlesData() {
     try {
-      const articlesData = await getAllData()
-      return articlesData;      
+      const articlesData = await getAllData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
   }
-  
+
   async function getSlugArticleData(slug: string) {
     try {
-      const articlesData = await getSlugData(slug)
-      return articlesData;      
+      const articlesData = await getSlugData(slug);
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
@@ -542,8 +581,8 @@ export default function BeeawareContextProvider({
 
   async function getSTIArticlesData() {
     try {
-      const articlesData = await getSTIData()
-      return articlesData;      
+      const articlesData = await getSTIData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
@@ -551,8 +590,8 @@ export default function BeeawareContextProvider({
 
   async function getCommunicationArticlesData() {
     try {
-      const articlesData = await getCommunicationData()
-      return articlesData;      
+      const articlesData = await getCommunicationData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
@@ -560,8 +599,8 @@ export default function BeeawareContextProvider({
 
   async function getContraceptionArticlesData() {
     try {
-      const articlesData = await getContraceptionData()
-      return articlesData;      
+      const articlesData = await getContraceptionData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
@@ -569,8 +608,8 @@ export default function BeeawareContextProvider({
 
   async function getIntimacyArticlesData() {
     try {
-      const articlesData = await getIntimacyData()
-      return articlesData;      
+      const articlesData = await getIntimacyData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
@@ -578,8 +617,8 @@ export default function BeeawareContextProvider({
 
   async function getConsentArticlesData() {
     try {
-      const articlesData = await getConsentData()
-      return articlesData;      
+      const articlesData = await getConsentData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
@@ -587,24 +626,23 @@ export default function BeeawareContextProvider({
 
   async function getPubertyArticlesData() {
     try {
-      const articlesData = await getPubertyData()
-      return articlesData;      
+      const articlesData = await getPubertyData();
+      return articlesData;
     } catch (error) {
       console.error(error);
     }
   }
 
-  const handleSendMessage = async(e: any) => {
+  const handleSendMessage = async (e: any) => {
     e.preventDefault();
 
-    if (userMessage === "") return;
-    
+    if (userMessage === '') return;
+
     await addDoc(messagesRef, {
       message: userMessage,
       createdAt: serverTimestamp(),
-      user: auth?.currentUser?.displayName || userName
-    })
-    setMessages([...messages, userMessage]);
+      user: auth?.currentUser?.displayName || userName,
+    });
     setUserMessage('');
   };
 
@@ -652,10 +690,13 @@ export default function BeeawareContextProvider({
         contraceptionArticles,
         getSlugArticleData,
         messages,
+        setMessages,
         userMessage,
         setUserMessage,
+        docMessages,
+        setDocMessages,
         handleSendMessage,
-        messagesRef
+        messagesRef,
       }}
     >
       {children}
