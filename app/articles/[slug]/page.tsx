@@ -14,7 +14,6 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { FaFacebookF } from 'react-icons/fa';
 import Link from 'next/link';
 import { CircularProgress } from '@mui/material';
-import ArticleDialogComponent from '@/components/ArticleDialogComponent';
 
 type Props = {};
 
@@ -89,22 +88,12 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                     5 min read
                   </span>
                   <div className="flex items-center gap-5">
-                    <ArticleDialogComponent
-                      articleOpenDialog={showDialog}
-                      
-                    >
                       <div className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baError transition transform" onClick={() => setShowDialog(true)}>
                         <FaHeart />
                       </div>
-                    </ArticleDialogComponent>
-                    <ArticleDialogComponent
-                      articleOpenDialog={showDialog}
-                      
-                    >
                       <div className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform" onClick={() => setShowDialog(true)}>
                         <FaCommentDots />
                       </div>
-                    </ArticleDialogComponent>
                   </div>
                 </div>
                 <div className="flex items-center gap-5 text-smallSize md:text-bodySize sm:pt-4 md:pt-0">
@@ -245,30 +234,15 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                 </div>
                 <div className="flex items-center gap-5">
                   <span>Share:</span>
-                  <ArticleDialogComponent
-                    articleOpenDialog={showDialog}
-                    
-                  >
                     <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
                       <FiLink />
                     </span>
-                  </ArticleDialogComponent>
-                  <ArticleDialogComponent
-                    articleOpenDialog={showDialog}
-                    
-                  >
                     <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
                       <RiTwitterXFill />
                     </span>
-                  </ArticleDialogComponent>
-                  <ArticleDialogComponent
-                    articleOpenDialog={showDialog}
-                    
-                  >
                     <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
                       <FaFacebookF />
                     </span>
-                  </ArticleDialogComponent>
                 </div>
               </div>
               <div className="sm:pb-14 lg:pb-24">
