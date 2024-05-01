@@ -98,30 +98,15 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                 </div>
                 <div className="flex items-center gap-5 text-smallSize md:text-bodySize sm:pt-4 md:pt-0">
                   <span>Share:</span>
-                  <ArticleDialogComponent
-                    articleOpenDialog={showDialog}
-                    
-                  >
                     <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
                       <FiLink />
                     </span>
-                  </ArticleDialogComponent>
-                  <ArticleDialogComponent
-                    articleOpenDialog={showDialog}
-                    
-                  >
                     <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
                       <RiTwitterXFill />
                     </span>
-                  </ArticleDialogComponent>
-                  <ArticleDialogComponent
-                    articleOpenDialog={showDialog}
-                    
-                  >
                     <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
                       <FaFacebookF />
                     </span>
-                  </ArticleDialogComponent>
                 </div>
               </div>
               <div className="flex items-center justify-between flex-col xl:flex-row gap-10 lg:gap-20 pb-8">
