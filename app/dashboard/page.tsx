@@ -62,7 +62,7 @@ const DashboardPage = (props: Props) => {
     );
     const queryDocMessages = query(
       messagesRef,
-      where('user', '==', 'Perpetual ObuAmu'),
+      where('user', '==', docUser),
       orderBy('createdAt')
     );
     const unsubscribe = onSnapshot(queryMessages, snapshot => {
