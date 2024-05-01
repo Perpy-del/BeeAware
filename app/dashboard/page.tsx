@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import MobileMessageComponent from '@/components/MobileMessageComponent';
-import { query, onSnapshot, where } from 'firebase/firestore';
+import { query, onSnapshot, where, orderBy } from 'firebase/firestore';
 
 type Props = {};
 
@@ -29,11 +29,12 @@ const DashboardPage = (props: Props) => {
     numMessages,
     setNumMessages,
     messages,
+    setMessages,
     userMessage,
     setUserMessage,
     handleSendMessage,
     userName,
-    messagesRef
+    messagesRef, docMessages, setDocMessages
   } = useBeeawareHook();
 
   const [user, setUser] = useState<User | null>(null);
@@ -52,12 +53,46 @@ const DashboardPage = (props: Props) => {
   }, [router]);
 
   useEffect(() => {
-    const currUser = user?.displayName || userName
-    const queryMessages = query(messagesRef, where("user", "==", currUser))
-    onSnapshot(queryMessages, (snapshot) => {
-      console.log("NEW MESSAGE")
+    const currUser = user?.displayName || userName;
+    const docUser = 'Perpetual ObuAmu' || 'Olayode Ibukun' || 'Onyah Nwakaego'
+    const queryMessages = query(
+      messagesRef,
+      where('user', '==', currUser),
+      orderBy('createdAt')
+    );
+    const queryDocMessages = query(
+      messagesRef,
+      where('user', '==', 'Perpetual ObuAmu'),
+      orderBy('createdAt')
+    );
+    const unsubscribe = onSnapshot(queryMessages, snapshot => {
+      let newMessages = [];
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (typeof data === 'object' && data !== null) {
+          newMessages.push({ ...data, id: doc.id });
+        } else {
+          console.error('Data is not an object:', data);
+        }
+        setMessages(newMessages);
+      });
     });
-  }, [messagesRef, user?.displayName, userName])
+
+    onSnapshot(queryDocMessages, snapshot => {
+      let newDocMessages = [];
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (typeof data === 'object' && data !== null) {
+          newDocMessages.push({ ...data, id: doc.id });
+        } else {
+          console.error('Data is not an object:', data);
+        }
+        setDocMessages(newDocMessages);
+      });
+    });
+
+    return () => unsubscribe();
+  }, [messagesRef, setDocMessages, setMessages, user?.displayName, userName]);
 
   return user ? (
     <div>
@@ -129,26 +164,26 @@ const DashboardPage = (props: Props) => {
                   Today
                 </span>
                 <div className="absolute block w-full bottom-7 space-y-5">
-                  {messages.length !== 0 ? (
+                  {messages.sort((a: any, b: any) => a - b).length !== 0 ? (
                     <div className="space-y-2 flex flex-col justify-end items-end">
-                      {messages.map((message: string, index: number) => (
+                      {messages.map((message: any, index: number) => (
                         <h2
-                          key={index}
+                          key={message?.id}
                           className="px-5 py-2 font-ba_normal bg-baAccent w-fit text-baDark rounded-lg"
                         >
-                          {message}
+                          {message?.message}
                         </h2>
                       ))}
                     </div>
                   ) : null}
-                  {messages.length !== 0 ? (
+                  {docMessages.length !== 0 ? (
                     <div className="space-y-2 flex flex-col justify-start items-start">
-                      {messages.map((message: string, index: number) => (
+                      {docMessages.map((message: any, index: number) => (
                         <h2
-                          key={index}
+                          key={message?.id}
                           className="px-5 py-2 font-ba_normal bg-[#b8b3db] w-fit text-baDark rounded-lg"
                         >
-                          {message}
+                          {message?.message}
                         </h2>
                       ))}
                     </div>

@@ -14,16 +14,20 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { FaFacebookF } from 'react-icons/fa';
 import Link from 'next/link';
 import { CircularProgress } from '@mui/material';
+import { toast } from '@/components/ui/use-toast';
+import { ToastAction } from '@/components/ui/toast';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
 const ArticlePage = ({ params }: { params: { slug: string } }) => {
+  const router = useRouter();
+
   const { getSlugArticleData, allArticles } = useBeeawareHook();
   const [articleSlug, setArticleSlug] = useState<ArticleDataInterface[] | null>(
     null
   );
   const [showVideo, setShowVideo] = useState<boolean>(false);
-  const [showDialog, setShowDialog] = useState<boolean>(false);
 
   const handleCoverClick = () => {
     setShowVideo(true);
@@ -88,25 +92,125 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                     5 min read
                   </span>
                   <div className="flex items-center gap-5">
-                      <div className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baError transition transform" onClick={() => setShowDialog(true)}>
-                        <FaHeart />
-                      </div>
-                      <div className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform" onClick={() => setShowDialog(true)}>
-                        <FaCommentDots />
-                      </div>
+                    <div
+                      className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baError transition transform"
+                      onClick={() =>
+                        toast({
+                          title:
+                            'You need to be Sign in to share, like or comment on the articles',
+                          description:
+                            'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                          action: (
+                            <ToastAction
+                              altText="Log in"
+                              onClick={() => router.push('/auth/login')}
+                            >
+                              Dashboard
+                            </ToastAction>
+                          ),
+                          className:
+                            'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                        })
+                      }
+                    >
+                      <FaHeart />
+                    </div>
+                    <div
+                      className="cursor-pointer hover:scale-125 ease-in-out duration-300 text-baDark dark:text-baLight transition transform"
+                      onClick={() =>
+                        toast({
+                          title:
+                            'You need to be Sign in to share, like or comment on the articles',
+                          description:
+                            'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                          action: (
+                            <ToastAction
+                              altText="Log in"
+                              onClick={() => router.push('/auth/login')}
+                            >
+                              Dashboard
+                            </ToastAction>
+                          ),
+                          className:
+                            'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                        })
+                      }
+                    >
+                      <FaCommentDots />
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-5 text-smallSize md:text-bodySize sm:pt-4 md:pt-0">
                   <span>Share:</span>
-                    <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
-                      <FiLink />
-                    </span>
-                    <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
-                      <RiTwitterXFill />
-                    </span>
-                    <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
-                      <FaFacebookF />
-                    </span>
+                  <span
+                    className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
+                    onClick={() =>
+                      toast({
+                        title:
+                          'You need to be Sign in to share, like or comment on the articles',
+                        description:
+                          'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                        action: (
+                          <ToastAction
+                            altText="Log in"
+                            onClick={() => router.push('/auth/login')}
+                          >
+                            Dashboard
+                          </ToastAction>
+                        ),
+                        className:
+                          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                      })
+                    }
+                  >
+                    <FiLink />
+                  </span>
+                  <span
+                    className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
+                    onClick={() =>
+                      toast({
+                        title:
+                          'You need to be Sign in to share, like or comment on the articles',
+                        description:
+                          'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                        action: (
+                          <ToastAction
+                            altText="Log in"
+                            onClick={() => router.push('/auth/login')}
+                          >
+                            Dashboard
+                          </ToastAction>
+                        ),
+                        className:
+                          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                      })
+                    }
+                  >
+                    <RiTwitterXFill />
+                  </span>
+                  <span
+                    className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
+                    onClick={() =>
+                      toast({
+                        title:
+                          'You need to be Sign in to share, like or comment on the articles',
+                        description:
+                          'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                        action: (
+                          <ToastAction
+                            altText="Log in"
+                            onClick={() => router.push('/auth/login')}
+                          >
+                            Dashboard
+                          </ToastAction>
+                        ),
+                        className:
+                          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                      })
+                    }
+                  >
+                    <FaFacebookF />
+                  </span>
                 </div>
               </div>
               <div className="flex items-center justify-between flex-col xl:flex-row gap-10 lg:gap-20 pb-8">
@@ -210,24 +314,86 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                 <div className="flex item-center gap-20">
                   <div className="flex items-center gap-5">
                     <div className="flex items-center gap-2  text-baDark dark:text-baLight ">
-                      <FaHeart /> <span className="text-baDark dark:text-baLight">42</span>
+                      <FaHeart />{' '}
+                      <span className="text-baDark dark:text-baLight">42</span>
                     </div>
                     <div className="flex items-center gap-2  text-baDark dark:text-baLight ">
-                      <FaCommentDots /> <span className="text-baDark dark:text-baLight">33</span>
+                      <FaCommentDots />{' '}
+                      <span className="text-baDark dark:text-baLight">33</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-5">
                   <span>Share:</span>
-                    <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
-                      <FiLink />
-                    </span>
-                    <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
-                      <RiTwitterXFill />
-                    </span>
-                    <span className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform" onClick={() => setShowDialog(true)}>
-                      <FaFacebookF />
-                    </span>
+                  <span
+                    className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
+                    onClick={() =>
+                      toast({
+                        title:
+                          'You need to be Sign in to share, like or comment on the articles',
+                        description:
+                          'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                        action: (
+                          <ToastAction
+                            altText="Log in"
+                            onClick={() => router.push('/auth/login')}
+                          >
+                            Dashboard
+                          </ToastAction>
+                        ),
+                        className:
+                          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                      })
+                    }
+                  >
+                    <FiLink />
+                  </span>
+                  <span
+                    className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
+                    onClick={() =>
+                      toast({
+                        title:
+                          'You need to be Sign in to share, like or comment on the articles',
+                        description:
+                          'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                        action: (
+                          <ToastAction
+                            altText="Log in"
+                            onClick={() => router.push('/auth/login')}
+                          >
+                            Dashboard
+                          </ToastAction>
+                        ),
+                        className:
+                          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                      })
+                    }
+                  >
+                    <RiTwitterXFill />
+                  </span>
+                  <span
+                    className="cursor-pointer hover:scale-125 ease-in-out duration-300 transition transform"
+                    onClick={() =>
+                      toast({
+                        title:
+                          'You need to be Sign in to share, like or comment on the articles',
+                        description:
+                          'Please log in to your account to access your BeeAware dashboard or create an account if you do not have one.',
+                        action: (
+                          <ToastAction
+                            altText="Log in"
+                            onClick={() => router.push('/auth/login')}
+                          >
+                            Dashboard
+                          </ToastAction>
+                        ),
+                        className:
+                          'bg-baSecondary text-baLight dark:bg-baLight dark:text-baBody',
+                      })
+                    }
+                  >
+                    <FaFacebookF />
+                  </span>
                 </div>
               </div>
               <div className="sm:pb-14 lg:pb-24">
