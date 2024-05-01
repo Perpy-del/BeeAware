@@ -131,17 +131,17 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                         src={articleSlug[0]?.mainImage}
                         alt="Cover"
                         onClick={handleCoverClick}
-                        className="cursor-pointer rounded-xl"
+                        className="cursor-pointer rounded-xl bg-baDark/90"
                         width={400}
                         height={300}
                       />
-                      <div className='w-[400px] h-[300px] z-10 rounded-xl bg-baDark/70 absolute top-0 left-0'></div>
                       {!showVideo && (
                         <div
-                          className="absolute inset-0 flex z-20 items-center justify-center md:right-[40%] lg:right-0 cursor-pointer hover:scale-125 transition transform duration-300 ease-in-out"
+                          className="absolute inset-0 flex items-center justify-center md:right-[40%] lg:right-0 cursor-pointer hover:scale-125 transition transform duration-300 ease-in-out"
                           onClick={handleCoverClick}
                         >
                           <FaPlay color="#0524C9" size={40} />
+                          <h3>Play Video</h3>
                         </div>
                       )}
                     </div>
@@ -151,7 +151,7 @@ const ArticlePage = ({ params }: { params: { slug: string } }) => {
                         height="600"
                         autoPlay={false}
                         controls
-                        className="absolute top-0 left-0 z-20 bottom-0 h-full"
+                        className="absolute top-0 left-0 bottom-0 h-full"
                       >
                         <source
                           src={`${articleSlug[0]?.mainVideo}`}
