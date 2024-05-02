@@ -99,6 +99,7 @@ export default function BeeawareContextProvider({
   const [userMessage, setUserMessage] = useState<string>('');
   const [messages, setMessages] = useState<Array<any>>([]);
   const [docMessages, setDocMessages] = useState<Array<any>>([]);
+  const [messageLoading, setMessageLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const [createUserWithEmailAndPassword, error] =
@@ -635,15 +636,20 @@ export default function BeeawareContextProvider({
 
   const handleSendMessage = async (e: any) => {
     e.preventDefault();
-
     if (userMessage === '') return;
-
-    await addDoc(messagesRef, {
-      message: userMessage,
-      createdAt: serverTimestamp(),
-      user: auth?.currentUser?.displayName || userName,
-    });
-    setUserMessage('');
+    setMessageLoading(true);
+    try {
+      await addDoc(messagesRef, {
+        message: userMessage,
+        createdAt: serverTimestamp(),
+        user: auth?.currentUser?.displayName || userName,
+      });
+      setUserMessage('');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setMessageLoading(false);
+    }
   };
 
   return (
@@ -697,6 +703,7 @@ export default function BeeawareContextProvider({
         setDocMessages,
         handleSendMessage,
         messagesRef,
+        messageLoading
       }}
     >
       {children}

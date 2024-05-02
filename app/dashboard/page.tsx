@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import MobileMessageComponent from '@/components/MobileMessageComponent';
 import { query, onSnapshot, where, orderBy } from 'firebase/firestore';
+import { CircularProgress } from '@mui/material';
 
 type Props = {};
 
@@ -34,7 +35,10 @@ const DashboardPage = (props: Props) => {
     setUserMessage,
     handleSendMessage,
     userName,
-    messagesRef, docMessages, setDocMessages
+    messagesRef,
+    docMessages,
+    setDocMessages,
+    messageLoading,
   } = useBeeawareHook();
 
   const [user, setUser] = useState<User | null>(null);
@@ -54,7 +58,7 @@ const DashboardPage = (props: Props) => {
 
   useEffect(() => {
     const currUser = user?.displayName || userName;
-    const docUser = 'Perpetual ObuAmu' || 'Olayode Ibukun' || 'Onyah Nwakaego'
+    const docUser = 'Perpetual ObuAmu' || 'Olayode Ibukun' || 'Onyah Nwakaego';
     const queryMessages = query(
       messagesRef,
       where('user', '==', currUser),
@@ -62,7 +66,7 @@ const DashboardPage = (props: Props) => {
     );
     const queryDocMessages = query(
       messagesRef,
-      where('user', '==', docUser),
+      where('user', '==', 'Onyah Nwakaego'),
       orderBy('createdAt')
     );
     const unsubscribe = onSnapshot(queryMessages, snapshot => {
@@ -93,6 +97,8 @@ const DashboardPage = (props: Props) => {
 
     return () => unsubscribe();
   }, [messagesRef, setDocMessages, setMessages, user?.displayName, userName]);
+
+  let lastSender: string | null = null;
 
   return user ? (
     <div>
@@ -164,7 +170,8 @@ const DashboardPage = (props: Props) => {
                   Today
                 </span>
                 <div className="absolute block w-full bottom-7 space-y-5">
-                  {messages.sort((a: any, b: any) => a - b).length !== 0 ? (
+                  {/* Render user messages */}
+                  {messages.length !== 0 ? (
                     <div className="space-y-2 flex flex-col justify-end items-end">
                       {messages.map((message: any, index: number) => (
                         <h2
@@ -216,7 +223,11 @@ const DashboardPage = (props: Props) => {
                       className={`absolute bottom-4 right-4 flex items-center transition transform duration-700 hover:scale-110 gap-2 ease-in-out hover:gap-4 3xl:text-headerFour 3xl:h-14 w-fit h-fit px-3 py-4`}
                       // onClick={handleSendMessage}
                     >
-                      <SendHorizontal />
+                      {messageLoading ? (
+                        <CircularProgress size={24} color="inherit" />
+                      ) : (
+                        <SendHorizontal />
+                      )}
                     </Button>
                   </form>
                 </div>
