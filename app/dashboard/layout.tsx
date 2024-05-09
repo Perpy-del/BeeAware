@@ -1,22 +1,18 @@
-'use client';
-
+import type { Metadata } from 'next';
 import '../globals.css';
 import DashboardNavBar from '@/components/DashboardNavBar';
 import DashboardFooter from '@/components/DashboardFooter';
-import { useRouter } from 'next/navigation';
-import { useBeeawareHook } from '@/hooks/useBeeawareHook';
+
+export const metadata: Metadata = {
+  title: 'BeeAware | Dashboard',
+  description: 'An application to create more awareness about sexual health',
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const router = useRouter();
-  const {user} = useBeeawareHook();
-
-  if (!user) {
-    router.push('/auth/login');
-  }
 
   return (
     <div className='relative'>
