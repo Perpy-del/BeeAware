@@ -3,7 +3,7 @@
 import '../globals.css';
 import DashboardNavBar from '@/components/DashboardNavBar';
 import DashboardFooter from '@/components/DashboardFooter';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useBeeawareHook } from '@/hooks/useBeeawareHook';
 
 export default function RootLayout({
@@ -11,10 +11,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const {user} = useBeeawareHook();
 
   if (!user) {
-    redirect('/auth/login')
+    router.push('/auth/login');
   }
 
   return (
