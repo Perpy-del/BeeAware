@@ -98,8 +98,6 @@ const DashboardPage = (props: Props) => {
     return () => unsubscribe();
   }, [messagesRef, setDocMessages, setMessages, user?.displayName, userName]);
 
-  let lastSender: string | null = null;
-
   return user ? (
     <div>
       {numMessages ? (
