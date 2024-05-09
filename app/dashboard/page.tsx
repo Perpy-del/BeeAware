@@ -270,7 +270,9 @@ const DashboardPage = (props: Props) => {
         </>
       )}
     </div>
-  ) : null;
+  ) : <div className='h-[75vh] flex items-center justify-center'>
+    <CircularProgress size={100} />
+  </div>;
 };
 
 export default DashboardPage;
